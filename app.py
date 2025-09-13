@@ -74,7 +74,7 @@ if "last_url" not in st.session_state:
 #         df_links_filtered["tldr"] = df_links_filtered["tldr"].apply(clean_tldr)
 #         show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
 #         st.subheader("Historic Links")
-#         st.dataframe(df_links_filtered[show_cols], use_container_width=True)
+#         st.dataframe(df_links_filtered[show_cols], width=True)
 #     if process_clicked:
 #         with st.spinner("Processing..."):
 #             result = process_new_link(url)
@@ -102,7 +102,7 @@ if "last_url" not in st.session_state:
 #             ].copy()
 #             show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
 #             st.subheader("Updated Links Table")
-#             st.dataframe(df_links_filtered[show_cols], use_container_width=True)
+#             st.dataframe(df_links_filtered[show_cols], width=True)
 
 #             # Display link data and flashcards as before...
 #             st.subheader("Link Analysis")
@@ -169,7 +169,7 @@ if page == "Add Links":
         df_links_filtered["tldr"] = df_links_filtered["tldr"].apply(clean_tldr)
         show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
         st.subheader("Historic Links")
-        st.dataframe(df_links_filtered[show_cols], use_container_width=True)
+        st.dataframe(df_links_filtered[show_cols], =True)
     else:
         # Updated table filters (new keys!)
         df_links = load_csv()
@@ -190,7 +190,7 @@ if page == "Add Links":
         ].copy()
         show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
         st.subheader("Updated Links Table")
-        st.dataframe(df_links_filtered[show_cols], use_container_width=True)
+        st.dataframe(df_links_filtered[show_cols], width=True)
 
         # Display link data and flashcards as before...
         result = st.session_state.get("result")
