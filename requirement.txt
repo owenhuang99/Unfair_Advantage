@@ -5,3 +5,5 @@ beautifulsoup4>=4.12
 trafilatura>=1.8
 python-dotenv>=1.0
 openai>=1.30
+lxml>=5.2
+bs4>=0.0.2
