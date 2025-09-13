@@ -361,7 +361,7 @@ elif page == "Review Cards":
                         st.session_state.show_answer = False
                     else:
                         st.session_state.current_card = None
-                    st.experimental_rerun()
+                    st.rerun()
             with colB:
                 if st.button("Review Again 🔁"):
                     if st.session_state.main_q and st.session_state.main_q[0]["card_id"] == card["card_id"]:
@@ -375,7 +375,7 @@ elif page == "Review Cards":
                         st.session_state.show_answer = False
                     else:
                         st.session_state.current_card = None
-                    st.experimental_rerun()
+                    st.rerun()
     else:
         st.info("No cards to review! Add links first.")
     # # --- Automatically show first card if available ---
