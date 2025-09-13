@@ -169,7 +169,7 @@ if page == "Add Links":
         df_links_filtered["tldr"] = df_links_filtered["tldr"].apply(clean_tldr)
         show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
         st.subheader("Historic Links")
-        st.dataframe(df_links_filtered[show_cols], width=True)
+        st.dataframe(df_links_filtered[show_cols])
     else:
         # Updated table filters (new keys!)
         df_links = load_csv()
@@ -190,7 +190,7 @@ if page == "Add Links":
         ].copy()
         show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
         st.subheader("Updated Links Table")
-        st.dataframe(df_links_filtered[show_cols], width=True)
+        st.dataframe(df_links_filtered[show_cols])
 
         # Display link data and flashcards as before...
         result = st.session_state.get("result")
