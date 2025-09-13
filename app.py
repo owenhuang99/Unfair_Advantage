@@ -169,7 +169,7 @@ if page == "Add Links":
         df_links_filtered["tldr"] = df_links_filtered["tldr"].apply(clean_tldr)
         show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
         st.subheader("Historic Links")
-        st.dataframe(df_links_filtered[show_cols], =True)
+        st.dataframe(df_links_filtered[show_cols], width=True)
     else:
         # Updated table filters (new keys!)
         df_links = load_csv()
