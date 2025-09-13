@@ -1,6 +1,6 @@
-streamlit>=1.36
-beautifulsoup4>=4.12
-requests>=2.31
-pandas>=2.2
-python-dotenv>=1.0
-tiktoken>=0.7
+streamlit
+beautifulsoup4
+requests
+pandas
+python-dotenv
+tiktoken
