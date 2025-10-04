@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import re
 from core import process_new_link, mark_card_status, load_all_unlearned_cards, generate_cards_for_url, reset_learned, canonicalize_url,load_unlearned_cards,load_csv
 
@@ -336,45 +337,189 @@ if page == "Add Links":
 
     # --- Table filters ---
     if not st.session_state.process_clicked:
-        # Historic table filters
-        all_categories = sorted({cat for cats in df_links["categories"] for cat in (cats if isinstance(cats, list) else [])})
-        all_tags = sorted({tag for tags in df_links["tags"] for tag in (tags if isinstance(tags, list) else [])})
+        # Historic table filters - using L1 and L2 for filtering
+        # Check if L1-L6 columns exist
+        if "L1" in df_links.columns and "L2" in df_links.columns:
+            all_l1_values = sorted({val for val in df_links["L1"] if pd.notna(val) and val})
+            all_l2_values = sorted({val for val in df_links["L2"] if pd.notna(val) and val})
+        else:
+            all_l1_values = []
+            all_l2_values = []
 
-        col_cat, col_tag = st.columns(2)
-        with col_cat:
-            selected_categories = st.multiselect("Filter by Category", options=all_categories, key="historic_cat")
-        with col_tag:
-            selected_tags = st.multiselect("Filter by Tag", options=all_tags, key="historic_tag")
+        col_l1, col_l2 = st.columns(2)
+        with col_l1:
+            selected_l1 = st.multiselect("Filter by L1 (Domain)", options=all_l1_values, key="historic_l1")
+        with col_l2:
+            selected_l2 = st.multiselect("Filter by L2 (Category)", options=all_l2_values, key="historic_l2")
 
-        df_links_filtered = df_links[
-            df_links["categories"].apply(lambda x: has_any(selected_categories, x)) &
-            df_links["tags"].apply(lambda x: has_any(selected_tags, x))
-        ].copy()
+        # Create proper boolean masks for filtering
+        if "L1" in df_links.columns and selected_l1:
+            l1_mask = df_links["L1"].isin(selected_l1)
+        else:
+            l1_mask = pd.Series([True] * len(df_links), index=df_links.index)
+
+        if "L2" in df_links.columns and selected_l2:
+            l2_mask = df_links["L2"].isin(selected_l2)
+        else:
+            l2_mask = pd.Series([True] * len(df_links), index=df_links.index)
+
+        df_links_filtered = df_links[l1_mask & l2_mask].copy()
         df_links_filtered["tldr"] = df_links_filtered["tldr"].apply(clean_tldr)
-        show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
+
+        # Create display dataframe with bubble-style formatting for L3-L6 arrays
+        def format_array_as_bubbles(col_data):
+            if isinstance(col_data, list) and col_data:
+                # Create HTML spans for each item to display as bubbles/pills
+                bubbles = []
+                for item in col_data:
+                    bubbles.append(f'<span style="background-color: #e1f5fe; color: #01579b; padding: 2px 6px; margin: 1px; border-radius: 10px; font-size: 12px; display: inline-block;">{str(item)}</span>')
+                return " ".join(bubbles)
+            return str(col_data) if col_data else ""
+
+        display_df = df_links_filtered.copy()
+        for col in ["L3", "L4", "L5", "L6"]:
+            if col in display_df.columns:
+                display_df[col] = display_df[col].apply(format_array_as_bubbles)
+
+        # Special formatting for knowledge_paths (array of paths)
+        if "knowledge_paths" in display_df.columns:
+            def format_knowledge_paths(paths_data):
+                if not paths_data or (isinstance(paths_data, list) and len(paths_data) == 0):
+                    return ""
+                bubbles = []
+                if isinstance(paths_data, list):
+                    for path in paths_data:
+                        if isinstance(path, list):
+                            path_str = " → ".join(str(item) for item in path)
+                            bubbles.append(f'<span style="background-color: #f3e5f5; color: #4a148c; padding: 2px 6px; margin: 1px; border-radius: 10px; font-size: 12px; display: inline-block;">{path_str}</span>')
+                        else:
+                            bubbles.append(f'<span style="background-color: #f3e5f5; color: #4a148c; padding: 2px 6px; margin: 1px; border-radius: 10px; font-size: 12px; display: inline-block;">{str(path)}</span>')
+                    return "<br>".join(bubbles)
+                return str(paths_data) if paths_data else ""
+            display_df["knowledge_paths"] = display_df["knowledge_paths"].apply(format_knowledge_paths)
+
+        # Only show columns that exist
+        base_cols = ["headline", "url", "author", "tldr", "publish_date"]
+        l_cols = ["L1", "L2", "L3", "L4", "L5", "L6", "knowledge_paths"]
+        available_l_cols = [col for col in l_cols if col in display_df.columns]
+        show_cols = base_cols[:2] + available_l_cols + base_cols[2:]
+
         st.subheader("Historic Links")
-        st.dataframe(df_links_filtered[show_cols])
+        if not display_df.empty:
+            # Format the dataframe but keep the table format
+            table_df = df_links_filtered.copy()
+
+            # Format TLDR as plain text (remove any bubble styling)
+            def clean_tldr_plain_text(tldr_data):
+                if isinstance(tldr_data, list):
+                    return " | ".join(tldr_data)  # Simple separator, no bullets
+                return str(tldr_data) if tldr_data else ""
+
+            table_df["tldr"] = table_df["tldr"].apply(clean_tldr_plain_text)
+
+            # Keep L1-L6 data as-is for now, but make URL column clickable
+            st.dataframe(
+                table_df[show_cols],
+                use_container_width=True,
+                column_config={
+                    "url": st.column_config.LinkColumn("URL")
+                }
+            )
+        else:
+            st.write("No links found. Process a link to see it appear here!")
     else:
         # Updated table filters (new keys!)
         df_links = load_csv()
-        all_categories = sorted({cat for cats in df_links["categories"] for cat in (cats if isinstance(cats, list) else [])})
-        all_tags = sorted({tag for tags in df_links["tags"] for tag in (tags if isinstance(tags, list) else [])})
+        # Check if L1-L6 columns exist
+        if "L1" in df_links.columns and "L2" in df_links.columns:
+            all_l1_values = sorted({val for val in df_links["L1"] if pd.notna(val) and val})
+            all_l2_values = sorted({val for val in df_links["L2"] if pd.notna(val) and val})
+        else:
+            all_l1_values = []
+            all_l2_values = []
 
-        col_cat, col_tag = st.columns(2)
-        with col_cat:
-            selected_categories_new = st.multiselect("Filter by Category", options=all_categories, key="updated_cat")
-        with col_tag:
-            selected_tags_new = st.multiselect("Filter by Tag", options=all_tags, key="updated_tag")
+        col_l1, col_l2 = st.columns(2)
+        with col_l1:
+            selected_l1_new = st.multiselect("Filter by L1 (Domain)", options=all_l1_values, key="updated_l1")
+        with col_l2:
+            selected_l2_new = st.multiselect("Filter by L2 (Category)", options=all_l2_values, key="updated_l2")
 
         df_links_display = df_links.copy()
         df_links_display["tldr"] = df_links_display["tldr"].apply(clean_tldr)
-        df_links_filtered = df_links_display[
-            df_links_display["categories"].apply(lambda x: has_any(selected_categories_new, x)) &
-            df_links_display["tags"].apply(lambda x: has_any(selected_tags_new, x))
-        ].copy()
-        show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
+        # Create proper boolean masks for filtering
+        if "L1" in df_links_display.columns and selected_l1_new:
+            l1_mask = df_links_display["L1"].isin(selected_l1_new)
+        else:
+            l1_mask = pd.Series([True] * len(df_links_display), index=df_links_display.index)
+
+        if "L2" in df_links_display.columns and selected_l2_new:
+            l2_mask = df_links_display["L2"].isin(selected_l2_new)
+        else:
+            l2_mask = pd.Series([True] * len(df_links_display), index=df_links_display.index)
+
+        df_links_filtered = df_links_display[l1_mask & l2_mask].copy()
+
+        # Create display dataframe with bubble-style formatting for L3-L6 arrays
+        def format_array_as_bubbles(col_data):
+            if isinstance(col_data, list) and col_data:
+                # Create HTML spans for each item to display as bubbles/pills
+                bubbles = []
+                for item in col_data:
+                    bubbles.append(f'<span style="background-color: #e1f5fe; color: #01579b; padding: 2px 6px; margin: 1px; border-radius: 10px; font-size: 12px; display: inline-block;">{str(item)}</span>')
+                return " ".join(bubbles)
+            return str(col_data) if col_data else ""
+
+        display_df = df_links_filtered.copy()
+        for col in ["L3", "L4", "L5", "L6"]:
+            if col in display_df.columns:
+                display_df[col] = display_df[col].apply(format_array_as_bubbles)
+
+        # Special formatting for knowledge_paths (array of paths)
+        if "knowledge_paths" in display_df.columns:
+            def format_knowledge_paths(paths_data):
+                if not paths_data or (isinstance(paths_data, list) and len(paths_data) == 0):
+                    return ""
+                bubbles = []
+                if isinstance(paths_data, list):
+                    for path in paths_data:
+                        if isinstance(path, list):
+                            path_str = " → ".join(str(item) for item in path)
+                            bubbles.append(f'<span style="background-color: #f3e5f5; color: #4a148c; padding: 2px 6px; margin: 1px; border-radius: 10px; font-size: 12px; display: inline-block;">{path_str}</span>')
+                        else:
+                            bubbles.append(f'<span style="background-color: #f3e5f5; color: #4a148c; padding: 2px 6px; margin: 1px; border-radius: 10px; font-size: 12px; display: inline-block;">{str(path)}</span>')
+                    return "<br>".join(bubbles)
+                return str(paths_data) if paths_data else ""
+            display_df["knowledge_paths"] = display_df["knowledge_paths"].apply(format_knowledge_paths)
+
+        # Only show columns that exist
+        base_cols = ["headline", "url", "author", "tldr", "publish_date"]
+        l_cols = ["L1", "L2", "L3", "L4", "L5", "L6", "knowledge_paths"]
+        available_l_cols = [col for col in l_cols if col in display_df.columns]
+        show_cols = base_cols[:2] + available_l_cols + base_cols[2:]
+
         st.subheader("Updated Links Table")
-        st.dataframe(df_links_filtered[show_cols])
+        if not display_df.empty:
+            # Format the dataframe but keep the table format
+            table_df = df_links_filtered.copy()
+
+            # Format TLDR as plain text (remove any bubble styling)
+            def clean_tldr_plain_text(tldr_data):
+                if isinstance(tldr_data, list):
+                    return " | ".join(tldr_data)  # Simple separator, no bullets
+                return str(tldr_data) if tldr_data else ""
+
+            table_df["tldr"] = table_df["tldr"].apply(clean_tldr_plain_text)
+
+            # Keep L1-L6 data as-is for now, but make URL column clickable
+            st.dataframe(
+                table_df[show_cols],
+                use_container_width=True,
+                column_config={
+                    "url": st.column_config.LinkColumn("URL")
+                }
+            )
+        else:
+            st.write("No links found. Process a link to see it appear here!")
 
         # Display link data and flashcards as before...
         result = st.session_state.get("result")
@@ -384,8 +529,28 @@ if page == "Add Links":
             col1, col2 = st.columns(2)
             with col1:
                 st.write("**Title:**", link_data["headline"])
-                st.write("**Categories:**", ", ".join(link_data["categories"]))
-                st.write("**Tags:**", ", ".join(link_data["tags"]))
+                # Display L1-L6 hierarchical tags
+                hierarchy_parts = []
+                for level in ["L1", "L2", "L3", "L4", "L5", "L6"]:
+                    value = link_data.get(level)
+                    if value:
+                        if isinstance(value, list):
+                            # L3-L6 are arrays
+                            if value:
+                                display_value = ", ".join(str(v) for v in value)
+                                hierarchy_parts.append(f"**{level}:** [{display_value}]")
+                        else:
+                            # L1-L2 are single strings
+                            if str(value).strip():
+                                hierarchy_parts.append(f"**{level}:** {value}")
+
+                if hierarchy_parts:
+                    st.write("**Knowledge Hierarchy:**")
+                    for part in hierarchy_parts:
+                        st.write(f"  {part}")
+                else:
+                    st.write("**Knowledge Hierarchy:** Not available")
+
             with col2:
                 st.write("**Author:**", link_data["author"] or "Not found")
                 st.write("**Published:**", link_data["publish_date"] or "Not found")

@@ -1,45 +1,4 @@
 {
-  "categories": [
-    "AI",
-    "Memory",
-    "LangGraph",
-    "Tech",
-    "Development"
-  ],
-  "tags": [
-    "LangGraph",
-    "memory",
-    "AI agents",
-    "long-term memory",
-    "short-term memory",
-    "semantic memory",
-    "episodic memory",
-    "procedural memory",
-    "memory management",
-    "persistence",
-    "checkpointers",
-    "namespace",
-    "Machine Learning",
-    "AI Product Management",
-    "Product Strategy",
-    "Product Delivery",
-    "Tech Fluency",
-    "Influencing",
-    "Data Science",
-    "MLOps",
-    "Responsible AI",
-    "Career Transition",
-    "Product Management Skills",
-    "coding efficiency",
-    "GitHub integration",
-    "command line tools",
-    "software development",
-    "productivity",
-    "Artificial Intelligence",
-    "Startup",
-    "customer churn",
-    "predictive modeling",
-    "data analysis",
-    "Python"
-  ]
+  "categories": [],
+  "tags": []
 }
