@@ -24,10 +24,17 @@ MAX_TEXT_CHARS = int(os.getenv("MAX_TEXT_CHARS", "8000"))       # cap article te
 # TAXONOMY_PATH  = os.getenv("TAXONOMY_PATH", "taxonomy.json")    # where allowed lists persist
 # CSV_PATH       = os.getenv("CSV_PATH", "links_store.csv")       # where your DataFrame persists
 
+<<<<<<< HEAD
 CSV_PATH = "data/links_store.csv"
 TAXONOMY_PATH = "data/taxonomy.json"
 LINKS_CSV = "data/links_store.csv"
 CARDS_CSV = "data/cards_store.csv"
+=======
+CSV_PATH = "links_store.csv"
+TAXONOMY_PATH = "taxonomy.json"
+LINKS_CSV = "links_store.csv"
+CARDS_CSV = "cards_store.csv"
+>>>>>>> origin/main
 
 
 DEFAULT_HEADERS = {

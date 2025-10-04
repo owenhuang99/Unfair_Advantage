@@ -5,6 +5,7 @@ from core import process_new_link, mark_card_status, load_all_unlearned_cards, g
 
 st.set_page_config(page_title="Link Learning App", layout="wide")
 
+<<<<<<< HEAD
 # Add custom CSS for flashcard styling
 st.markdown("""
 <style>
@@ -165,6 +166,8 @@ div[data-testid="stButton"] > button[key="review_btn"] {
 </style>
 """, unsafe_allow_html=True)
 
+=======
+>>>>>>> origin/main
 # --- Sidebar navigation ---
 page = st.sidebar.radio("Navigation", ["Add Links", "Review Cards"])
 
@@ -188,6 +191,7 @@ def clean_tldr(tldr):
         return "\n".join([s.strip().replace('"', '') for s in re.split(r'[\n•\-]+', tldr) if s.strip()])
     else:
         return str(tldr)
+<<<<<<< HEAD
 
 def render_flashcard(card, show_answer):
     """Render a flashcard with proper styling"""
@@ -211,6 +215,8 @@ def render_flashcard(card, show_answer):
     """
 
     st.markdown(flashcard_html, unsafe_allow_html=True)
+=======
+>>>>>>> origin/main
     
 
 # --- Session state for flashcard queue logic ---
@@ -257,7 +263,11 @@ if "last_url" not in st.session_state:
 #         df_links_filtered["tldr"] = df_links_filtered["tldr"].apply(clean_tldr)
 #         show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
 #         st.subheader("Historic Links")
+<<<<<<< HEAD
 #         st.dataframe(df_links_filtered[show_cols], use_container_width=True)
+=======
+#         st.dataframe(df_links_filtered[show_cols], width=True)
+>>>>>>> origin/main
 #     if process_clicked:
 #         with st.spinner("Processing..."):
 #             result = process_new_link(url)
@@ -285,7 +295,11 @@ if "last_url" not in st.session_state:
 #             ].copy()
 #             show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
 #             st.subheader("Updated Links Table")
+<<<<<<< HEAD
 #             st.dataframe(df_links_filtered[show_cols], use_container_width=True)
+=======
+#             st.dataframe(df_links_filtered[show_cols], width=True)
+>>>>>>> origin/main
 
 #             # Display link data and flashcards as before...
 #             st.subheader("Link Analysis")
@@ -352,7 +366,11 @@ if page == "Add Links":
         df_links_filtered["tldr"] = df_links_filtered["tldr"].apply(clean_tldr)
         show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
         st.subheader("Historic Links")
+<<<<<<< HEAD
         st.dataframe(df_links_filtered[show_cols], use_container_width=True)
+=======
+        st.dataframe(df_links_filtered[show_cols])
+>>>>>>> origin/main
     else:
         # Updated table filters (new keys!)
         df_links = load_csv()
@@ -373,7 +391,11 @@ if page == "Add Links":
         ].copy()
         show_cols = ["headline", "url", "categories", "tags", "author", "tldr", "publish_date"]
         st.subheader("Updated Links Table")
+<<<<<<< HEAD
         st.dataframe(df_links_filtered[show_cols], use_container_width=True)
+=======
+        st.dataframe(df_links_filtered[show_cols])
+>>>>>>> origin/main
 
         # Display link data and flashcards as before...
         result = st.session_state.get("result")
@@ -517,6 +539,7 @@ elif page == "Review Cards":
     # --- Card display ---
     if st.session_state.current_card:
         card = st.session_state.current_card
+<<<<<<< HEAD
 
         # Render the flashcard
         render_flashcard(card, st.session_state.show_answer)
@@ -535,6 +558,23 @@ elif page == "Review Cards":
             colA, colB = st.columns(2)
             with colA:
                 if st.button("✅ I Know This", key="know_btn", help="Mark as learned and continue"):
+=======
+        st.markdown("---")
+        st.subheader("Question")
+        st.markdown(f"**{card['question']}**")
+
+        if not st.session_state.show_answer:
+            if st.button("Reveal Answer"):
+                st.session_state.show_answer = True
+
+        if st.session_state.show_answer:
+            st.subheader("Answer")
+            st.markdown(card["answer"])
+
+            colA, colB = st.columns(2)
+            with colA:
+                if st.button("I Know This 👍"):
+>>>>>>> origin/main
                     mark_card_status(card["card_id"], True)
                     if st.session_state.main_q and st.session_state.main_q[0]["card_id"] == card["card_id"]:
                         st.session_state.main_q.pop(0)
@@ -547,9 +587,15 @@ elif page == "Review Cards":
                         st.session_state.show_answer = False
                     else:
                         st.session_state.current_card = None
+<<<<<<< HEAD
                     st.experimental_rerun()
             with colB:
                 if st.button("🔁 Review Again", key="review_btn", help="Study this card again later"):
+=======
+                    st.rerun()
+            with colB:
+                if st.button("Review Again 🔁"):
+>>>>>>> origin/main
                     if st.session_state.main_q and st.session_state.main_q[0]["card_id"] == card["card_id"]:
                         st.session_state.again_q.append(st.session_state.main_q.pop(0))
                     if not st.session_state.main_q and st.session_state.again_q:
@@ -561,6 +607,7 @@ elif page == "Review Cards":
                         st.session_state.show_answer = False
                     else:
                         st.session_state.current_card = None
+<<<<<<< HEAD
                     st.experimental_rerun()
             st.markdown('</div>', unsafe_allow_html=True)
     else:
@@ -571,6 +618,11 @@ elif page == "Review Cards":
             <p>Add some links first to generate flashcards.</p>
         </div>
         """, unsafe_allow_html=True)
+=======
+                    st.rerun()
+    else:
+        st.info("No cards to review! Add links first.")
+>>>>>>> origin/main
     # # --- Automatically show first card if available ---
     # df = load_all_unlearned_cards()
     # cards = df[["card_id", "question", "answer"]].to_dict(orient="records")
@@ -720,4 +772,8 @@ elif page == "Review Cards":
 
 # Add footer
 st.sidebar.markdown("---")
+<<<<<<< HEAD
 st.sidebar.markdown("Made with Owen Huang")
+=======
+st.sidebar.markdown("Made with Owen Huang")
+>>>>>>> origin/main
