@@ -25,7 +25,7 @@ MAX_TEXT_CHARS = int(os.getenv("MAX_TEXT_CHARS", "8000"))       # cap article te
 # CSV_PATH       = os.getenv("CSV_PATH", "links_store.csv")       # where your DataFrame persists
 
 
-CSV_PATH = "data/links_store.csv"
+CSV_PATH = "data/links_store_v2.csv"
 TAXONOMY_PATH = "data/taxonomy.json"
 LINKS_CSV = "data/links_store.csv"
 CARDS_CSV = "data/cards_store.csv"
@@ -38,9 +38,15 @@ DEFAULT_HEADERS = {
 
 STRICT_JSON_RULES = (
     "Return STRICT JSON with keys: "
-    '["title","author","publish_date","categories","tags","tldr","language","citations","confidence_notes"]. '
-    "categories=1–3 short labels; tags=5–12 keywords; tldr=3–6 crisp bullets; "
-    "language=two-letter ISO code; citations=list of {title,url}; "
+    '["title","author","publish_date","L1","L2","sequential_paths","tldr","language","citations","confidence_notes"]. '
+    "L1=broad domain (single string: Tech, Business, Health, Finance, Science, etc.); "
+    "L2=major category (single string: GenAI, Data Science, Frontend, Product Management, etc.); "
+    "sequential_paths=array of complete learning progressions from L3→L6 where each path shows valid educational sequence. "
+    "Format: [[\"L3_concept\", \"L4_subconcept\", \"L5_detail\", \"L6_feature\"], [\"L3_concept2\", \"L4_subconcept2\", \"L5_detail2\"]] "
+    "Example: [[\"Memory\", \"Long-term Memory\", \"Persistence\", \"Vector Storage\"], [\"Agents\", \"ReAct\", \"Action Selection\", \"Tool Use\"], [\"GenAI\", \"LLMs\", \"Fine-tuning\"]] "
+    "CRITICAL: Each path must represent coherent learning progression. L3 required, L4-L6 optional. Each path preserves L3→L4→L5→L6 relationships. "
+    "Build 3-8 paths covering major concepts in the content. Ensure educational coherence within each path. "
+    "tldr=3–6 crisp bullets; language=two-letter ISO code; citations=list of {title,url}; "
     "confidence_notes=1–2 short sentences. No markdown—JSON only."
 )
 
@@ -385,8 +391,6 @@ def analyze_link_plus(
 
     # normalize fields
     fetched_at_utc = datetime.datetime.utcnow().isoformat() + "Z"
-    raw_categories = llm_data.get("categories") or []
-    raw_tags = llm_data.get("tags") or []
     tldr = llm_data.get("tldr") or []
 
     # TLDR as list
@@ -394,17 +398,29 @@ def analyze_link_plus(
         parts = [p.strip(" -•\t") for p in re.split(r"[\n•\-]+", tldr) if p.strip()]
         tldr = parts[:6] if parts else [llm_data.get("tldr", "")]
 
-    # evolve taxonomy
-    categories, updated_categories = update_matches(raw_categories, allowed_categories, max_k=3)
-    tags, updated_tags = update_matches(raw_tags, allowed_tags, max_k=12)
+    # Process simplified sequential paths with relationship preservation
+    L1 = llm_data.get("L1", "")
+    L2 = llm_data.get("L2", "")
+    sequential_paths = llm_data.get("sequential_paths", [])
+
+    # Generate knowledge paths and extract L3-L6 arrays while preserving relationships
+    knowledge_paths, L3_array, L4_array, L5_array, L6_array, relationships = process_sequential_paths_with_relationships(
+        L1, L2, sequential_paths
+    )
 
     record = {
         "fetched_at_utc": fetched_at_utc,
         "url": page.url,
         "domain": page.domain,
         "headline": (llm_data.get("title") or page.title or "").strip()[:300],
-        "categories": categories,
-        "tags": tags,
+        "L1": L1,  # single string
+        "L2": L2,  # single string
+        "L3": L3_array,  # array extracted from sequential structure
+        "L4": L4_array,  # array extracted from sequential paths
+        "L5": L5_array,  # array extracted from sequential paths
+        "L6": L6_array,  # array extracted from sequential paths
+        "sequential_paths": sequential_paths,  # original simplified paths from LLM
+        "knowledge_paths": knowledge_paths,  # complete paths with L1, L2 prefix
         "tldr": tldr,
         "content_text": page.text,    # full parsed text so you can verify LLM output
         "source_title": page.title,
@@ -412,8 +428,8 @@ def analyze_link_plus(
         "publish_date": llm_data.get("publish_date") or page.publish_date,
         "_source": {"mode": mode, "model": model_used},
         "_taxonomy": {
-            "updated_categories": updated_categories,
-            "updated_tags": updated_tags
+            "updated_categories": [],
+            "updated_tags": []
         }
     }
     return record
@@ -463,8 +479,75 @@ def canonicalize_url(url: str) -> str:
 # =========================
 COLUMNS = [
     "fetched_at_utc","url","url_canonical","domain","headline",
-    "categories","tags","tldr","content_text","source_title","author","publish_date"
+    "L1","L2","L3","L4","L5","L6","sequential_paths","knowledge_paths","tldr","content_text","source_title","author","publish_date"
 ]
+
+def process_sequential_paths_with_relationships(L1: str, L2: str, sequential_paths: list) -> tuple:
+    """
+    FAST: Process simplified sequential paths while preserving L3→L4→L5→L6 relationships.
+    Each path contains the relationships: ["L3", "L4", "L5", "L6"] shows L3→L4→L5→L6 progression.
+
+    Returns: (knowledge_paths, L3_array, L4_array, L5_array, L6_array, relationships_map)
+    """
+    if not sequential_paths or not isinstance(sequential_paths, list):
+        return [], [], [], [], [], {}
+
+    # Fast processing with relationship tracking
+    knowledge_paths = []
+    L3_set, L4_set, L5_set, L6_set = set(), set(), set(), set()
+
+    # Track relationships: L3→{L4s}, L4→{L5s}, L5→{L6s}
+    relationships = {"L3_to_L4": {}, "L4_to_L5": {}, "L5_to_L6": {}}
+
+    base_path = [L1, L2]
+
+    for path in sequential_paths:
+        if not isinstance(path, list) or len(path) < 1:
+            continue  # Skip invalid paths
+
+        # Limit path length and ensure valid format
+        path = path[:4]  # Max L3, L4, L5, L6
+        complete_path = base_path + path
+        knowledge_paths.append(complete_path)
+
+        # Extract tags and relationships in single pass
+        for i, tag in enumerate(path):
+            if i == 0:  # L3
+                L3_set.add(tag)
+            elif i == 1:  # L4
+                L4_set.add(tag)
+                # Record L3→L4 relationship
+                L3_parent = path[0]
+                if L3_parent not in relationships["L3_to_L4"]:
+                    relationships["L3_to_L4"][L3_parent] = set()
+                relationships["L3_to_L4"][L3_parent].add(tag)
+            elif i == 2:  # L5
+                L5_set.add(tag)
+                # Record L4→L5 relationship
+                if len(path) >= 2:
+                    L4_parent = path[1]
+                    if L4_parent not in relationships["L4_to_L5"]:
+                        relationships["L4_to_L5"][L4_parent] = set()
+                    relationships["L4_to_L5"][L4_parent].add(tag)
+            elif i == 3:  # L6
+                L6_set.add(tag)
+                # Record L5→L6 relationship
+                if len(path) >= 3:
+                    L5_parent = path[2]
+                    if L5_parent not in relationships["L5_to_L6"]:
+                        relationships["L5_to_L6"][L5_parent] = set()
+                    relationships["L5_to_L6"][L5_parent].add(tag)
+
+    # Convert sets to sorted lists (fast)
+    return (
+        knowledge_paths,
+        sorted(L3_set),
+        sorted(L4_set),
+        sorted(L5_set),
+        sorted(L6_set),
+        {k: {parent: sorted(children) for parent, children in level.items()}
+         for k, level in relationships.items()}
+    )
 
 def init_store() -> pd.DataFrame:
     return pd.DataFrame(columns=COLUMNS)
@@ -484,8 +567,8 @@ def _ensure_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 def save_csv(df: pd.DataFrame, path: str = CSV_PATH) -> None:
     df2 = df.copy()
-    # lists -> JSON strings for portability
-    for col in ["categories","tags","tldr"]:
+    # lists and dicts -> JSON strings for portability
+    for col in ["L3","L4","L5","L6","sequential_paths","knowledge_paths","tldr"]:
         if col in df2.columns:
             df2[col] = df2[col].apply(lambda x: x if isinstance(x, str) else json.dumps(x, ensure_ascii=False))
     df2.to_csv(path, index=False)
@@ -495,10 +578,13 @@ def load_csv(path: str = CSV_PATH) -> pd.DataFrame:
     if not p.exists():
         return init_store()
     df = pd.read_csv(path)
-    # restore lists
-    for col in ["categories","tags","tldr"]:
+    # restore lists and dicts
+    for col in ["L3","L4","L5","L6","tldr","knowledge_paths"]:
         if col in df.columns:
-            df[col] = df[col].apply(lambda s: json.loads(s) if isinstance(s, str) and s.startswith("[") else ([] if pd.isna(s) else s))
+            df[col] = df[col].apply(lambda s: json.loads(s) if isinstance(s, str) and (s.startswith("[") or s.startswith("{")) else ([] if pd.isna(s) else s))
+    # restore sequential_paths list specifically
+    if "sequential_paths" in df.columns:
+        df["sequential_paths"] = df["sequential_paths"].apply(lambda s: json.loads(s) if isinstance(s, str) and s.startswith("[") else ([] if pd.isna(s) else s))
     df = _ensure_columns(df)
     return df
 
@@ -509,8 +595,14 @@ def append_record(df: pd.DataFrame, record: dict) -> pd.DataFrame:
         "url_canonical": canonicalize_url(record.get("url","")),
         "domain": record.get("domain"),
         "headline": record.get("headline"),
-        "categories": record.get("categories"),
-        "tags": record.get("tags"),
+        "L1": record.get("L1"),
+        "L2": record.get("L2"),
+        "L3": record.get("L3"),
+        "L4": record.get("L4"),
+        "L5": record.get("L5"),
+        "L6": record.get("L6"),
+        "sequential_paths": record.get("sequential_paths"),
+        "knowledge_paths": record.get("knowledge_paths"),
         "tldr": record.get("tldr"),
         "content_text": record.get("content_text"),
         "source_title": record.get("source_title"),
@@ -526,7 +618,7 @@ def get_cached_row(df: pd.DataFrame, url: str) -> T.Optional[dict]:
         return None
     rec = hits.iloc[0].to_dict()
     # ensure list types for convenience
-    for col in ["categories","tags","tldr"]:
+    for col in ["L3","L4","L5","L6","tldr"]:
         v = rec.get(col)
         if isinstance(v, str):
             try:
@@ -585,8 +677,12 @@ def ingest_or_fetch(
         "url_canonical": canonicalize_url(rec["url"]),
         "domain": rec["domain"],
         "headline": rec["headline"],
-        "categories": rec["categories"],
-        "tags": rec["tags"],
+        "L1": rec["L1"],
+        "L2": rec["L2"],
+        "L3": rec["L3"],
+        "L4": rec["L4"],
+        "L5": rec["L5"],
+        "L6": rec["L6"],
         "tldr": rec["tldr"],
         "content_text": rec["content_text"],
         "source_title": rec["source_title"],

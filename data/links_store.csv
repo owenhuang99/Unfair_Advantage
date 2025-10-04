@@ -1,5 +1,5 @@
-fetched_at_utc,url,url_canonical,domain,headline,categories,tags,tldr,content_text,source_title,author,publish_date
-2025-09-13T18:01:51.305980Z,https://langchain-ai.github.io/langgraph/concepts/memory/,https://langchain-ai.github.io/langgraph/concepts/memory,langchain-ai.github.io,Memory Concepts in LangGraph,"[""AI"", ""Memory"", ""LangGraph""]","[""LangGraph"", ""memory"", ""AI agents"", ""long-term memory"", ""short-term memory"", ""semantic memory"", ""episodic memory"", ""procedural memory"", ""memory management"", ""persistence"", ""checkpointers"", ""namespace""]","[""LangGraph enables AI agents to retain information across interactions through short-term and long-term memory."", ""Short-term memory manages ongoing conversation history within a session, while long-term memory stores user-specific data across sessions."", ""Memory types include semantic (facts), episodic (experiences), and procedural (rules)."", ""Memory can be updated actively during interactions or in the background for deeper analysis."", ""Effective memory management enhances agent performance and user satisfaction.""]","Memory¶
+fetched_at_utc,url,url_canonical,domain,headline,L1,L2,L3,L4,L5,L6,tldr,content_text,source_title,author,publish_date
+2025-09-13T18:01:51.305980Z,https://langchain-ai.github.io/langgraph/concepts/memory/,https://langchain-ai.github.io/langgraph/concepts/memory,langchain-ai.github.io,Memory Concepts in LangGraph,,,[],[],[],[],"[""LangGraph enables AI agents to retain information across interactions through short-term and long-term memory."", ""Short-term memory manages ongoing conversation history within a session, while long-term memory stores user-specific data across sessions."", ""Memory types include semantic (facts), episodic (experiences), and procedural (rules)."", ""Memory can be updated actively during interactions or in the background for deeper analysis."", ""Effective memory management enhances agent performance and user satisfaction.""]","Memory¶
 Memory is a system that remembers information about previous interactions. For AI agents, memory is crucial because it lets them remember previous interactions, learn from feedback, and adapt to user preferences. As agents tackle more complex tasks with numerous user interactions, this capability becomes essential for both efficiency and user satisfaction.
 This conceptual guide covers two types of memory, based on their recall scope:
 -
@@ -108,7 +108,7 @@ items = store.search(
 namespace, filter={""my-key"": ""my-value""}, query=""language preferences""
 )
 For more information about the memory store, see the Persistence guide.",Overview,LangChain AI,2025-09-13
-2025-09-13T18:11:45.026341Z,https://medium.com/data-science/from-data-scientist-to-ml-ai-product-manager-39359bd44512,https://medium.com/data-science/from-data-scientist-to-ml-ai-product-manager-39359bd44512,medium.com,From Data Scientist to ML / AI Product Manager,"[""AI""]","[""Machine Learning"", ""AI Product Management"", ""Product Strategy"", ""Product Delivery"", ""Tech Fluency"", ""Influencing"", ""Data Science"", ""MLOps"", ""Responsible AI"", ""Career Transition"", ""Product Management Skills""]","[""Transitioning from Data Scientist to ML/AI Product Manager involves mastering four key skill areas: product strategy, product delivery, stakeholder influencing, and technical fluency."", ""Product strategy focuses on identifying user pain points and prioritizing problems based on impact rather than technology novelty."", ""Product delivery emphasizes efficient value creation through phases like discovery, planning, prototyping, launch, and iteration, relying heavily on agile and MVP principles."", ""Influencing skills are crucial for communication, alignment, stakeholder management, and leading teams without direct coding work."", ""Technical fluency requires leveraging data science knowledge, understanding MLOps and backend engineering, and awareness of responsible AI and ethical considerations."", ""Building a supportive network, planning career transition carefully, and preparing for PM interviews with a business-user-solution mindset can ease the move into the ML/AI PM role.""]","From Data Scientist to ML / AI Product Manager
+2025-09-13T18:11:45.026341Z,https://medium.com/data-science/from-data-scientist-to-ml-ai-product-manager-39359bd44512,https://medium.com/data-science/from-data-scientist-to-ml-ai-product-manager-39359bd44512,medium.com,From Data Scientist to ML / AI Product Manager,,,[],[],[],[],"[""Transitioning from Data Scientist to ML/AI Product Manager involves mastering four key skill areas: product strategy, product delivery, stakeholder influencing, and technical fluency."", ""Product strategy focuses on identifying user pain points and prioritizing problems based on impact rather than technology novelty."", ""Product delivery emphasizes efficient value creation through phases like discovery, planning, prototyping, launch, and iteration, relying heavily on agile and MVP principles."", ""Influencing skills are crucial for communication, alignment, stakeholder management, and leading teams without direct coding work."", ""Technical fluency requires leveraging data science knowledge, understanding MLOps and backend engineering, and awareness of responsible AI and ethical considerations."", ""Building a supportive network, planning career transition carefully, and preparing for PM interviews with a business-user-solution mindset can ease the move into the ML/AI PM role.""]","From Data Scientist to ML / AI Product Manager
 As Artificial Intelligence is becoming more and more popular, more companies and teams want to start or increase leveraging it. Because of that, many job positions are appearing or gaining importance in the market. A good example is the figure of Machine Learning / Artificial Intelligence Product Manager.
 In my case, I transitioned from a Data Scientist role into a Machine Learning Product Manager role over two years ago. During this time, I have been able to see a constant increase in job offers related to this position, blog posts and talks discussing it, and many people considering a transition or gaining interest in it. I have also been able to confirm my passion for this role and how much I enjoy my day-to-day work, responsibilities, and value I can bring to the team and company.
 The role of AI / ML PM is still quite vague and evolves almost as fast as state-of-the-art AI. Although many product teams are becoming relatively autonomous using AI thanks to plug-in solutions and GenAI APIs, I will focus on the role of AI / ML PMs working in core ML teams. These teams are usually formed by Data Scientists, Machine Learning Engineers, and Research Scientists, and together with other roles are involved in solutions where GenAI through an API might not be enough (traditional ML use cases, need of LLMs fine tuning, specific in-house use cases, ML as a service products…). For an illustrative example of such a team, you can check one of my previous posts “Working in a multidisciplinary Machine Learning team to bring value to our users”.
@@ -148,7 +148,7 @@ We have covered the 4 most important knowledge areas for an ML / AI PM (product 
 Just like in any career progress, I found it key to define a plan, and share my short and mid term desires and expectations with managers and colleagues. Through this, I was able to transition into a PM role in the same company where I was working as a Data Scientist. This made the transition much easier: I already knew the business, product, tech, ways of working, colleagues… I also looked for mentors and colleagues within the company to whom I could ask questions, learn specific topics from and even practice for the PM interviews.
 To prepare for the interviews, I focused on changing my mindset: developing vs thinking whether to build something or not, whether to launch something or not. I found out BUS (Business, User, Solution) is a great way to structure responses during interviews and enforce this new mindset there.
 What I shared in this blog post can look like a lot, but it really is much easier than learning python or understanding how back-propagation works. If you are still unsure whether this role is for you or not, know that you can always give it a try, experiment, and decide to go back to your previous role. Or maybe, who knows, you end up loving being an ML / AI PM just like I do!",From Data Scientist to ML / AI Product Manager,Anna Via,2024-04-03
-2025-09-13T18:22:25.960863Z,https://blog.langchain.com/launching-long-term-memory-support-in-langgraph/,https://blog.langchain.com/launching-long-term-memory-support-in-langgraph,blog.langchain.com,Launching Long-Term Memory Support in LangGraph,"[""AI"", ""Memory"", ""LangGraph""]","[""LangGraph"", ""memory"", ""AI agents"", ""long-term memory"", ""short-term memory"", ""memory management"", ""persistence""]","[""Introducing long-term memory support in LangGraph for Python and JavaScript."", ""Enables agents to store and recall information between conversations."", ""Supports cross-thread memory with custom namespacing and JSON document storage.""]","Today, we are excited to announce the first steps towards long-term memory support in LangGraph, available both in Python and JavaScript. Long-term memory lets you store and recall information between conversations so your agent can learn from feedback and adapt to user preferences. This feature is part of the OSS library, and it is enabled by default for all LangGraph Cloud & Studio users.
+2025-09-13T18:22:25.960863Z,https://blog.langchain.com/launching-long-term-memory-support-in-langgraph/,https://blog.langchain.com/launching-long-term-memory-support-in-langgraph,blog.langchain.com,Launching Long-Term Memory Support in LangGraph,,,[],[],[],[],"[""Introducing long-term memory support in LangGraph for Python and JavaScript."", ""Enables agents to store and recall information between conversations."", ""Supports cross-thread memory with custom namespacing and JSON document storage.""]","Today, we are excited to announce the first steps towards long-term memory support in LangGraph, available both in Python and JavaScript. Long-term memory lets you store and recall information between conversations so your agent can learn from feedback and adapt to user preferences. This feature is part of the OSS library, and it is enabled by default for all LangGraph Cloud & Studio users.
 On Memory
 Most AI applications today are goldfish; they forget everything between conversations. This isn't just inefficient— it fundamentally limits what AI can do.
 Over the past year at LangChain, we've been working with customers to build memory into their agents. Through this experience, we've realized something important: there's no universally perfect solution for AI memory. The best memory for each application still contains very application specific logic. By extension, most ""agent memory"" products today are too high-level. They try to create a one-size-fits-all product that doesn't satisfy many production users' needs.
@@ -173,7 +173,7 @@ This LangGraph Template shows a chatbot agent that manages its own memory. Key r
 - A LangGraph.js Memory Agent in JavaScript
 These resources demonstrate one way to leverage long-term memory in LangGraph, bridging the gap between concept and implementation.
 We encourage you to explore these materials and experiment with incorporating long-term memory into your LangGraph projects. As always, we welcome your feedback and look forward to seeing how you apply these new capabilities in your applications.",Launching Long-Term Memory Support in LangGraph,,2024-10-08
-2025-09-13T18:33:39.563799Z,https://langchain-ai.github.io/langgraph/concepts/multi_agent/,https://langchain-ai.github.io/langgraph/concepts/multi_agent,langchain-ai.github.io,Multi-agent Systems in LangGraph,"[""AI"", ""LangGraph""]","[""LangGraph"", ""AI agents"", ""memory management"", ""persistence"", ""checkpointers""]","[""LangGraph enables the creation of multi-agent systems to manage complex applications."", ""Benefits include modularity, specialization, and explicit control over agent communication."", ""Architectures include network, supervisor, hierarchical, and custom workflows."", ""Handoffs allow agents to pass control and state updates to each other."", ""Prebuilt implementations like 'langgraph-supervisor' and 'langgraph-swarm' facilitate development.""]","Multi-agent systems¶
+2025-09-13T18:33:39.563799Z,https://langchain-ai.github.io/langgraph/concepts/multi_agent/,https://langchain-ai.github.io/langgraph/concepts/multi_agent,langchain-ai.github.io,Multi-agent Systems in LangGraph,,,[],[],[],[],"[""LangGraph enables the creation of multi-agent systems to manage complex applications."", ""Benefits include modularity, specialization, and explicit control over agent communication."", ""Architectures include network, supervisor, hierarchical, and custom workflows."", ""Handoffs allow agents to pass control and state updates to each other."", ""Prebuilt implementations like 'langgraph-supervisor' and 'langgraph-swarm' facilitate development.""]","Multi-agent systems¶
 An agent is a system that uses an LLM to decide the control flow of an application. As you develop these systems, they might grow more complex over time, making them harder to manage and scale. For example, you might run into the following problems:
 - agent has too many tools at its disposal and makes poor decisions about which tool to call next
 - context grows too complex for a single agent to keep track of
@@ -459,7 +459,7 @@ Using different state schemas¶
 An agent might need to have a different state schema from the rest of the agents. For example, a search agent might only need to keep track of queries and retrieved documents. There are two ways to achieve this in LangGraph:
 - Define subgraph agents with a separate state schema. If there are no shared state keys (channels) between the subgraph and the parent graph, it's important to add input / output transformations so that the parent graph knows how to communicate with the subgraphs.
 - Define agent node functions with a private input state schema that is distinct from the overall graph state schema. This allows passing information that is only needed for executing that particular agent.",Overview,LangGraph Documentation,2025-09-13
-2025-09-13T19:28:55.497031Z,https://www.anthropic.com/claude-code?utm_source=google&utm_medium=paid_search_coder&utm_campaign=acq_code_us_q3&utm_term=ai%20development%20agent&gclsrc=aw.ds&gad_source=1&gad_campaignid=22795617257&gbraid=0AAAAA99jmqtS6N4o1tcqBXZUwkMLgCuVz&gclid=Cj0KCQjwrJTGBhCbARIsANFBfgvieOYFRxnEjOOTSFbTOCOJjZT2j4o_eIU1NO6JzbbXPFcBjn22oNYaAgE7EALw_wcB,https://www.anthropic.com/claude-code?gad_campaignid=22795617257&gad_source=1&gbraid=0AAAAA99jmqtS6N4o1tcqBXZUwkMLgCuVz,www.anthropic.com,Claude Code: Deep coding at terminal velocity,"[""AI"", ""Tech"", ""Development""]","[""AI agents"", ""Machine Learning"", ""coding efficiency"", ""GitHub integration"", ""command line tools"", ""software development"", ""productivity""]","[""Claude Code enhances coding efficiency by integrating with existing tools."", ""It maps codebases and manages complex edits seamlessly."", ""Developers report significant time savings and improved workflow.""]","Trusted by engineers at
+2025-09-13T19:28:55.497031Z,https://www.anthropic.com/claude-code?utm_source=google&utm_medium=paid_search_coder&utm_campaign=acq_code_us_q3&utm_term=ai%20development%20agent&gclsrc=aw.ds&gad_source=1&gad_campaignid=22795617257&gbraid=0AAAAA99jmqtS6N4o1tcqBXZUwkMLgCuVz&gclid=Cj0KCQjwrJTGBhCbARIsANFBfgvieOYFRxnEjOOTSFbTOCOJjZT2j4o_eIU1NO6JzbbXPFcBjn22oNYaAgE7EALw_wcB,https://www.anthropic.com/claude-code?gad_campaignid=22795617257&gad_source=1&gbraid=0AAAAA99jmqtS6N4o1tcqBXZUwkMLgCuVz,www.anthropic.com,Claude Code: Deep coding at terminal velocity,,,[],[],[],[],"[""Claude Code enhances coding efficiency by integrating with existing tools."", ""It maps codebases and manages complex edits seamlessly."", ""Developers report significant time savings and improved workflow.""]","Trusted by engineers at
 Command-line AI, from concept to commit
 Watch as Claude Code tackles an unfamiliar Next.js project, builds new functionality, creates tests, and fixes whatâs brokenâall from the command line. Join Boris and Cat as they show you what coding feels like when youâre not doing it alone.
 Works with your IDEs
@@ -492,7 +492,7 @@ Academic research & learning mode
 Dedicated API credits and educational features for student learning
 Training & enablement
 Resources for successful adoption across your institution",Claude Code: Deep coding at terminal velocity \ Anthropic,,
-2025-09-13T20:07:10.803098Z,https://docs.replit.com/tutorials/vibe-coding-101,https://docs.replit.com/tutorials/vibe-coding-101,docs.replit.com,Vibe coding 101: from idea to deployed app,"[""Tech"", ""Development"", ""AI""]","[""LangGraph"", ""memory"", ""AI agents"", ""long-term memory"", ""short-term memory"", ""semantic memory"", ""episodic memory"", ""procedural memory"", ""memory management"", ""persistence"", ""checkpointers"", ""namespace""]","[""Guide to 'vibe coding' process on Replit"", ""Builds interactive map of San Francisco parks"", ""Utilizes Replit Agent for development"", ""Leverages Replit Assistant for debugging"", ""Emphasizes iterative development and effective prompting""]","Matt Palmer
+2025-09-13T20:07:10.803098Z,https://docs.replit.com/tutorials/vibe-coding-101,https://docs.replit.com/tutorials/vibe-coding-101,docs.replit.com,Vibe coding 101: from idea to deployed app,,,[],[],[],[],"[""Guide to 'vibe coding' process on Replit"", ""Builds interactive map of San Francisco parks"", ""Utilizes Replit Agent for development"", ""Leverages Replit Assistant for debugging"", ""Emphasizes iterative development and effective prompting""]","Matt Palmer
 Head of Developer RelationsThe vibe coding philosophy
 Vibe coding is less about writing every line of code and more about guiding AI tools with your vision and domain knowledge. It’s an iterative process of prompting, reviewing, and refining. Key takeaways from the video:- Conceptualize First: Start with a clear idea of what you want to build. Visualizing the end product helps, especially when prompting AI.
 - Domain Knowledge is Power: Knowing relevant frameworks (like Leaflet.js for maps) or data sources (like OpenStreetMap) significantly improves AI-generated results.
@@ -551,7 +551,7 @@ This tutorial went from an idea to a published interactive map application witho
 - Implement advanced filtering.
 - Improve styling and add custom icons for map markers.
 - Enhance mobile responsiveness (e.g., ensuring filters are accessible on mobile).",Replit Docs,Matt Palmer,2023-10-01
-2025-09-13T20:11:55.897787Z,https://medium.com/@yaelg/product-manager-pm-step-by-step-tutorial-building-machine-learning-products-ffa7817aa8ab,https://medium.com/@yaelg/product-manager-pm-step-by-step-tutorial-building-machine-learning-products-ffa7817aa8ab,medium.com,The Step-By-Step PM Guide to Building Machine Learning Based Products,"[""AI"", ""Tech"", ""Development""]","[""Machine Learning"", ""AI Product Management"", ""Data Science"", ""Artificial Intelligence"", ""Startup""]","[""Introduction to machine learning for product managers."", ""Step-by-step guide to developing ML-based products."", ""Emphasis on collaboration between disciplines.""]","The Step-By-Step PM Guide to Building Machine Learning Based Products
+2025-09-13T20:11:55.897787Z,https://medium.com/@yaelg/product-manager-pm-step-by-step-tutorial-building-machine-learning-products-ffa7817aa8ab,https://medium.com/@yaelg/product-manager-pm-step-by-step-tutorial-building-machine-learning-products-ffa7817aa8ab,medium.com,The Step-By-Step PM Guide to Building Machine Learning Based Products,,,[],[],[],[],"[""Introduction to machine learning for product managers."", ""Step-by-step guide to developing ML-based products."", ""Emphasis on collaboration between disciplines.""]","The Step-By-Step PM Guide to Building Machine Learning Based Products
 What Product Managers Need to Know About Machine Learning Is Science, but Not Rocket Science
 It’s time for every product manager, entrepreneur or business leader to get up to speed on machine learning. Even if you’re not building the next chatbot or self driving car, you’ll probably need to use machine learning in your product sooner rather than later to stay competitive. The good news is you don’t need to invent the technology (though kudos if you do), just leverage what already exists. Tech companies have open sourced tools and platforms (Amazon AI, TensorFlow, originally developed by Google, and many others) that make machine learning accessible to virtually any company today.
 When I started in machine learning I knew next to nothing about it, yet in a relatively short time I was leading the development of products with machine learning at their very core (such as this). My goal is to give you a good enough understanding of both the technology and the process of developing ML products to get you started quickly. This is a step-by-step guide to becoming an effective PM in an organization that leverages machine learning to achieve business goals.
@@ -561,7 +561,7 @@ My goal is to illustrate core concepts that are broadly applicable and form a ba
 Let’s get started with part 1: What Machine Learning Can Do for Your Business and How to Figure It Out.
 Many thanks to Gil Arditi, Yael Avidan, Eran Davidov and Gal Gavish for their invaluable feedback, and special thanks to Arvind Ganesan who taught me so much of what I know about machine learning. Any mistakes are entirely my own.
 I write about life purpose, mindset and creativity for professionals who want more from life than they’re experiencing at https://producthumans.com/",The Step-By-Step PM Guide to Building Machine Learning Based Products,Yael Gavish,2017-07-25
-2025-09-13T20:31:06.493214Z,https://www.productteacher.com/articles/breaking-into-ai-product-management,https://www.productteacher.com/articles/breaking-into-ai-product-management,www.productteacher.com,Breaking into AI Product Management,"[""AI"", ""Tech"", ""Development""]","[""AI agents"", ""Machine Learning"", ""Data Science"", ""Product Management Skills"", ""AI Product Management""]","[""AI product management requires a strong grasp of technical concepts and problem-solving skills."", ""Understanding data pipelines and managing data quality are crucial for AI products."", ""AI models necessitate continuous iteration and retraining to improve over time.""]","Breaking into AI Product Management
+2025-09-13T20:31:06.493214Z,https://www.productteacher.com/articles/breaking-into-ai-product-management,https://www.productteacher.com/articles/breaking-into-ai-product-management,www.productteacher.com,Breaking into AI Product Management,,,[],[],[],[],"[""AI product management requires a strong grasp of technical concepts and problem-solving skills."", ""Understanding data pipelines and managing data quality are crucial for AI products."", ""AI models necessitate continuous iteration and retraining to improve over time.""]","Breaking into AI Product Management
 Artificial Intelligence (AI) is rapidly transforming industries, and product management roles in this field are both in high demand and uniquely challenging.
 I’ve noticed that many early-career PMs are excited to pivot into AI, and I applaud this enthusiasm! But, I want to be clear: if you’re a product manager with strong skills but no direct experience in AI, the path to transitioning into AI product management requires targeted skill-building, strategic networking, and gaining experience in areas of AI that align with your career goals.
 In other words, it’s going to take hard, focused work to make it happen. But, it’ll be worth it.
@@ -777,7 +777,7 @@ By building a solid understanding of AI fundamentals, working on AI-related proj
 Stay patient, keep building your skill set, and take advantage of opportunities to work with AI in any capacity.
 All of this hard work will all add up to a compelling narrative when you're ready to land your first AI PM role!
 Thank you to Pauli Bielewicz, Mary Paschentis, Goutham Budati, Markus Seebauer, Juliet Chuang, and Kendra Ritterhern for making this guide possible.",Breaking into AI Product Management — Product Teacher,Clement Kao,2024-10-20
-2025-09-13T20:39:47.974014Z,https://medium.com/@allanouko17/customer-churn-prediction-using-machine-learning-ddf4cd7c9fd4,https://medium.com/@allanouko17/customer-churn-prediction-using-machine-learning-ddf4cd7c9fd4,medium.com,Customer Churn Prediction Using Machine Learning,"[""AI"", ""Tech"", ""Development""]","[""Machine Learning"", ""customer churn"", ""predictive modeling"", ""data analysis"", ""Python""]","[""Predicting customer churn helps businesses retain clients and maintain revenue."", ""Utilizing machine learning models can identify patterns leading to customer attrition."", ""Data preprocessing, feature selection, and model evaluation are crucial steps in building an effective churn prediction model.""]","Customer churn prediction overview
+2025-09-13T20:39:47.974014Z,https://medium.com/@allanouko17/customer-churn-prediction-using-machine-learning-ddf4cd7c9fd4,https://medium.com/@allanouko17/customer-churn-prediction-using-machine-learning-ddf4cd7c9fd4,medium.com,Customer Churn Prediction Using Machine Learning,,,[],[],[],[],"[""Predicting customer churn helps businesses retain clients and maintain revenue."", ""Utilizing machine learning models can identify patterns leading to customer attrition."", ""Data preprocessing, feature selection, and model evaluation are crucial steps in building an effective churn prediction model.""]","Customer churn prediction overview
 Customer churn prediction predicts the likelihood of customers canceling a company’s products or services. In most cases, businesses with repeat clients or clients under subscriptions strive to maintain the customer base. Therefore, it is important to keep track of the customers who cancel their subscription plan and those who continue with the service. This approach requires the organization to know and understand their client’s behavior and the attributes that lead to the risk of the client leaving. I will explain the steps necessary in creating and deploying a churn prediction machine-learning model.
 Why Predict Customer Churn?
 It is important for any organization dealing with repeat clients to find ways to retain existing ones. The approach is crucial since customer churn is expensive, and acquiring new clients is more expensive than retaining existing ones. Consider an internet service (ISP) provider who has acquired a new user. They will need technicians and hardware to connect the latest client to their service. The client will only be required to pay the subscription fee to continue using their plan. If the user fails to renew their service, the company will most likely be at a loss, especially if the trend continues for several customers. The monthly recurring revenue (MRR) for such an institution will likely be low; hence, it will be unable to sustain the business. Thus, a reliable churn prediction model should help companies stay afloat as they scale up and attract more customers.
@@ -894,3 +894,631 @@ Create the customer churn prediction app using Flask. The input and output inter
 Given the available customer data, the company can now use customer details to determine whether they would churn. This approach would help the organization determine how to engage with the customers and launch targeted campaigns for customer retention.
 GitHub Link to the project.
 I recommend exploring the ‘Building Churn Prediction Model’ blog by UserMotion to learn how to develop personalized churn prediction model applications that enhance decision-making and boost customer retention with high accuracy.",Customer Churn Prediction Using Machine Learning,Allan Ouko,2024-05-21
+2025-10-04T18:59:13.294033Z,https://docs.python.org/3/tutorial/introduction.html,https://docs.python.org/3/tutorial/introduction.html,docs.python.org,An Informal Introduction to Python,Tech,Development,"[""Python""]","[""Python Interpreter"", ""Data Types"", ""Variables"", ""Operators"", ""Control Flow"", ""Functions"", ""Modules"", ""Input and Output"", ""Error Handling"", ""Classes and Objects"", ""Inheritance"", ""Iterators"", ""Generators"", ""Decorators"", ""Context Managers"", ""Regular Expressions""]",[],[],"[""Introduces Python as a powerful, easy-to-learn programming language with efficient high-level data structures and an effective object-oriented programming system."", ""Highlights Python's elegant syntax, dynamic typing, and interpreted nature, making it ideal for scripting and rapid application development across various platforms."", ""Provides a tutorial that introduces basic concepts and features of Python, expecting readers to have a basic understanding of programming."", ""Mentions that the tutorial is not exhaustive but aims to introduce many of Python's noteworthy features, giving a clear idea of the language's style."", ""Suggests that after reading, readers will be able to read and write Python modules and programs, and be ready to learn more about various Python library modules."", ""Notes that the tutorial is available in multiple languages, including Spanish, Korean, French, and Japanese.""]","3. An Informal Introduction to PythonÂ¶
+In the following examples, input and output are distinguished by the presence or absence of prompts (>>> and â¦): to repeat the example, you must type everything after the prompt, when the prompt appears; lines that do not begin with a prompt are output from the interpreter. Note that a secondary prompt on a line by itself in an example means you must type a blank line; this is used to end a multi-line command.
+You can use the âCopyâ button (it appears in the upper-right corner when hovering over or tapping a code example), which strips prompts and omits output, to copy and paste the input lines into your interpreter.
+Many of the examples in this manual, even those entered at the interactive
+prompt, include comments. Comments in Python start with the hash character,
+#
+, and extend to the end of the physical line. A comment may appear at the
+start of a line or following whitespace or code, but not within a string
+literal. A hash character within a string literal is just a hash character.
+Since comments are to clarify code and are not interpreted by Python, they may
+be omitted when typing in examples.
+Some examples:
+# this is the first comment
+spam = 1 # and this is the second comment
+# ... and now a third!
+text = ""# This is not a comment because it's inside quotes.""
+3.1. Using Python as a CalculatorÂ¶
+Letâs try some simple Python commands. Start the interpreter and wait for the
+primary prompt, >>>
+. (It shouldnât take long.)
+3.1.1. NumbersÂ¶
+The interpreter acts as a simple calculator: you can type an expression at it
+and it will write the value. Expression syntax is straightforward: the
+operators +
+, -
+, *
+and /
+can be used to perform
+arithmetic; parentheses (()
+) can be used for grouping.
+For example:
+>>> 2 + 2
+4
+>>> 50 - 5*6
+20
+>>> (50 - 5*6) / 4
+5.0
+>>> 8 / 5 # division always returns a floating-point number
+1.6
+The integer numbers (e.g. 2
+, 4
+, 20
+) have type int
+,
+the ones with a fractional part (e.g. 5.0
+, 1.6
+) have type
+float
+. We will see more about numeric types later in the tutorial.
+Division (/
+) always returns a float. To do floor division and
+get an integer result you can use the //
+operator; to calculate
+the remainder you can use %
+:
+>>> 17 / 3 # classic division returns a float
+5.666666666666667
+>>>
+>>> 17 // 3 # floor division discards the fractional part
+5
+>>> 17 % 3 # the % operator returns the remainder of the division
+2
+>>> 5 * 3 + 2 # floored quotient * divisor + remainder
+17
+With Python, it is possible to use the **
+operator to calculate powers [1]:
+>>> 5 ** 2 # 5 squared
+25
+>>> 2 ** 7 # 2 to the power of 7
+128
+The equal sign (=
+) is used to assign a value to a variable. Afterwards, no
+result is displayed before the next interactive prompt:
+>>> width = 20
+>>> height = 5 * 9
+>>> width * height
+900
+If a variable is not âdefinedâ (assigned a value), trying to use it will give you an error:
+>>> n # try to access an undefined variable
+Traceback (most recent call last):
+File ""<stdin>"", line 1, in <module>
+NameError: name 'n' is not defined
+There is full support for floating point; operators with mixed type operands convert the integer operand to floating point:
+>>> 4 * 3.75 - 1
+14.0
+In interactive mode, the last printed expression is assigned to the variable
+_
+. This means that when you are using Python as a desk calculator, it is
+somewhat easier to continue calculations, for example:
+>>> tax = 12.5 / 100
+>>> price = 100.50
+>>> price * tax
+12.5625
+>>> price + _
+113.0625
+>>> round(_, 2)
+113.06
+This variable should be treated as read-only by the user. Donât explicitly assign a value to it â you would create an independent local variable with the same name masking the built-in variable with its magic behavior.
+In addition to int
+and float
+, Python supports other types of
+numbers, such as Decimal
+and Fraction
+.
+Python also has built-in support for complex numbers,
+and uses the j
+or J
+suffix to indicate the imaginary part
+(e.g. 3+5j
+).
+3.1.2. TextÂ¶
+Python can manipulate text (represented by type str
+, so-called
+âstringsâ) as well as numbers. This includes characters â!
+â, words
+ârabbit
+â, names âParis
+â, sentences âGot your back.
+â, etc.
+âYay! :)
+â. They can be enclosed in single quotes ('...'
+) or double
+quotes (""...""
+) with the same result [2].
+>>> 'spam eggs' # single quotes
+'spam eggs'
+>>> ""Paris rabbit got your back :)! Yay!"" # double quotes
+'Paris rabbit got your back :)! Yay!'
+>>> '1975' # digits and numerals enclosed in quotes are also strings
+'1975'
+To quote a quote, we need to âescapeâ it, by preceding it with \
+.
+Alternatively, we can use the other type of quotation marks:
+>>> 'doesn\'t' # use \' to escape the single quote...
+""doesn't""
+>>> ""doesn't"" # ...or use double quotes instead
+""doesn't""
+>>> '""Yes,"" they said.'
+'""Yes,"" they said.'
+>>> ""\""Yes,\"" they said.""
+'""Yes,"" they said.'
+>>> '""Isn\'t,"" they said.'
+'""Isn\'t,"" they said.'
+In the Python shell, the string definition and output string can look
+different. The print()
+function produces a more readable output, by
+omitting the enclosing quotes and by printing escaped and special characters:
+>>> s = 'First line.\nSecond line.' # \n means newline
+>>> s # without print(), special characters are included in the string
+'First line.\nSecond line.'
+>>> print(s) # with print(), special characters are interpreted, so \n produces new line
+First line.
+Second line.
+If you donât want characters prefaced by \
+to be interpreted as
+special characters, you can use raw strings by adding an r
+before
+the first quote:
+>>> print('C:\some\name') # here \n means newline!
+C:\some
+ame
+>>> print(r'C:\some\name') # note the r before the quote
+C:\some\name
+There is one subtle aspect to raw strings: a raw string may not end in
+an odd number of \
+characters; see
+the FAQ entry for more information
+and workarounds.
+String literals can span multiple lines. One way is using triple-quotes:
+""""""...""""""
+or '''...'''
+. End-of-line characters are automatically
+included in the string, but itâs possible to prevent this by adding a \
+at
+the end of the line. In the following example, the initial newline is not
+included:
+>>> print(""""""\
+... Usage: thingy [OPTIONS]
+... -h Display this usage message
+... -H hostname Hostname to connect to
+... """""")
+Usage: thingy [OPTIONS]
+-h Display this usage message
+-H hostname Hostname to connect to
+>>>
+Strings can be concatenated (glued together) with the +
+operator, and
+repeated with *
+:
+>>> # 3 times 'un', followed by 'ium'
+>>> 3 * 'un' + 'ium'
+'unununium'
+Two or more string literals (i.e. the ones enclosed between quotes) next to each other are automatically concatenated.
+>>> 'Py' 'thon'
+'Python'
+This feature is particularly useful when you want to break long strings:
+>>> text = ('Put several strings within parentheses '
+... 'to have them joined together.')
+>>> text
+'Put several strings within parentheses to have them joined together.'
+This only works with two literals though, not with variables or expressions:
+>>> prefix = 'Py'
+>>> prefix 'thon' # can't concatenate a variable and a string literal
+File ""<stdin>"", line 1
+prefix 'thon'
+^^^^^^
+SyntaxError: invalid syntax
+>>> ('un' * 3) 'ium'
+File ""<stdin>"", line 1
+('un' * 3) 'ium'
+^^^^^
+SyntaxError: invalid syntax
+If you want to concatenate variables or a variable and a literal, use +
+:
+>>> prefix + 'thon'
+'Python'
+Strings can be indexed (subscripted), with the first character having index 0. There is no separate character type; a character is simply a string of size one:
+>>> word = 'Python'
+>>> word[0] # character in position 0
+'P'
+>>> word[5] # character in position 5
+'n'
+Indices may also be negative numbers, to start counting from the right:
+>>> word[-1] # last character
+'n'
+>>> word[-2] # second-last character
+'o'
+>>> word[-6]
+'P'
+Note that since -0 is the same as 0, negative indices start from -1.
+In addition to indexing, slicing is also supported. While indexing is used to obtain individual characters, slicing allows you to obtain a substring:
+>>> word[0:2] # characters from position 0 (included) to 2 (excluded)
+'Py'
+>>> word[2:5] # characters from position 2 (included) to 5 (excluded)
+'tho'
+Slice indices have useful defaults; an omitted first index defaults to zero, an omitted second index defaults to the size of the string being sliced.
+>>> word[:2] # character from the beginning to position 2 (excluded)
+'Py'
+>>> word[4:] # characters from position 4 (included) to the end
+'on'
+>>> word[-2:] # characters from the second-last (included) to the end
+'on'
+Note how the start is always included, and the end always excluded. This
+makes sure that s[:i] + s[i:]
+is always equal to s
+:
+>>> word[:2] + word[2:]
+'Python'
+>>> word[:4] + word[4:]
+'Python'
+One way to remember how slices work is to think of the indices as pointing between characters, with the left edge of the first character numbered 0. Then the right edge of the last character of a string of n characters has index n, for example:
++---+---+---+---+---+---+
+| P | y | t | h | o | n |
++---+---+---+---+---+---+
+0 1 2 3 4 5 6
+-6 -5 -4 -3 -2 -1
+The first row of numbers gives the position of the indices 0â¦6 in the string; the second row gives the corresponding negative indices. The slice from i to j consists of all characters between the edges labeled i and j, respectively.
+For non-negative indices, the length of a slice is the difference of the
+indices, if both are within bounds. For example, the length of word[1:3]
+is
+2.
+Attempting to use an index that is too large will result in an error:
+>>> word[42] # the word only has 6 characters
+Traceback (most recent call last):
+File ""<stdin>"", line 1, in <module>
+IndexError: string index out of range
+However, out of range slice indexes are handled gracefully when used for slicing:
+>>> word[4:42]
+'on'
+>>> word[42:]
+''
+Python strings cannot be changed â they are immutable. Therefore, assigning to an indexed position in the string results in an error:
+>>> word[0] = 'J'
+Traceback (most recent call last):
+File ""<stdin>"", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+>>> word[2:] = 'py'
+Traceback (most recent call last):
+File ""<stdin>"", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+If you need a different string, you should create a new one:
+>>> 'J' + word[1:]
+'Jython'
+>>> word[:2] + 'py'
+'Pypy'
+The built-in function len()
+returns the length of a string:
+>>> s = 'supercalifragilisticexpialidocious'
+>>> len(s)
+34
+See also
+- Text Sequence Type â str
+Strings are examples of sequence types, and support the common operations supported by such types.
+- String Methods
+Strings support a large number of methods for basic transformations and searching.
+- f-strings
+String literals that have embedded expressions.
+- Format String Syntax
+Information about string formatting with
+str.format()
+.- printf-style String Formatting
+The old formatting operations invoked when strings are the left operand of the
+%
+operator are described in more detail here.
+3.1.3. ListsÂ¶
+Python knows a number of compound data types, used to group together other values. The most versatile is the list, which can be written as a list of comma-separated values (items) between square brackets. Lists might contain items of different types, but usually the items all have the same type.
+>>> squares = [1, 4, 9, 16, 25]
+>>> squares
+[1, 4, 9, 16, 25]
+Like strings (and all other built-in sequence types), lists can be indexed and sliced:
+>>> squares[0] # indexing returns the item
+1
+>>> squares[-1]
+25
+>>> squares[-3:] # slicing returns a new list
+[9, 16, 25]
+Lists also support operations like concatenation:
+>>> squares + [36, 49, 64, 81, 100]
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+Unlike strings, which are immutable, lists are a mutable type, i.e. it is possible to change their content:
+>>> cubes = [1, 8, 27, 65, 125] # something's wrong here
+>>> 4 ** 3 # the cube of 4 is 64, not 65!
+64
+>>> cubes[3] = 64 # replace the wrong value
+>>> cubes
+[1, 8, 27, 64, 125]
+You can also add new items at the end of the list, by using
+the list.append()
+method (we will see more about methods later):
+>>> cubes.append(216) # add the cube of 6
+>>> cubes.append(7 ** 3) # and the cube of 7
+>>> cubes
+[1, 8, 27, 64, 125, 216, 343]
+Simple assignment in Python never copies data. When you assign a list to a variable, the variable refers to the existing list. Any changes you make to the list through one variable will be seen through all other variables that refer to it.:
+>>> rgb = [""Red"", ""Green"", ""Blue""]
+>>> rgba = rgb
+>>> id(rgb) == id(rgba) # they reference the same object
+True
+>>> rgba.append(""Alph"")
+>>> rgb
+[""Red"", ""Green"", ""Blue"", ""Alph""]
+All slice operations return a new list containing the requested elements. This means that the following slice returns a shallow copy of the list:
+>>> correct_rgba = rgba[:]
+>>> correct_rgba[-1] = ""Alpha""
+>>> correct_rgba
+[""Red"", ""Green"", ""Blue"", ""Alpha""]
+>>> rgba
+[""Red"", ""Green"", ""Blue"", ""Alph""]
+Assignment to slices is also possible, and this can even change the size of the list or clear it entirely:
+>>> letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+>>> letters
+['a', 'b', 'c', 'd', 'e', 'f', 'g']
+>>> # replace some values
+>>> letters[2:5] = ['C', 'D', 'E']
+>>> letters
+['a', 'b', 'C', 'D', 'E', 'f', 'g']
+>>> # now remove them
+>>> letters[2:5] = []
+>>> letters
+['a', 'b', 'f', 'g']
+>>> # clear the list by replacing all the elements with an empty list
+>>> letters[:] = []
+>>> letters
+[]
+The built-in function len()
+also applies to lists:
+>>> letters = ['a', 'b', 'c', 'd']
+>>> len(letters)
+4
+It is possible to nest lists (create lists containing other lists), for example:
+>>> a = ['a', 'b', 'c']
+>>> n = [1, 2, 3]
+>>> x = [a, n]
+>>> x
+[['a', 'b', 'c'], [1, 2, 3]]
+>>> x[0]
+['a', 'b', 'c']
+>>> x[0][1]
+'b'
+3.2. First Steps Towards ProgrammingÂ¶
+Of course, we can use Python for more complicated tasks than adding two and two together. For instance, we can write an initial sub-sequence of the Fibonacci series as follows:
+>>> # Fibonacci series:
+>>> # the sum of two elements defines the next
+>>> a, b = 0, 1
+>>> while a < 10:
+... print(a)
+... a, b = b, a+b
+...
+0
+1
+1
+2
+3
+5
+8
+This example introduces several new features.
+The first line contains a multiple assignment: the variables
+a
+andb
+simultaneously get the new values 0 and 1. On the last line this is used again, demonstrating that the expressions on the right-hand side are all evaluated first before any of the assignments take place. The right-hand side expressions are evaluated from the left to the right.The
+while
+loop executes as long as the condition (here:a < 10
+) remains true. In Python, like in C, any non-zero integer value is true; zero is false. The condition may also be a string or list value, in fact any sequence; anything with a non-zero length is true, empty sequences are false. The test used in the example is a simple comparison. The standard comparison operators are written the same as in C:<
+(less than),>
+(greater than),==
+(equal to),<=
+(less than or equal to),>=
+(greater than or equal to) and!=
+(not equal to).The body of the loop is indented: indentation is Pythonâs way of grouping statements. At the interactive prompt, you have to type a tab or space(s) for each indented line. In practice you will prepare more complicated input for Python with a text editor; all decent text editors have an auto-indent facility. When a compound statement is entered interactively, it must be followed by a blank line to indicate completion (since the parser cannot guess when you have typed the last line). Note that each line within a basic block must be indented by the same amount.
+The
+print()
+function writes the value of the argument(s) it is given. It differs from just writing the expression you want to write (as we did earlier in the calculator examples) in the way it handles multiple arguments, floating-point quantities, and strings. Strings are printed without quotes, and a space is inserted between items, so you can format things nicely, like this:>>> i = 256*256 >>> print('The value of i is', i) The value of i is 65536
+The keyword argument end can be used to avoid the newline after the output, or end the output with a different string:
+>>> a, b = 0, 1 >>> while a < 1000: ... print(a, end=',') ... a, b = b, a+b ... 0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,
+Footnotes",3. An Informal Introduction to Python,Python Software Foundation,2025-04-15
+2025-10-04T19:04:00.627080Z,https://www.evidentlyai.com/llm-guide/llm-as-a-judge,https://www.evidentlyai.com/llm-guide/llm-as-a-judge,www.evidentlyai.com,LLM-as-a-judge: a complete guide to using LLMs for evaluations,Tech,GenAI,"[""LLM Evaluation""]","[""LLM-as-a-judge"", ""Evaluation Methods"", ""Evaluation Prompts""]","[""Offline Evaluations"", ""Online Evaluations""]","[""Pairwise Comparisons"", ""Direct Scoring""]","[""LLM-as-a-judge is a method to assess the quality of text outputs from LLM-powered products."", ""It employs an LLM with a tailored evaluation prompt to rate generated text based on defined criteria."", ""This technique is adaptable for both offline and online evaluations, offering flexibility and cost-effectiveness."", ""The success of LLM judges depends on the prompt, model, and task complexity."", ""LLM judges can handle pairwise comparisons and direct scoring, approximating human judgment."", ""Evidently AI provides tools to create and tune LLM judges for various applications.""]","contentsâ
+LLM-as-a-judge is a common technique to evaluate LLM-powered products.Â
+It grew popular for a reason: itâs a practical alternative to costly human evaluation when assessing open-ended text outputs.
+Judging generated texts is tricky â whether it's a âsimpleâ summary or a chatbot conversation. Metrics like accuracy donât work well because there are many ways to be ârightâ without exactly matching the example answer. And things like style or tone are subjective and hard to pin down.
+Humans can handle these nuances, but manually reviewing every response doesnât scale. LLM-as-a-judge emerged as an alternative: you can use LLMs to evaluate the generated texts. Interestingly, the LLM is both the source of the problem and the solution!
+In this guide, weâll cover:
+While thereâs plenty of great research on this topicâweâll reference some of itâweâre going to keep things practical. This guide is for anyone working on an LLM-powered product and wondering if this technique could work for them.
+ð¡ Want to build your own LLM judge?
+We built Evidently, an open-source library for LLM evals with 25M+ downloads. You can use it to create and tune your own LLM judges. Give it a âï¸ on GitHub to support the project!
+ð» Want a practical example? Watch this video tutorial with code to get started.
+Test fast, ship faster. Evidently Cloud gives you reliable, repeatable evaluations for complex systems like RAG and agents â so you can iterate quickly and ship with confidence.Â
+TL;DR. LLM-as-a-Judge uses LLMs to evaluate AI-generated texts based on custom criteria defined in an evaluation prompt.
+As you build your LLM-powered product â whether it's a chatbot, code generator, or email assistant â you need to evaluate its quality.
+LLM-as-a-judge is an evaluation approach that supports all these workflows. The idea is simple: ask an LLM to ""judge"" the text outputs using guidelines you define.Â
+Say, you have a chatbot. You can ask an external LLM to evaluate its responses, similar to how a human evaluator would, looking at things like:
+To apply the method, you take the text output from your AI system and feed it back into the LLM, this time alongside an evaluation prompt. The LLM will then return a score, label, or even a descriptive judgment â following your instructions.
+The beauty of this approach is that it lets you evaluate text outputs automatically and look at custom properties specific to your use case.Â
+For example, you can instruct the LLM to judge the helpfulness of the chatbotâs responses. (Side note: all prompts in this guide are just for illustration).
+Simplified prompt: Given a QUESTION and RESPONSE, evaluate if the response is helpful. Helpful responses are clear, relevant, and actionable. Unhelpful responses are vague, off-topic, or lacking detail. Return a label: 'helpful' or 'unhelpful'.
+If you run it over your chatbot outputs, the LLM judge will score each response.Â
+You can then summarize the results over the entire conversation dataset to see the distribution: what is the share of helpful responses?
+It's not just about one-off analysis: you can run these evaluations continuously on live data. This will let you track how well the chatbot works and detect issues, like a sudden surge in âunhelpfulâ responses.
+Want to assess another property? Just write a new prompt!
+Itâs worth noting that LLM-as-a-judge is not an evaluation metric in the same sense as, say, accuracy, precision, or NDCG. In machine learning, a metric is a well-defined, objective measure: they precisely quantify how well a modelâs predictions match the ground truth.
+In contrast, LLM-as-a-judge is a general technique where you use LLM to approximate human labeling. When you ask an LLM to assess qualities like ""faithfulness to source,"" ""correctness,"" or ""helpfulness,"" you define what these terms mean in the evaluation prompt and rely on the semantic relationships the LLM learned from training data.Â
+The LLM follows your instructions, just like a human would. You can then track how many responses are labeled as âgood,â but this isnât a fixed, deterministic measure. It's a use-case-specific proxy metric.
+The success of using LLM judges also heavily depends on the implementation detailsâthe model you use, the prompt design, and the task complexity. You will also need to adapt the evaluation prompt to the specific evaluator LLM: both words and formats matter.Â
+Before we dive into details, letâs address the elephant in the room: how come you use LLMs to evaluate âits ownâ work? Isnât this cheating?
+TL;DR. Assessing text properties is easier than generating it. The LLMÂ evaluator is external to the main product and performs a simpler, more focused task.
+At first, it may seem odd to use an LLM to evaluate the text outputs. If the LLM is generating the answers, why would it be better at judging them or noticing errors?
+The key is that we're not asking the LLM to redo its work. Instead, we use a different prompt â or even a different LLM â to perform a separate task: evaluate specific text properties.
+By making an external call to an LLM with a focused evaluation prompt, you activate different capabilities of the model. Often, using it as a simple text classifier and asking to follow a single instruction.
+Think of it this way: it's easier to critique than to create. Classifying content is simpler than generating it. Detecting that something went wrong is usually easier than preventing the mistake in the first place.
+When generating responses, an LLM handles many variables, integrates complex context and user inputs, and follows detailed product prompts that may contain multiple instructions at once. This complexity can lead to errors.
+Evaluating responses is generally more straightforward. We're not asking the LLM to fix or correct itself; but simply to assess what has already been produced. For example, a relevance evaluator only needs to check whether the response is semantically relevant to the question, not generate a better answer.
+Similarly, while your chatbot might be tricked by a malicious user into generating, say, biased content, an external LLM evaluator can still detect this. This evaluator works independently of the conversation: it examines the output and judges it on its merits. For example, ""Does this text contain bias toward any group? Yes or no."" Since LLMs are trained on vast amounts of text data, they are quite good at detecting language patterns.
+This doesn't mean that LLM evaluators are ""better"" than your original model; they are simply being asked to do a simpler, more focused task.
+Let's look at a few different types of judges you can implement.
+TL;DR. You can ask an LLM to choose the best answer between two, assess specific qualities like conciseness or politeness, or evaluate an answer with extra context, like to detect hallucinations or determine relevance.
+You can use LLM evaluators in several scenarios:
+Pairwise comparison is typically done offline: you need an option to generate and contrast multiple responses. Direct scoring works both offline and online for continuous monitoring.
+One of the early uses of the LLM-as-a-judge technique is in pairwise comparison, where the LLM looks at the two responses and decides which one is better. This method was described, for example, in this blog post, and got its official âjudgeâ nickname in the paper âJudging LLM-as-a-Judge with MT-Bench and Chatbot Arenaâ by Zheng et al., 2023 (MT-Bench and Chatbot arena are examples of LLM benchmarks).
+In short, you generate two responses and ask the LLM to select the more appropriate one based on specific qualities or factors.
+In the cited paper, the authors used GPT-4 as an evaluation model and compared its decisions to crowdsourced human preferences. The LLM evaluations achieved over 80% agreement, which is comparable to the level of agreement between human evaluators.
+This is a great result, and the method has made its way into practitioners' playbooks. It is especially useful during the development stage when you want to pick the better model or prompt by running multiple pairwise comparisons.Â
+Simplified prompt: You will be shown two responses to the same question. Your task is to decide which response is better based on its relevance, helpfulness, and level of detail. If both responses are equally good, declare a tie.
+The ability of LLMs to match human preferences when comparing two outputs is very promising. However, the more common use of LLM judges by LLM product builders is even simpler: direct scoring of individual responses.Â Â
+You can ask the LLM to score the generated texts directly by any dimension you define. Instead of focusing on general âpreferenceâ, it can handle one criterion at a time. This is particularly useful for production monitoring.
+For example, you might use LLM judges to assess things like tone, clarity, adherence to format, conciseness, politeness, presence of Personally Identifiable Information (PII), etc.Â
+These are generic examples. For your specific app, youâd likely develop custom evaluators that reflect what defines a quality output or what types of errors you expect to catch.Â Â
+LLMs are highly effective at classification tasks that focus on language and semantics. A common way is to treat the evaluation as a binary classification problem. Alternatively, you can use a grading scale to measure how well the response meets specific criteria, such as using a Likert scale from one to five.Â Â
+Simplified prompt: Evaluate the following text for conciseness. A concise response delivers the key message clearly and directly, without unnecessary words. Return one of the following labels: 'Concise,â or 'Verboseâ.
+The use of LLMs for grading is examined, for example, in the following papers:
+You can also evaluate entire conversations.Â In this case, youâd pass the complete multi-turn transcript: all questions a user asked inside a given session and how LLM responded.
+As long as this conversation transcript fits within the LLM context window (the amount of text it can process at once, typically a few thousand tokens), the model can handle this. Itâs still a grading task, just with a longer input text.
+Examples of conversation-level evaluations are:
+You can use it to monitor trends and flag individual conversations for human review.
+Simplified prompt: Read the conversation and assess if the user's request was resolved. 'Resolved' means the issue was addressed and the user confirmed or showed satisfaction. Return one of these labels: 'Resolved' or 'Not Resolved.'
+In reference-based evaluations, you donât just evaluate the generated response aloneâyou provide additional context to review. Here are a few examples of extra inputs:Â
+You still directly score the response, but instead of passing a single input, you include two or more pieces of text in the evaluation prompt and explain how they relate to each other. Letâs take a look at a few examples!
+1. Evaluating correctness based on reference answer.
+This is an offline evaluation where the LLM compares the response to the ""golden"" reference. Itâs great for evaluations during the experimental phase (when you iterate on your system design) and for regression testing after updates to the model or prompt.
+For example, in a Q&A system, the LLM judge can check if the new response is similar to the previously approved answer to this same question.Â
+This correctness judge is an alternative to deterministic metrics like ROUGE that quantify word and phrase overlap between two answers, and semantic similarity checks, which perform the comparison using a pre-trained embedding model.
+Simplified prompt: Compare the generated RESPONSE to the REFERENCE answer. Evaluate if the generated response correctly conveys the same meaning, even if the wording is different. Return one of these labels: 'Correctâ or 'Incorrect.'
+For example, in Segment's blog post, they described using an LLM evaluator to compare the LLM-generated queries against a pre-approved query for a given input. Similarly, Wix uses LLM judges to match the correctness of Q&AÂ responses against ground truth.
+2. Evaluating answer quality considering the question.
+Unlike the previous example that requires a golden reference answer, you can also run evaluations using data available at the time of response generation. For instance, in Q&A systems you can judge the answer together with the question to evaluate:
+You can run these types of evaluations for ongoing quality monitoring.
+Simplified prompt: Evaluate the following RESPONSE based on the given QUESTION. A complete response is one that fully addresses all parts of the question. Return one of the following labels: 'Complete' or 'Incomplete.'
+3. Scoring context relevance in RAG.Â
+Retrieval-Augmented Generation (RAG) is a special case of LLM product architecture.
+With this implementation, the system first searches for documents that can help answer the question and then uses them to generate a response. This adds up-to-date knowledge to the LLM answer. To properly evaluate RAGâs performance, you need to assess both sides:
+If you're using RAG, check out our in-depth guide on RAG evaluation.
+For the first part â evaluation of search quality â you can use ranking quality metrics like NDCG or precision at K. These types of metrics quantify how well the system can find and sort the documents that help answer the query. These evaluations typically happen offline as you iterate on parameters like different search strategies.
+However, ranking metrics require relevance labels, meaning each document must be marked as helpful or not for answering the question. You can do this manually, but another option is to task an LLM. In this case, it will act as a context relevance judge.
+After the LLM scores each retrieved text chunk for its relevance to the query, you feed these labels onto the next step of the evaluation process to compute the ranking quality metrics.
+Simplified prompt: Evaluate the relevance of the text in answering the Â QUESTION. A relevant text contains information that helps answer the question, even if partially. Return one of the following labels: 'Relevant', or 'Irrelevant.'
+For example, this method is described in the paper âLarge Language Models Can Accurately Predict Searcher Preferencesâ (Thomas et al., 2023).
+4. Evaluating hallucinations in RAG.
+On the other side of the equation, and especially once the RAG system is in production, you want to check the final response quality. One issue that happens here is hallucination: LLMs can invent details not present in the source material.
+Since you have both the answer and the retrieved context, you can run one more evaluation to see how grounded the answer is. Effectively, you create a faithfulness judge to double-check if the LLM processed the retrieved content correctly.
+Simplified prompt: Evaluate the following RESPONSE for faithfulness to the CONTEXT. A faithful response should only include information present in the context, avoid inventing new details, and not contradict the context. Return one of the following labels: 'Faithful' or 'Not Faithfulâ.
+For example, in DoorDashâs blog post about their RAG-based support agent, they mention using LLM judges to evaluate response coherence with context.
+You can also use this approach to evaluate summaries by comparing them to the source. This helps you cross-check the quality and spot inconsistencies. For example, this paper explores methods to detect factual inaccuracies in summaries.
+LLM evaluators are a powerful technique, but they require careful setup for your specific scenario. You'll need time to design and evaluate your judge, craft good prompts, and build a reliable evaluation pipeline for continuous monitoring.
+Letâs explore some of these best practices.
+TL;DR. Creating an LLM judge is a small ML project. Start with a labeled dataset that reflects how you want the LLM to judge your texts, then create and refine the evaluation prompt to ensure alignment with your labels.
+Creating an LLM judge is much like developing any LLM-powered product â you need a prompt that tells the LLM exactly what to do. In this case, itâs an evaluation prompt that instructs the LLM to assess text inputs and return a label, score, or explanation.
+Hereâs the rub: if you're using an LLM to evaluate other LLMs, and the results arenât deterministic, how do you ensure your judges align with your expectations?
+Youâll need to take an iterative approach â refining the judge just like you refine your LLM product prompts. In other words, your evaluation system needs its own evaluation!
+Here is the general process.
+Step 1. Define the evaluation scenario.Â
+First, decide what exactly you want the LLM judge to evaluate. Are you checking for correctness, tone, conciseness, or something else? You might evaluate just the generated output, compare multiple inputs, or look at the complete conversation transcript. Start with what you want to achieve, then think back to how to define the evaluator.
+Tip: Keep it simple! Donât try to evaluate too many things at once. If you want to check different dimensions (like tone and accuracy), split them into separate evaluations. Use clear, binary choices whenever possible (e.g., ""correct"" vs. ""incorrect"").
+Step 2. Prepare the evaluation dataset.Â
+Next, create a small dataset to test your LLM judge. This can include examples from experiments or production data. If you donât have those, you can create synthetic cases that mimic the expected inputs.
+Your dataset doesnât need to be huge, but it should include diverse examples, especially those that challenge your evaluation criteria.
+Step 3. Label this dataset.Â
+Hereâs the important part: you need to label this dataset manually, just as you want the LLM judge to do later. This labeled dataset will be your ""ground truth"" and help you measure how well the LLM judge performs.Â
+Plus, labeling it yourself forces you to be intentional about what you expect the LLM to notice. This will shape how you write the evaluation instructions.
+Let's say you are creating a correctness judge that will compare two LLM outputs â such as an old vs. new answer after a model update. Youâll need to decide which changes matter: are you checking if the responses are mostly the same, or do specific details count? Maybe some changes, like adding a greeting, are fine, but suggesting an extra action might be unacceptable. Often, youâd look for specific types of errors like contradictions, omissions, changes of order, or response style.
+For example, in this use case we considered any extra information, such as suggesting the user contact an agent, as incorrect, even if it didnât contradict the reference answer directly.
+This may be different for your use case!Â
+You can, of course, skip this step: write the best prompt you can, then review and correct the LLM-generated labels to create the approved test dataset. However, starting with your labels often improves your initial prompt.
+Step 4. Craft your evaluation prompt.
+Once you know what youâre looking for, itâs time to create an evaluation prompt for the LLM.Â
+For example, hereâs how we formulated the evaluation criteria after manually labeling the data for the correctness example. It accounts for specific errors weâve seen:
+Weâll share more tips on prompt writing in the next section.Â
+Want a code tutorial? Check out this guide for a step-by-step example of creating an evaluation dataset and designing an LLM judge.Â
+Step 5. Evaluate and iterate.Â
+Once your prompt is ready, apply it to your evaluation dataset and compare the LLM judgeâs outputs to your manually labeled ground truth.
+For binary classifications, you can use metrics like precision and recall to measure how well the LLM judge is performing, especially when youâre focusing on a specific class. For example, you might prioritize the LLM's ability to detect âincorrectâ responses, even if some correct responses are misclassified: in this case, recall is a relevant quality metric.
+If the results donât meet your expectations, you can adjust the prompt and rerun the evaluation. Ideally, you would also keep some part of your manually labeled dataset as a âheld-outâ dataset: and only use it to test your final prompt.Â Â Â
+Note that your LLM judge doesnât need to be perfect â just âgood enoughâ for your goals. Even human evaluators make mistakes!
+And finally, bring in the domain experts.
+Non-technical team members â like product or subject matter experts â play a big role in setting the evaluations. They help figure out what behaviors or topics the LLM should catch, shape guidelines that go into the prompts, and test the alignment. With no-code tools, you can design this a collaborative workflow.
+Creating LLM judges is also naturally an iterative process. Especially if you begin with a synthetic dataset, you might need to adjust your standards once you start grading real user data and see patterns in the LLM outputs and errors. You may then edit the judge prompt or split and add new evaluation criteria.
+In the paper âWho Validates the Validators?â (Shankar et al., 2024), the authors talk about criteria drift, where manually grading outputs helps users refine their expectations based on the specific LLM outputs they see.
+TL;DR. Write your own prompts. Use yes/no questions and break down complex criteria. Asking for reasoning helps improve evaluation quality and debugging.
+Evaluation prompts are the core of your LLM judge. Just like with human assessors, you need to provide the LLM with precise, detailed instructions.Â Â
+Ideally, you should write your own evaluation prompts. First, because this is where LLM judges really shine â you can customize them to your specific needs. Second, even minor clarifications can improve the quality of your scenario over a generic prompt.
+Keep in mind that prompts behave differently across models. The exact evaluation instructions might give different results on a GPT-4.0 mini compared to GPT-4.0. Testing them against your expectations is key.
+Tip: If you're using external evaluation tools with LLM-based metrics, always review their prompts and test against your labels to ensure they align with your needs.
+Several prompting techniques can improve the accuracy and consistency of your LLM evaluator. These are similar to the ones you might use while developing your LLM product, such as a chain of thought prompting. Asking LLMs to grade text is no different from other tasks you might ask them to perform â the same tricks work.
+Here are a few ones to consider.
+1. Use binary or low-precision scoring.
+Binary evaluations, like ""Polite"" vs. ""Impolite,"" tend to be more reliable and consistent for both LLMs and human evaluators. It's easier to get accurate results with two simple choices rather than trying to decide if a specific response scores 73 vs. 82 for ""politeness.""
+While purpose-built probabilistic machine learning models can return such scores, LLMs generate text and aren't naturally calibrated for high-precision scoring.
+You can also use a three-option approach, like ""relevant,"" ""irrelevant,"" and ""partially relevant,"" or include an ""unknown"" option when thereâs not enough information. This avoids forcing the LLM to make a decision without sufficient data.Â
+2. Explain the meaning of each score.
+Think of writing prompts like giving instructions to an intern who is doing the task for the first time. Donât just ask the LLM to label something as ""toxic"" or ""not toxic"". Instead, clearly define what ""toxic"" means â like language thatâs harmful or offensive in specific ways.
+If you prefer to flag borderline cases rather than miss them, you can guide the LLM to be more strict with instructions like, ""If unsure, err on the side of caution and mark it as âtoxicâ"".Â
+Explaining what each class means becomes even more critical with something like a 5-point scale â whatâs the difference between a 3 and a 4? If thatâs not clear, both LLMs and human reviewers will struggle to stay consistent.
+If you canât easily explain these distinctions, it might be a sign you need to simplify the scale. Without guidance, LLMs may return inconsistent results, giving different scores for similar texts or leaning toward certain scores that were more common in its training data.Â
+To reduce variability, you may consider using multiple evaluations. Then, you can combine the results using methods like max voting or averaging. For example, see âReplacing Judges with Juriesâ (Verga et al., 2024).Â
+Want to check if your instructions are good? Try labeling some responses yourself! If you need extra clarification to make a decision, the LLM will likely do so too. If youâre adding too many details, consider breaking the task into several.
+3. Simplify evaluation by splitting criteria.
+If you have several aspects to evaluate, like completeness, accuracy, and relevance, it's best to split them into separate evaluators. This keeps things focused.
+You can still combine the results for an overall judgment in a deterministic way. For instance, you could flag an answer if any one criterion gets a ""negative"" label (incomplete, inaccurate, or irrelevant). Alternatively, you can sum up the number of ""good"" labels for an overall score or assign weights to reflect the importance of each criterion.
+This way, LLM handles one quality at a time rather than dealing with complex reasoning. This improves the accuracy of each evaluation and also makes it easier for reviewers to verify and understand the results.
+4. Add examples to the prompt.Â
+If your criteria is nuanced, you can also consider adding examples of inputs and judgments.
+Your prompt can start with a general instruction (e.g., ""Good"" means... ""Bad"" means...) and then provide examples of both good and bad responses. These examples help the LLM better understand how to apply your criteria â especially helpful for less capable models.â
+This technique is known as few-shot learning. You can read more about this approach in âLanguage Models are Few-Shot Learners.â Â (Brown et al., 2020).
+However, it's important to test how adding examples impacts the judge's performance. Skewed or biased examples can influence the LLM's decisions.
+For instance, if you include more negative examples than positive ones, or if all the negative examples are listed towards the end, their order or frequency may affect evaluation results. Though this tends to be less of an issue with more advanced models.Â
+For more on this, check the paper âCalibrate Before Use: Improving Few-Shot Performance of Language Models.â Â (Zhao et al., 2021), where they show that few-shot learning results vary due to factors like prompt format and example order.Â
+5. Encourage step-by-step reasoning.
+Just like with other tasks, asking the LLM to ""think"" through its process before giving a final answer â known as the Chain of Thought (CoT) approach â can help achieve better results.
+The idea of adding a reasoning step inside a prompt is explored by Wei et al. (2022) in their paper âChain-of-Thought Promptingâ Â and Kojima et al. (2022) in âLarge Language Models are Zero-Shot Reasonersâ .Â
+You can do the same in your evaluation prompt: ask the model to explain its reasoning or think step by step, effectively implementing a Zero-Shot-CoT approach. This way, the model will provide both the reasoning and the result in one response. Further research shows that this significantly improves the quality of evaluations.
+In addition, this also creates a reasoning trail that you can review later. This is especially helpful for troubleshooting when you go through the responses. For example, the generated justification can highlight which parts of the text led the model to flag something as incorrect or identify that it contains personally identifiable information.
+Multi-turn chain of thought. Some researchers explored more sophisticated approaches to CoT. For example, one method, called G-Eval (see Liu et al., 2023), uses a process where the AI first defines the task, plans the steps, and then completes the evaluation form. However, further studies show that this auto-generated CoT doesnât always work better, and simply asking LLM to explain or analyze outperforms this method (see Chiang et al., 2023).
+6. Set a low temperature.
+In LLMs, temperature controls how random the output is. Higher temperatures mean more variety, while lower temperatures make outputs more âpredictableâ. For evaluations, you donât need creativity â set a low temperature so the model gives consistent answers for the same input.
+7. Use a more capable model.
+When evaluating, it makes sense to start with a stronger model. This generally helps ensure better alignment with human judgments. Once you have that solid baseline, you can experiment with smaller or less capable models to see if they meet your needs.
+8. Get structured outputs.
+Last but not least, always go for a structured output format, like JSON. It makes it much easier to parse the evaluation results for further analysis.Â
+Recap.Â To sum up, here are a few tips for writing better evaluation prompts:
+Starting with simpler approaches is often best. As long as you evaluate your LLM judges to confirm how well they work, you can begin with a straightforward method and stick with it if itâs effective. If you want to experiment with more complex techniques (like a multi-step chain of thought with extra LLM calls), you can build upon this initial baseline.
+For a more in-depth literature review on LLM-as-a-judge research, check out excellent resources by Cameron Wolfe and Eugene Yan.
+Want to get started with examples? We implemented many of these tips in the Evidently open-source library. It offers LLM evaluation templates that already include repeatable parts like formatting and reasoning. You can add your criteria in plain text or use built-in prompts for inspiration. Check out the docs to get started. To create judges with no-code, sign up for a free account on Evidently Cloud.
+TL;DR. LLM observability helps monitor the performance of your system in production. Set up tracing to collect live data, schedule evaluations where portions of this data are scored by LLM judges, and use a dashboard to track trends such as user frustration and hallucinations.
+Once your system goes live, real users will interact with it in ways you might not have expected. Even the most thorough pre-launch testing wonât cover all the different ways people will use it. Thatâs why itâs so important to track actual performance in real time.
+In production, thereâs no perfect answer to which to compare outputs, so youâll need to monitor the quality of responses on their own. LLM evaluators make this possible. You can set up a regular process to score new generations based on selected criteria.Â
+This monitoring isn't just about quality control â it can also provide insights into how users interact with your tool, such as what tasks or topics are most common.Â
+Hereâs how you can set up the process:
+1. Tracing.
+The first step is tracing â collecting data from user interactions and storing it for analysis. Youâll need to instrument your AI application to capture all inputs, LLM and function calls and completions.
+The immediate benefit is clear: once you have the logs, you can view and read them to understand whatâs happening as users interact with your application.
+Initially, you might manually review responses to spot common patterns or issues. However, as the volume of data grows, manual reviews wonât scale, so youâll need some automation.
+2. Schedule evaluations.Â
+Once youâve got your tracing data stored and know what you want to evaluate, you can set up scheduled evaluations. These are regular checks where you run new answers or complete conversations through the LLM judge to see how the systemâs doing based on the attributes youâve set. If youâre handling a lot of data, you can sample a subset to track performance.Â
+For example, if youâre running a customer service chatbot, you could evaluate 10% of the conversations for signs of frustration expressed by the user, repeated questions, or unresolved chats. Running these evaluations regularly (e.g., every hour, day, or after X conversations) will keep you updated on performance.
+You can also combine LLM evaluators with other methods, like using regular expressions to check for specific terms, such as product or competitor mentions.
+3. Build a dashboard.Â
+To make performance tracking easier, you will need a dashboard.Â
+After running an evaluation on the latest batch of data, you can add metrics like the âshare of answers labeled as hallucinatedâ or the ânumber of conversations where users expressed frustrationâ to a dashboard and visualize them over time. This helps track performance trends and spot any issues.
+You can also set up alerts so that if things go off track, youâre notified right away and can step in before the issue affects too many users.
+4. Look at your data!Â
+Monitoring and debugging go hand in hand. Say, if you notice a rise in user frustration, you'll want to review specific problematic conversations. You can export examples to fine-tune the model or create a test set to adjust your prompts to fix the issue.
+Also, once your LLM judge is live, itâs important to check in on it regularly. Even an aligned LLM evaluator â or your expectations â can shift over time, so you might need to adjust or add new judges to keep things running smoothly.
+LLM Observability. You could create this workflow step by step â set up logging, storage, evaluation jobs, dashboards, and alerts. Purpose-built LLM observability tools like Evidently Cloud streamline the process. You can sign up for free and get started quickly without the need to spin up all the infrastructure yourself.
+TL;DR. Pros are reasonable quality, speed, ease of updates, and the ability to run evals for custom criteria without a reference. Cons are imperfect quality, potential biases, and the costs and risks of using external LLMs.
+LLM judges offer a practical, scalable solution for evaluating AI outputs, but they come with trade-offs. Here's a breakdown of its pros and cons.
+High-quality evaluations. When properly set up, LLM evaluations closely match human judgment and provide consistent results. For large-scale tasks, theyâre often the only viable alternative to human review.
+No reference is needed. You can use LLMs to evaluate generated outputs without a reference answer to compare to. This makes them perfect for live monitoring in production.
+Itâs incredibly flexible. You can tweak prompts to evaluate anything, from how helpful a response is to how well it matches a brandâs voice, much like assigning tasks to humans.
+Itâs scalable. Once configured, LLMs can handle thousands of evaluations around the clock, much faster and cheaper than human reviewers. Their fast turnaround and real-time availability are hard to beat. Plus, you can easily scale evaluations across multiple languages.
+Itâs easy to update. LLM evaluators are simple to adjust as your needs and criteria change together with your product. Just update the prompt â no need to retrain a model, like in classic machine learning.
+You can involve domain experts. Since LLMs use natural language, even non-technical team members can help write prompts and review results, ensuring the evaluations capture the right nuances.
+Good, but not perfect. LLM evaluators arenât flawless. If the instructions are too vague or complex, the results can be subpar. LLMs might also give inconsistent judgments for the same input, though polling (asking the same question multiple times) can help. Itâs important to manage expectations and track quality.
+Bias risks. LLMs are trained on vast datasets, which can carry biases into evaluations. For example, if you ask it to classify texts as ""professional"" or ""unprofessional"" without guidelines, it will rely on assumptions from its training data. For pairwise evals, there are known biases (see Zheng, L., 2023):
+You can manage these by switching the order of responses or focusing on direct scoring rather than asking the LLM to pick the ""best"" response.
+Data privacy. Using third-party LLM APIs for evaluations means sharing data externally. While this is often fine, considering you're already generating responses through LLMs, you need to be cautious with privacy and security â especially for sensitive data.
+Itâs not instant. While LLMs are faster than humans, theyâre still slower and more expensive compared to rule-based checks or smaller ML models. This makes them less ideal for tasks like guardrails, where you need to validate an answer right as itâs being generated.
+Itâs not free. Running evaluations with powerful LLMs can get expensive, especially with large datasets or multiple calls per generation. You can cut costs by mixing LLM judgments with simpler methods like regex, sampling your data, and using more efficient evaluation prompts â running a single call rather than in multiple steps.
+It takes work to set up. Building an effective LLM judge requires effort. Youâll need to define criteria, design evaluation prompts, and label datasets. Itâs not a âset-it-and-forget-itâ solution either â youâll need to check in now and then to keep your judge performing well.
+TL;DR. Other options include manual labeling, collecting user feedback, using task-specific ML models and rule-based checks. When a reference is available, you can use metrics like ROUGE. A mix of methods often works best.
+While LLM judges are great, theyâre not the only way to evaluate AI outputs. Here are some other LLM evaluation methods to consider.
+Manual labeling. Human evaluation is still the gold standard, especially for tasks that are more nuanced or subjective. It doesnât scale for large volumes, but starting with manual reviews almost always makes sense. This helps you figure out the behaviors and patterns you want to track. Once youâve nailed down your evaluation guidelines, you can automate them with LLMs. It's always a good idea to keep reviewing a portion of texts manually.
+Collect user feedback. Donât forget your users! You can ask them to rate the quality of an LLMâs response directly in-app, like right after it generates a response. This gives you real-time feedback from the people actually using the system.
+Purpose-built ML models. For well-defined tasks, traditional machine learning models can be very effective. There are plenty of pre-trained models available for things like sentiment analysis or detecting personal information (PII). You can also use embedding models to compare semantic similarity between texts, which is useful for things like regression testing when you need to compare old and new responses.
+Fine-tuned evaluator models. As you use LLM judges, youâll naturally gather a labeled dataset that you can use to fine-tune models for specific evaluation tasks. This can be a great long-term solution if your tasks are predictable, but these models have limitations. Theyâre usually locked into their specific evaluation schemes and wonât generalize as well if the inputs or criteria change (see paper).
+Generative quality metrics. For offline evaluation of structured tasks like summarization and translation, you can use metrics like ROUGE and BLEU to objectively measure response quality by comparing them to reference texts. These metrics use n-gram overlap to score how closely the output matches an ideal response.
+Rule-based checks. Sometimes the simplest methods work best. Using rules, like searching for specific keywords or phrases (e.g., ""cannot"" or âapologiesâ for denial, or a list of profane words), helps catch obvious errors quickly. Itâs fast, cheap, and straightforward, plus itâs deterministic â you know exactly what youâre getting.
+In practice, you combine methods. For instance, you could start with rule-based systems to filter out obvious issues, and then use LLM judges or human reviews for more complex, nuanced tasks.
+LLM-as-a-Judge is a scalable alternative to human labeling. It is perfect for tasks where thereâs no single right answer and for production monitoring. If you are working on complex AI systems like RAG or AI agents, youâll need such task-specific evaluations tuned to your criteria and preferences.Â
+Thatâs why we built Evidently. Our open-source library (trusted with over 25 million downloads!) makes it easy to set up and run LLM-as-a-Judge evaluations and other tests. You can use different evaluator LLMs and test judges against your own labels to better align them.
+On top of it, Evidently Cloud provides a platform to collaboratively run tests and evaluations. You can generate synthetic test data, create LLM judges with no-code, and track performance over time â all in one place.
+Ready to create your first LLM judge? Sign up for free or schedule a demo to see Evidently Cloud in action. We're here to help you build AI systems with confidence!",LLM-as-a-judge: a complete guide to using LLMs for evaluations,Evidently AI,2025-07-23
