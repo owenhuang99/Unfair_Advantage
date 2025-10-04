@@ -528,7 +528,7 @@ elif page == "Review Cards":
             with col2:
                 if st.button("Reveal Answer", key="reveal_btn", help="Click to see the answer"):
                     st.session_state.show_answer = True
-                    st.experimental_rerun()
+                    st.rerun()
 
         if st.session_state.show_answer:
             # Action buttons with custom styling
