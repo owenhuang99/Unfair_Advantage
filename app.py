@@ -4,6 +4,10 @@ import re
 from core import process_new_link, mark_card_status, load_all_unlearned_cards, generate_cards_for_url, reset_learned, canonicalize_url,load_unlearned_cards,load_csv
 
 ## TESTING comment for mintlify testing
+## TESTING comment for mintlify testing222
+
+import numpy as np
+
 st.set_page_config(page_title="Link Learning App", layout="wide")
 
 # fix
