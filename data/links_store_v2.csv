@@ -1,0 +1,1041 @@
+fetched_at_utc,url,url_canonical,domain,headline,L1,L2,L3,L4,L5,L6,sequential_paths,knowledge_paths,tldr,content_text,source_title,author,publish_date
+2025-10-04T19:09:08.805440Z,https://docs.python.org/3/tutorial/introduction.html,https://docs.python.org/3/tutorial/introduction.html,docs.python.org,An Informal Introduction to Python,Tech,Programming Languages,"[""Python""]","[""Python Interpreter"", ""Data Types"", ""Control Flow"", ""Functions"", ""Modules""]","[""Interactive Mode"", ""Standard Library"", ""Importing Modules""]","[""REPL"", ""Built-in Functions""]",null,[],"[""Python is a versatile, high-level programming language with an elegant syntax and dynamic typing."", ""The tutorial introduces basic concepts like numbers, strings, lists, and control flow."", ""It emphasizes Python's interactive mode for quick experimentation and learning."", ""The tutorial is designed for programmers new to Python, assuming a basic understanding of programming."", ""The content is self-contained, allowing offline reading and hands-on practice with examples.""]","3. An Informal Introduction to PythonÂ¶
+In the following examples, input and output are distinguished by the presence or absence of prompts (>>> and â¦): to repeat the example, you must type everything after the prompt, when the prompt appears; lines that do not begin with a prompt are output from the interpreter. Note that a secondary prompt on a line by itself in an example means you must type a blank line; this is used to end a multi-line command.
+You can use the âCopyâ button (it appears in the upper-right corner when hovering over or tapping a code example), which strips prompts and omits output, to copy and paste the input lines into your interpreter.
+Many of the examples in this manual, even those entered at the interactive
+prompt, include comments. Comments in Python start with the hash character,
+#
+, and extend to the end of the physical line. A comment may appear at the
+start of a line or following whitespace or code, but not within a string
+literal. A hash character within a string literal is just a hash character.
+Since comments are to clarify code and are not interpreted by Python, they may
+be omitted when typing in examples.
+Some examples:
+# this is the first comment
+spam = 1 # and this is the second comment
+# ... and now a third!
+text = ""# This is not a comment because it's inside quotes.""
+3.1. Using Python as a CalculatorÂ¶
+Letâs try some simple Python commands. Start the interpreter and wait for the
+primary prompt, >>>
+. (It shouldnât take long.)
+3.1.1. NumbersÂ¶
+The interpreter acts as a simple calculator: you can type an expression at it
+and it will write the value. Expression syntax is straightforward: the
+operators +
+, -
+, *
+and /
+can be used to perform
+arithmetic; parentheses (()
+) can be used for grouping.
+For example:
+>>> 2 + 2
+4
+>>> 50 - 5*6
+20
+>>> (50 - 5*6) / 4
+5.0
+>>> 8 / 5 # division always returns a floating-point number
+1.6
+The integer numbers (e.g. 2
+, 4
+, 20
+) have type int
+,
+the ones with a fractional part (e.g. 5.0
+, 1.6
+) have type
+float
+. We will see more about numeric types later in the tutorial.
+Division (/
+) always returns a float. To do floor division and
+get an integer result you can use the //
+operator; to calculate
+the remainder you can use %
+:
+>>> 17 / 3 # classic division returns a float
+5.666666666666667
+>>>
+>>> 17 // 3 # floor division discards the fractional part
+5
+>>> 17 % 3 # the % operator returns the remainder of the division
+2
+>>> 5 * 3 + 2 # floored quotient * divisor + remainder
+17
+With Python, it is possible to use the **
+operator to calculate powers [1]:
+>>> 5 ** 2 # 5 squared
+25
+>>> 2 ** 7 # 2 to the power of 7
+128
+The equal sign (=
+) is used to assign a value to a variable. Afterwards, no
+result is displayed before the next interactive prompt:
+>>> width = 20
+>>> height = 5 * 9
+>>> width * height
+900
+If a variable is not âdefinedâ (assigned a value), trying to use it will give you an error:
+>>> n # try to access an undefined variable
+Traceback (most recent call last):
+File ""<stdin>"", line 1, in <module>
+NameError: name 'n' is not defined
+There is full support for floating point; operators with mixed type operands convert the integer operand to floating point:
+>>> 4 * 3.75 - 1
+14.0
+In interactive mode, the last printed expression is assigned to the variable
+_
+. This means that when you are using Python as a desk calculator, it is
+somewhat easier to continue calculations, for example:
+>>> tax = 12.5 / 100
+>>> price = 100.50
+>>> price * tax
+12.5625
+>>> price + _
+113.0625
+>>> round(_, 2)
+113.06
+This variable should be treated as read-only by the user. Donât explicitly assign a value to it â you would create an independent local variable with the same name masking the built-in variable with its magic behavior.
+In addition to int
+and float
+, Python supports other types of
+numbers, such as Decimal
+and Fraction
+.
+Python also has built-in support for complex numbers,
+and uses the j
+or J
+suffix to indicate the imaginary part
+(e.g. 3+5j
+).
+3.1.2. TextÂ¶
+Python can manipulate text (represented by type str
+, so-called
+âstringsâ) as well as numbers. This includes characters â!
+â, words
+ârabbit
+â, names âParis
+â, sentences âGot your back.
+â, etc.
+âYay! :)
+â. They can be enclosed in single quotes ('...'
+) or double
+quotes (""...""
+) with the same result [2].
+>>> 'spam eggs' # single quotes
+'spam eggs'
+>>> ""Paris rabbit got your back :)! Yay!"" # double quotes
+'Paris rabbit got your back :)! Yay!'
+>>> '1975' # digits and numerals enclosed in quotes are also strings
+'1975'
+To quote a quote, we need to âescapeâ it, by preceding it with \
+.
+Alternatively, we can use the other type of quotation marks:
+>>> 'doesn\'t' # use \' to escape the single quote...
+""doesn't""
+>>> ""doesn't"" # ...or use double quotes instead
+""doesn't""
+>>> '""Yes,"" they said.'
+'""Yes,"" they said.'
+>>> ""\""Yes,\"" they said.""
+'""Yes,"" they said.'
+>>> '""Isn\'t,"" they said.'
+'""Isn\'t,"" they said.'
+In the Python shell, the string definition and output string can look
+different. The print()
+function produces a more readable output, by
+omitting the enclosing quotes and by printing escaped and special characters:
+>>> s = 'First line.\nSecond line.' # \n means newline
+>>> s # without print(), special characters are included in the string
+'First line.\nSecond line.'
+>>> print(s) # with print(), special characters are interpreted, so \n produces new line
+First line.
+Second line.
+If you donât want characters prefaced by \
+to be interpreted as
+special characters, you can use raw strings by adding an r
+before
+the first quote:
+>>> print('C:\some\name') # here \n means newline!
+C:\some
+ame
+>>> print(r'C:\some\name') # note the r before the quote
+C:\some\name
+There is one subtle aspect to raw strings: a raw string may not end in
+an odd number of \
+characters; see
+the FAQ entry for more information
+and workarounds.
+String literals can span multiple lines. One way is using triple-quotes:
+""""""...""""""
+or '''...'''
+. End-of-line characters are automatically
+included in the string, but itâs possible to prevent this by adding a \
+at
+the end of the line. In the following example, the initial newline is not
+included:
+>>> print(""""""\
+... Usage: thingy [OPTIONS]
+... -h Display this usage message
+... -H hostname Hostname to connect to
+... """""")
+Usage: thingy [OPTIONS]
+-h Display this usage message
+-H hostname Hostname to connect to
+>>>
+Strings can be concatenated (glued together) with the +
+operator, and
+repeated with *
+:
+>>> # 3 times 'un', followed by 'ium'
+>>> 3 * 'un' + 'ium'
+'unununium'
+Two or more string literals (i.e. the ones enclosed between quotes) next to each other are automatically concatenated.
+>>> 'Py' 'thon'
+'Python'
+This feature is particularly useful when you want to break long strings:
+>>> text = ('Put several strings within parentheses '
+... 'to have them joined together.')
+>>> text
+'Put several strings within parentheses to have them joined together.'
+This only works with two literals though, not with variables or expressions:
+>>> prefix = 'Py'
+>>> prefix 'thon' # can't concatenate a variable and a string literal
+File ""<stdin>"", line 1
+prefix 'thon'
+^^^^^^
+SyntaxError: invalid syntax
+>>> ('un' * 3) 'ium'
+File ""<stdin>"", line 1
+('un' * 3) 'ium'
+^^^^^
+SyntaxError: invalid syntax
+If you want to concatenate variables or a variable and a literal, use +
+:
+>>> prefix + 'thon'
+'Python'
+Strings can be indexed (subscripted), with the first character having index 0. There is no separate character type; a character is simply a string of size one:
+>>> word = 'Python'
+>>> word[0] # character in position 0
+'P'
+>>> word[5] # character in position 5
+'n'
+Indices may also be negative numbers, to start counting from the right:
+>>> word[-1] # last character
+'n'
+>>> word[-2] # second-last character
+'o'
+>>> word[-6]
+'P'
+Note that since -0 is the same as 0, negative indices start from -1.
+In addition to indexing, slicing is also supported. While indexing is used to obtain individual characters, slicing allows you to obtain a substring:
+>>> word[0:2] # characters from position 0 (included) to 2 (excluded)
+'Py'
+>>> word[2:5] # characters from position 2 (included) to 5 (excluded)
+'tho'
+Slice indices have useful defaults; an omitted first index defaults to zero, an omitted second index defaults to the size of the string being sliced.
+>>> word[:2] # character from the beginning to position 2 (excluded)
+'Py'
+>>> word[4:] # characters from position 4 (included) to the end
+'on'
+>>> word[-2:] # characters from the second-last (included) to the end
+'on'
+Note how the start is always included, and the end always excluded. This
+makes sure that s[:i] + s[i:]
+is always equal to s
+:
+>>> word[:2] + word[2:]
+'Python'
+>>> word[:4] + word[4:]
+'Python'
+One way to remember how slices work is to think of the indices as pointing between characters, with the left edge of the first character numbered 0. Then the right edge of the last character of a string of n characters has index n, for example:
++---+---+---+---+---+---+
+| P | y | t | h | o | n |
++---+---+---+---+---+---+
+0 1 2 3 4 5 6
+-6 -5 -4 -3 -2 -1
+The first row of numbers gives the position of the indices 0â¦6 in the string; the second row gives the corresponding negative indices. The slice from i to j consists of all characters between the edges labeled i and j, respectively.
+For non-negative indices, the length of a slice is the difference of the
+indices, if both are within bounds. For example, the length of word[1:3]
+is
+2.
+Attempting to use an index that is too large will result in an error:
+>>> word[42] # the word only has 6 characters
+Traceback (most recent call last):
+File ""<stdin>"", line 1, in <module>
+IndexError: string index out of range
+However, out of range slice indexes are handled gracefully when used for slicing:
+>>> word[4:42]
+'on'
+>>> word[42:]
+''
+Python strings cannot be changed â they are immutable. Therefore, assigning to an indexed position in the string results in an error:
+>>> word[0] = 'J'
+Traceback (most recent call last):
+File ""<stdin>"", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+>>> word[2:] = 'py'
+Traceback (most recent call last):
+File ""<stdin>"", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+If you need a different string, you should create a new one:
+>>> 'J' + word[1:]
+'Jython'
+>>> word[:2] + 'py'
+'Pypy'
+The built-in function len()
+returns the length of a string:
+>>> s = 'supercalifragilisticexpialidocious'
+>>> len(s)
+34
+See also
+- Text Sequence Type â str
+Strings are examples of sequence types, and support the common operations supported by such types.
+- String Methods
+Strings support a large number of methods for basic transformations and searching.
+- f-strings
+String literals that have embedded expressions.
+- Format String Syntax
+Information about string formatting with
+str.format()
+.- printf-style String Formatting
+The old formatting operations invoked when strings are the left operand of the
+%
+operator are described in more detail here.
+3.1.3. ListsÂ¶
+Python knows a number of compound data types, used to group together other values. The most versatile is the list, which can be written as a list of comma-separated values (items) between square brackets. Lists might contain items of different types, but usually the items all have the same type.
+>>> squares = [1, 4, 9, 16, 25]
+>>> squares
+[1, 4, 9, 16, 25]
+Like strings (and all other built-in sequence types), lists can be indexed and sliced:
+>>> squares[0] # indexing returns the item
+1
+>>> squares[-1]
+25
+>>> squares[-3:] # slicing returns a new list
+[9, 16, 25]
+Lists also support operations like concatenation:
+>>> squares + [36, 49, 64, 81, 100]
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+Unlike strings, which are immutable, lists are a mutable type, i.e. it is possible to change their content:
+>>> cubes = [1, 8, 27, 65, 125] # something's wrong here
+>>> 4 ** 3 # the cube of 4 is 64, not 65!
+64
+>>> cubes[3] = 64 # replace the wrong value
+>>> cubes
+[1, 8, 27, 64, 125]
+You can also add new items at the end of the list, by using
+the list.append()
+method (we will see more about methods later):
+>>> cubes.append(216) # add the cube of 6
+>>> cubes.append(7 ** 3) # and the cube of 7
+>>> cubes
+[1, 8, 27, 64, 125, 216, 343]
+Simple assignment in Python never copies data. When you assign a list to a variable, the variable refers to the existing list. Any changes you make to the list through one variable will be seen through all other variables that refer to it.:
+>>> rgb = [""Red"", ""Green"", ""Blue""]
+>>> rgba = rgb
+>>> id(rgb) == id(rgba) # they reference the same object
+True
+>>> rgba.append(""Alph"")
+>>> rgb
+[""Red"", ""Green"", ""Blue"", ""Alph""]
+All slice operations return a new list containing the requested elements. This means that the following slice returns a shallow copy of the list:
+>>> correct_rgba = rgba[:]
+>>> correct_rgba[-1] = ""Alpha""
+>>> correct_rgba
+[""Red"", ""Green"", ""Blue"", ""Alpha""]
+>>> rgba
+[""Red"", ""Green"", ""Blue"", ""Alph""]
+Assignment to slices is also possible, and this can even change the size of the list or clear it entirely:
+>>> letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+>>> letters
+['a', 'b', 'c', 'd', 'e', 'f', 'g']
+>>> # replace some values
+>>> letters[2:5] = ['C', 'D', 'E']
+>>> letters
+['a', 'b', 'C', 'D', 'E', 'f', 'g']
+>>> # now remove them
+>>> letters[2:5] = []
+>>> letters
+['a', 'b', 'f', 'g']
+>>> # clear the list by replacing all the elements with an empty list
+>>> letters[:] = []
+>>> letters
+[]
+The built-in function len()
+also applies to lists:
+>>> letters = ['a', 'b', 'c', 'd']
+>>> len(letters)
+4
+It is possible to nest lists (create lists containing other lists), for example:
+>>> a = ['a', 'b', 'c']
+>>> n = [1, 2, 3]
+>>> x = [a, n]
+>>> x
+[['a', 'b', 'c'], [1, 2, 3]]
+>>> x[0]
+['a', 'b', 'c']
+>>> x[0][1]
+'b'
+3.2. First Steps Towards ProgrammingÂ¶
+Of course, we can use Python for more complicated tasks than adding two and two together. For instance, we can write an initial sub-sequence of the Fibonacci series as follows:
+>>> # Fibonacci series:
+>>> # the sum of two elements defines the next
+>>> a, b = 0, 1
+>>> while a < 10:
+... print(a)
+... a, b = b, a+b
+...
+0
+1
+1
+2
+3
+5
+8
+This example introduces several new features.
+The first line contains a multiple assignment: the variables
+a
+andb
+simultaneously get the new values 0 and 1. On the last line this is used again, demonstrating that the expressions on the right-hand side are all evaluated first before any of the assignments take place. The right-hand side expressions are evaluated from the left to the right.The
+while
+loop executes as long as the condition (here:a < 10
+) remains true. In Python, like in C, any non-zero integer value is true; zero is false. The condition may also be a string or list value, in fact any sequence; anything with a non-zero length is true, empty sequences are false. The test used in the example is a simple comparison. The standard comparison operators are written the same as in C:<
+(less than),>
+(greater than),==
+(equal to),<=
+(less than or equal to),>=
+(greater than or equal to) and!=
+(not equal to).The body of the loop is indented: indentation is Pythonâs way of grouping statements. At the interactive prompt, you have to type a tab or space(s) for each indented line. In practice you will prepare more complicated input for Python with a text editor; all decent text editors have an auto-indent facility. When a compound statement is entered interactively, it must be followed by a blank line to indicate completion (since the parser cannot guess when you have typed the last line). Note that each line within a basic block must be indented by the same amount.
+The
+print()
+function writes the value of the argument(s) it is given. It differs from just writing the expression you want to write (as we did earlier in the calculator examples) in the way it handles multiple arguments, floating-point quantities, and strings. Strings are printed without quotes, and a space is inserted between items, so you can format things nicely, like this:>>> i = 256*256 >>> print('The value of i is', i) The value of i is 65536
+The keyword argument end can be used to avoid the newline after the output, or end the output with a different string:
+>>> a, b = 0, 1 >>> while a < 1000: ... print(a, end=',') ... a, b = b, a+b ... 0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,
+Footnotes",3. An Informal Introduction to Python,Python Software Foundation,2001-2025
+2025-10-04T19:13:24.959027Z,https://blog.langchain.com/the-rise-of-context-engineering/,https://blog.langchain.com/the-rise-of-context-engineering,blog.langchain.com,"The rise of ""context engineering""",Tech,GenAI,"[""Agents""]","[""Context Engineering""]",[],[],null,[],"[""Context engineering involves building dynamic systems to provide the right information and tools in the right format for LLMs to accomplish tasks effectively."", ""It addresses challenges like missing or poorly formatted context, which can lead to LLM errors."", ""Unlike prompt engineering, which focuses on phrasing prompts, context engineering emphasizes providing complete and structured context to the AI."", ""LangChain's LangGraph framework enables context engineering by offering full control over agent steps and inputs."", ""LangSmith aids in context engineering by tracing agent calls, allowing developers to see inputs and outputs to the LLM for debugging and improvement.""]","Header image from Dex Horthy on Twitter.
+Context engineering is building dynamic systems to provide the right information and tools in the right format such that the LLM can plausibly accomplish the task.
+Most of the time when an agent is not performing reliably the underlying cause is that the appropriate context, instructions and tools have not been communicated to the model.
+LLM applications are evolving from single prompts to more complex, dynamic agentic systems. As such, context engineering is becoming the most important skill an AI engineer can develop.
+What is context engineering?
+Context engineering is building dynamic systems to provide the right information and tools in the right format such that the LLM can plausibly accomplish the task.
+This is the definition that I like, which builds upon recent takes on this from Tobi Lutke, Ankur Goyal, and Walden Yan. Let’s break it down.
+Context engineering is a system
+Complex agents likely get context from many sources. Context can come from the developer of the application, the user, previous interactions, tool calls, or other external data. Pulling these all together involves a complex system.
+This system is dynamic
+Many of these pieces of context can come in dynamically. As such, the logic for constructing the final prompt needs to be dynamic as well. It is not just a static prompt.
+You need the right information
+A common reason agentic systems don’t perform is they just don’t have the right context. LLMs cannot read minds - you need to give them the right information. Garbage in, garbage out.
+You need the right tools
+It may not always be the case that the LLM will be able to solve the task just based solely on the inputs. In these situations, if you want to empower the LLM to do so, you will want to make sure that it has the right tools. These could be tools to look up more information, take actions, or anything in between. Giving the LLM the right tools is just as important as giving it the right information.
+The format matters
+Just like communicating with humans, how you communicate with LLMs matters. A short but descriptive error message will go a lot further a large JSON blob. This also applies to tools. What the input parameters to your tools are matters a lot when making sure that LLMs can use them.
+Can it plausibly accomplish the task?
+This is a great question to be asking as you think about context engineering. It reinforces that LLMs are not mind readers - you need to set them up for success. It also helps separate the failure modes. Is it failing because you haven’t given it the right information or tools? Or does it have all the right information and it just messed up? These failure modes have very different ways to fix them.
+Why is context engineering important
+When agentic systems mess up, it’s largely because an LLM messes. Thinking from first principles, LLMs can mess up for two reasons:
+- The underlying model just messed up, it isn’t good enough
+- The underlying model was not passed the appropriate context to make a good output
+More often than not (especially as the models get better) model mistakes are caused more by the second reason. The context passed to the model may be bad for a few reasons:
+- There is just missing context that the model would need to make the right decision. Models are not mind readers. If you do not give them the right context, they won’t know it exists.
+- The context is formatted poorly. Just like humans, communication is important! How you format data when passing into a model absolutely affects how it responds
+How is context engineering different from prompt engineering?
+Why the shift from “prompts” to “context”? Early on, developers focused on phrasing prompts cleverly to coax better answers. But as applications grow more complex, it’s becoming clear that providing complete and structured context to the AI is far more important than any magic wording.
+I would also argue that prompt engineering is a subset of context engineering. Even if you have all the context, how you assemble it in the prompt still absolutely matters. The difference is that you are not architecting your prompt to work well with a single set of input data, but rather to take a set of dynamic data and format it properly.
+I would also highlight that a key part of context is often core instructions for how the LLM should behave. This is often a key part of prompt engineering. Would you say that providing clear and detailed instructions for how the agent should behave is context engineering or prompt engineering? I think it’s a bit of both.
+Examples of context engineering
+Some basic examples of good context engineering include:
+- Tool use: Making sure that if an agent needs access to external information, it has tools that can access it. When tools return information, they are formatted in a way that is maximally digestable for LLMs
+- Short term memory: If a conversation is going on for a while, creating a summary of the conversation and using that in the future.
+- Long term memory: If a user has expressed preferences in a previous conversation, being able to fetch that information.
+- Prompt Engineering: Instructions for how an agent should behave are clearly enumerated in the prompt.
+- Retrieval: Fetching information dynamically and inserting it into the prompt before calling the LLM.
+How LangGraph enables context engineering
+When we built LangGraph, we built it with the goal of making it the most controllable agent framework. This also allows it to perfectly enable context engineering.
+With LangGraph, you can control everything. You decide what steps are run. You decide exactly what goes into your LLM. You decide where you store the outputs. You control everything.
+This allows you do all the context engineering you desire. One of the downsides of agent abstractions (which most other agent frameworks emphasize) is that they restrict context engineering. There may be places where you cannot change exactly what goes into the LLM, or exactly what steps are run beforehand.
+Side note: a very good read is Dex Horthy's ""12 Factor Agents"". A lot of the points there relate to context engineering (""own your prompts"", ""own your context building"", etc). The header image for this blog is also taken from Dex. We really enjoy the way he communicates about what is important in the space.
+How LangSmith helps with context engineering
+LangSmith is our LLM application observability and evals solution. One of the key features in LangSmith is the ability to trace your agent calls. Although the term ""context engineering"" didn't exist when we built LangSmith, it aptly describes what this tracing helps with.
+LangSmith lets you see all the steps that happen in your agent. This lets you see what steps were run to gather the data that was sent into the LLM.
+LangSmith lets you see the exact inputs and outputs to the LLM. This lets you see exactly what went into the LLM - the data it had and how it was formatted. You can then debug whether that contains all the relevant information that is needed for the task. This includes what tools the LLM has access to - so you can debug whether it's been given the appropriate tools to help with the task at hand
+Communication is all you need
+A few months ago I wrote a blog called ""Communication is all you need"". The main point was that communicating to the LLM is hard, and not appreciated enough, and often the root cause of a lot of agent errors. Many of these points have to do with context engineering!
+Context engineering isn't a new idea - agent builders have been doing it for the past year or two. It's a new term that aptly describes an increasingly important skill. We'll be writing and sharing more on this topic. We think a lot of the tools we've built (LangGraph, LangSmith) are perfectly built to enable context engineering, and so we're excited to see the emphasis on this take off.","The rise of ""context engineering""",LangChain,2025-06-23
+2025-10-04T19:29:46.300719Z,https://langchain-ai.github.io/langgraph/concepts/memory/,https://langchain-ai.github.io/langgraph/concepts/memory,langchain-ai.github.io,Memory Concepts in LangGraph,Tech,GenAI,"[""Memory""]","[""Long-term Memory"", ""Short-term Memory"", ""Semantic Memory"", ""Episodic Memory"", ""Procedural Memory""]","[""Namespaces"", ""Checkpointers"", ""Stores""]","[""Thread-scoped"", ""Cross-session""]",null,[],"[""LangGraph enables AI agents to retain information across interactions through memory systems."", ""Short-term memory manages ongoing conversations within a single thread, while long-term memory stores data across sessions."", ""Memory types include semantic (facts), episodic (experiences), and procedural (instructions)."", ""Memory can be updated actively during interactions or in the background for deeper analysis."", ""LangGraph provides tools like namespaces, checkpointers, and stores to manage memory effectively.""]","Memory¶
+Memory is a system that remembers information about previous interactions. For AI agents, memory is crucial because it lets them remember previous interactions, learn from feedback, and adapt to user preferences. As agents tackle more complex tasks with numerous user interactions, this capability becomes essential for both efficiency and user satisfaction.
+This conceptual guide covers two types of memory, based on their recall scope:
+-
+Short-term memory, or thread-scoped memory, tracks the ongoing conversation by maintaining message history within a session. LangGraph manages short-term memory as a part of your agent's state. State is persisted to a database using a checkpointer so the thread can be resumed at any time. Short-term memory updates when the graph is invoked or a step is completed, and the State is read at the start of each step.
+-
+Long-term memory stores user-specific or application-level data across sessions and is shared across conversational threads. It can be recalled at any time and in any thread. Memories are scoped to any custom namespace, not just within a single thread ID. LangGraph provides stores (reference doc) to let you save and recall long-term memories.
+Short-term memory¶
+Short-term memory lets your application remember previous interactions within a single thread or conversation. A thread organizes multiple interactions in a session, similar to the way email groups messages in a single conversation.
+LangGraph manages short-term memory as part of the agent's state, persisted via thread-scoped checkpoints. This state can normally include the conversation history along with other stateful data, such as uploaded files, retrieved documents, or generated artifacts. By storing these in the graph's state, the bot can access the full context for a given conversation while maintaining separation between different threads.
+Manage short-term memory¶
+Conversation history is the most common form of short-term memory, and long conversations pose a challenge to today's LLMs. A full history may not fit inside an LLM's context window, resulting in an irrecoverable error. Even if your LLM supports the full context length, most LLMs still perform poorly over long contexts. They get ""distracted"" by stale or off-topic content, all while suffering from slower response times and higher costs.
+Chat models accept context using messages, which include developer provided instructions (a system message) and user inputs (human messages). In chat applications, messages alternate between human inputs and model responses, resulting in a list of messages that grows longer over time. Because context windows are limited and token-rich message lists can be costly, many applications can benefit from using techniques to manually remove or forget stale information.
+For more information on common techniques for managing messages, see the Add and manage memory guide.
+Long-term memory¶
+Long-term memory in LangGraph allows systems to retain information across different conversations or sessions. Unlike short-term memory, which is thread-scoped, long-term memory is saved within custom ""namespaces.""
+Long-term memory is a complex challenge without a one-size-fits-all solution. However, the following questions provide a framework to help you navigate the different techniques:
+-
+What is the type of memory? Humans use memories to remember facts (semantic memory), experiences (episodic memory), and rules (procedural memory). AI agents can use memory in the same ways. For example, AI agents can use memory to remember specific facts about a user to accomplish a task.
+-
+When do you want to update memories? Memory can be updated as part of an agent's application logic (e.g., ""on the hot path""). In this case, the agent typically decides to remember facts before responding to a user. Alternatively, memory can be updated as a background task (logic that runs in the background / asynchronously and generates memories). We explain the tradeoffs between these approaches in the section below.
+Memory types¶
+Different applications require various types of memory. Although the analogy isn't perfect, examining human memory types can be insightful. Some research (e.g., the CoALA paper) have even mapped these human memory types to those used in AI agents.
+Semantic memory¶
+Semantic memory, both in humans and AI agents, involves the retention of specific facts and concepts. In humans, it can include information learned in school and the understanding of concepts and their relationships. For AI agents, semantic memory is often used to personalize applications by remembering facts or concepts from past interactions.
+Note
+Semantic memory is different from ""semantic search,"" which is a technique for finding similar content using ""meaning"" (usually as embeddings). Semantic memory is a term from psychology, referring to storing facts and knowledge, while semantic search is a method for retrieving information based on meaning rather than exact matches.
+Profile¶
+Semantic memories can be managed in different ways. For example, memories can be a single, continuously updated ""profile"" of well-scoped and specific information about a user, organization, or other entity (including the agent itself). A profile is generally just a JSON document with various key-value pairs you've selected to represent your domain.
+When remembering a profile, you will want to make sure that you are updating the profile each time. As a result, you will want to pass in the previous profile and ask the model to generate a new profile (or some JSON patch to apply to the old profile). This can be become error-prone as the profile gets larger, and may benefit from splitting a profile into multiple documents or strict decoding when generating documents to ensure the memory schemas remains valid.
+Collection¶
+Alternatively, memories can be a collection of documents that are continuously updated and extended over time. Each individual memory can be more narrowly scoped and easier to generate, which means that you're less likely to lose information over time. It's easier for an LLM to generate new objects for new information than reconcile new information with an existing profile. As a result, a document collection tends to lead to higher recall downstream.
+However, this shifts some complexity memory updating. The model must now delete or update existing items in the list, which can be tricky. In addition, some models may default to over-inserting and others may default to over-updating. See the Trustcall package for one way to manage this and consider evaluation (e.g., with a tool like LangSmith) to help you tune the behavior.
+Working with document collections also shifts complexity to memory search over the list. The Store
+currently supports both semantic search and filtering by content.
+Finally, using a collection of memories can make it challenging to provide comprehensive context to the model. While individual memories may follow a specific schema, this structure might not capture the full context or relationships between memories. As a result, when using these memories to generate responses, the model may lack important contextual information that would be more readily available in a unified profile approach.
+Regardless of memory management approach, the central point is that the agent will use the semantic memories to ground its responses, which often leads to more personalized and relevant interactions.
+Episodic memory¶
+Episodic memory, in both humans and AI agents, involves recalling past events or actions. The CoALA paper frames this well: facts can be written to semantic memory, whereas experiences can be written to episodic memory. For AI agents, episodic memory is often used to help an agent remember how to accomplish a task.
+In practice, episodic memories are often implemented through few-shot example prompting, where agents learn from past sequences to perform tasks correctly. Sometimes it's easier to ""show"" than ""tell"" and LLMs learn well from examples. Few-shot learning lets you ""program"" your LLM by updating the prompt with input-output examples to illustrate the intended behavior. While various best-practices can be used to generate few-shot examples, often the challenge lies in selecting the most relevant examples based on user input.
+Note that the memory store is just one way to store data as few-shot examples. If you want to have more developer involvement, or tie few-shots more closely to your evaluation harness, you can also use a LangSmith Dataset to store your data. Then dynamic few-shot example selectors can be used out-of-the box to achieve this same goal. LangSmith will index the dataset for you and enable retrieval of few shot examples that are most relevant to the user input based upon keyword similarity (using a BM25-like algorithm for keyword based similarity).
+See this how-to video for example usage of dynamic few-shot example selection in LangSmith. Also, see this blog post showcasing few-shot prompting to improve tool calling performance and this blog post using few-shot example to align an LLMs to human preferences.
+Procedural memory¶
+Procedural memory, in both humans and AI agents, involves remembering the rules used to perform tasks. In humans, procedural memory is like the internalized knowledge of how to perform tasks, such as riding a bike via basic motor skills and balance. Episodic memory, on the other hand, involves recalling specific experiences, such as the first time you successfully rode a bike without training wheels or a memorable bike ride through a scenic route. For AI agents, procedural memory is a combination of model weights, agent code, and agent's prompt that collectively determine the agent's functionality.
+In practice, it is fairly uncommon for agents to modify their model weights or rewrite their code. However, it is more common for agents to modify their own prompts.
+One effective approach to refining an agent's instructions is through ""Reflection"" or meta-prompting. This involves prompting the agent with its current instructions (e.g., the system prompt) along with recent conversations or explicit user feedback. The agent then refines its own instructions based on this input. This method is particularly useful for tasks where instructions are challenging to specify upfront, as it allows the agent to learn and adapt from its interactions.
+For example, we built a Tweet generator using external feedback and prompt re-writing to produce high-quality paper summaries for Twitter. In this case, the specific summarization prompt was difficult to specify a priori, but it was fairly easy for a user to critique the generated Tweets and provide feedback on how to improve the summarization process.
+The below pseudo-code shows how you might implement this with the LangGraph memory store, using the store to save a prompt, the update_instructions
+node to get the current prompt (as well as feedback from the conversation with the user captured in state[""messages""]
+), update the prompt, and save the new prompt back to the store. Then, the call_model
+get the updated prompt from the store and uses it to generate a response.
+# Node that *uses* the instructions
+def call_model(state: State, store: BaseStore):
+namespace = (""agent_instructions"", )
+instructions = store.get(namespace, key=""agent_a"")[0]
+# Application logic
+prompt = prompt_template.format(instructions=instructions.value[""instructions""])
+...
+# Node that updates instructions
+def update_instructions(state: State, store: BaseStore):
+namespace = (""instructions"",)
+current_instructions = store.search(namespace)[0]
+# Memory logic
+prompt = prompt_template.format(instructions=current_instructions.value[""instructions""], conversation=state[""messages""])
+output = llm.invoke(prompt)
+new_instructions = output['new_instructions']
+store.put((""agent_instructions"",), ""agent_a"", {""instructions"": new_instructions})
+...
+Writing memories¶
+There are two primary methods for agents to write memories: ""in the hot path"" and ""in the background"".
+In the hot path¶
+Creating memories during runtime offers both advantages and challenges. On the positive side, this approach allows for real-time updates, making new memories immediately available for use in subsequent interactions. It also enables transparency, as users can be notified when memories are created and stored.
+However, this method also presents challenges. It may increase complexity if the agent requires a new tool to decide what to commit to memory. In addition, the process of reasoning about what to save to memory can impact agent latency. Finally, the agent must multitask between memory creation and its other responsibilities, potentially affecting the quantity and quality of memories created.
+As an example, ChatGPT uses a save_memories tool to upsert memories as content strings, deciding whether and how to use this tool with each user message. See our memory-agent template as an reference implementation.
+In the background¶
+Creating memories as a separate background task offers several advantages. It eliminates latency in the primary application, separates application logic from memory management, and allows for more focused task completion by the agent. This approach also provides flexibility in timing memory creation to avoid redundant work.
+However, this method has its own challenges. Determining the frequency of memory writing becomes crucial, as infrequent updates may leave other threads without new context. Deciding when to trigger memory formation is also important. Common strategies include scheduling after a set time period (with rescheduling if new events occur), using a cron schedule, or allowing manual triggers by users or the application logic.
+See our memory-service template as an reference implementation.
+Memory storage¶
+LangGraph stores long-term memories as JSON documents in a store. Each memory is organized under a custom namespace
+(similar to a folder) and a distinct key
+(like a file name). Namespaces often include user or org IDs or other labels that makes it easier to organize information. This structure enables hierarchical organization of memories. Cross-namespace searching is then supported through content filters.
+from langgraph.store.memory import InMemoryStore
+def embed(texts: list[str]) -> list[list[float]]:
+# Replace with an actual embedding function or LangChain embeddings object
+return [[1.0, 2.0] * len(texts)]
+# InMemoryStore saves data to an in-memory dictionary. Use a DB-backed store in production use.
+store = InMemoryStore(index={""embed"": embed, ""dims"": 2})
+user_id = ""my-user""
+application_context = ""chitchat""
+namespace = (user_id, application_context)
+store.put(
+namespace,
+""a-memory"",
+{
+""rules"": [
+""User likes short, direct language"",
+""User only speaks English & python"",
+],
+""my-key"": ""my-value"",
+},
+)
+# get the ""memory"" by ID
+item = store.get(namespace, ""a-memory"")
+# search for ""memories"" within this namespace, filtering on content equivalence, sorted by vector similarity
+items = store.search(
+namespace, filter={""my-key"": ""my-value""}, query=""language preferences""
+)
+For more information about the memory store, see the Persistence guide.",Overview,LangChain AI,2025-10-04
+2025-10-04T19:30:11.272249Z,https://medium.com/data-science/from-data-scientist-to-ml-ai-product-manager-39359bd44512,https://medium.com/data-science/from-data-scientist-to-ml-ai-product-manager-39359bd44512,medium.com,From Data Scientist to ML / AI Product Manager,Business,Product Management,"[""Machine Learning"", ""Artificial Intelligence""]","[""Product Strategy"", ""Product Delivery"", ""Influencing"", ""Tech Fluency""]",[],[],null,[],"[""Transitioning from Data Scientist to ML/AI Product Manager requires skills in product strategy, delivery, influencing, and tech fluency."", ""Product strategy involves understanding user needs and prioritizing problems based on evidence."", ""Product delivery focuses on efficiently managing initiatives to deliver value to users."", ""Influencing entails gaining trust, aligning with stakeholders, and guiding the team."", ""Tech fluency includes knowledge in Machine Learning, Responsible AI, Data, MLOps, and Back End Engineering.""]","From Data Scientist to ML / AI Product Manager
+As Artificial Intelligence is becoming more and more popular, more companies and teams want to start or increase leveraging it. Because of that, many job positions are appearing or gaining importance in the market. A good example is the figure of Machine Learning / Artificial Intelligence Product Manager.
+In my case, I transitioned from a Data Scientist role into a Machine Learning Product Manager role over two years ago. During this time, I have been able to see a constant increase in job offers related to this position, blog posts and talks discussing it, and many people considering a transition or gaining interest in it. I have also been able to confirm my passion for this role and how much I enjoy my day-to-day work, responsibilities, and value I can bring to the team and company.
+The role of AI / ML PM is still quite vague and evolves almost as fast as state-of-the-art AI. Although many product teams are becoming relatively autonomous using AI thanks to plug-in solutions and GenAI APIs, I will focus on the role of AI / ML PMs working in core ML teams. These teams are usually formed by Data Scientists, Machine Learning Engineers, and Research Scientists, and together with other roles are involved in solutions where GenAI through an API might not be enough (traditional ML use cases, need of LLMs fine tuning, specific in-house use cases, ML as a service products…). For an illustrative example of such a team, you can check one of my previous posts “Working in a multidisciplinary Machine Learning team to bring value to our users”.
+In this blog post, we will cover the main skills and knowledge that are needed for this position, how to get there, and learnings and tips based on what worked for me in this transition.
+The most important skills for an ML PM
+There are many necessary skills and knowledge needed to succeed as an ML / AI PM, but the most important ones can be divided into 4 groups: product strategy, product delivery, influencing, and tech fluency. Let’s deep dive into each group to further understand what each skill set means and how to get them.
+Product Strategy
+Product strategy is about understanding users and their pains, identifying the right problems and opportunities, and prioritizing them based on quantitative and qualitative evidence.
+As a former Data Scientist, for me this meant falling in love with the problem and user pain to solve and not so much with the specific solution, and thinking about where we can bring more value to our users instead of where to apply this cool new AI model. I have found it key to have a clear understanding of OKRs (Objective Key Results) and to care about the final impact of the initiatives (delivering outcomes instead of outputs).
+Product Managers need to prioritize tasks and initiatives, so I’ve learned the importance of balancing effort vs. reward for each initiative and ensuring this influences decisions on what and how to build solutions (e.g. considering the project management triangle - scope, quality, time). Initiatives succeed if they are able to tackle the four big product risks: value, usability, feasibility, and business viability.
+The most important resources I used to learn about Product Strategy are:
+- Good vs bad product manager, by Ben Horowitz.
+- The reference book that everyone recommended to me and that I now recommend to any aspiring PM is “Inspired: How to create tech products customers love”, by Marty Cagan.
+- Another book and author that helped me get closer to user space and user problems is “Continuous Discovery Habits: Discover Products that Create Customer Value and Business Value”, by Teresa Torres.
+Product Delivery
+Product Delivery is about being able to manage a team’s initiative to deliver value to the users efficiently.
+I started by understanding the product feature phases (discovery, plan, design, implementation, test, launch, and iterations) and what each of them meant for me as a Data Scientist. Then followed with how value can be brought “efficiently”: starting small (through Minimum Viable Products and prototypes), delivering value fast by small steps, and iterations. To ensure initiatives move in the right direction, I have found it also key to continuously measure impact (e.g. through dashboards) and learn from quantitative and qualitative data, adapting next steps with insights and new learnings.
+To learn about Product Delivery, I would recommend:
+- Some of the previously shared resources (e.g. Inspired book) also cover the importance of MVP, prototyping and agile applied to Product Management. I also wrote a blog post on how to think about MVPs and prototypes in the context of ML initiatives: When ML meets Product — Less is often more.
+- Learning about agile and project management (for example through this crash course), and about Jira or the project management tool used by your current company (with videos such as this crash course).
+Influencing
+Influencing is the ability to gain trust, align with stakeholders and guide the team.
+Compared to the Data Scientist’s role, the day-to-day work as a PM changes completely: it is no longer about coding, but about communicating, aligning, and (a lot!) of meetings. Great communication and storytelling become key for this role, especially the ability to explain complex ML topics to non technical people. It becomes also important to keep stakeholders informed, give visibility to the team’s hard work, and ensure alignment and buying on the future direction of the team (proving how it will help tackle the biggest challenges and opportunities, gaining trust). Finally, it is also important to learn how to challenge, say no, act as an umbrella for the team, and sometimes deliver bad results or bad news.
+The resources I would recommend for this topic:
+- The complete stakeholder mapping guide, Miro
+- A must read book for any Data Scientist and also for any ML Product Manager is “Storytelling with data — A Data Visualization Guide for Business Professionals”, by Cole Nussbaumer Knaflic.
+- To learn further about how as a Product Manager you can influence and empower the team, “EMPOWERED: Ordinary People, Extraordinary Products”, by Marty Cagan and Chris Jones.
+Tech fluency
+Tech fluency for an ML / AI PM, means knowledge and sensibility in Machine Learning, Responsible AI, Data in general, MLOPs, and Back End Engineering.
+Your Data Science / Machine Learning / Artificial Intelligence background is probably your strongest asset, make sure you leverage it! This knowledge will allow you to talk in the same language as Data Scientists, understand deeply and challenge the projects, have sensibility on what is possible or easy and what isn’t, potential risks, dependencies, edge cases, and limitations.
+As you are going to lead products with an impact on users, including responsible AI awareness becomes paramount. Risks related to not taking this into account include ethical dilemmas, company reputation, and legal issues (e.g. specific EU laws like GDPR or AI Act). In my case, I started with the course Practical Data Ethics, from Fast.ai.
+General data fluency is also necessary (probably you have it covered too): analytical thinking, being curious about data, understanding where data is stored, how to access it, importance of historical data… On top of that it is also important to kow how to measure impact, the relationship with business metrics and OKRs, and experimentation (a/b testing).
+As your ML models will probably need to be deployed in order to reach a final impact on users, you might work with Machine Learning Engineers within the team (or skilled DS with model deployment knowledge). You’ll need to gain sensibility about MLOPs: what it means to put a model in production, monitor it, and maintain it. In deeplearning.ai, you can find a great course on MLOPs (Machine Learning Engineering for Production Specialization).
+Finally, it can happen that your team also has Back End Engineers (usually dealing with the integration of the deployed model with the rest of the platform). In my case, this was the technical field that was further away from my expertise, so I had to invest some time learning and gaining sensibility about BE. In many companies, the technical interview for PM includes some BE related questions. Make sure to get an overview of several engineering topics such as: CICD, staging vs production environments, Monolith vs MicroServices architectures (and PROs and CONTs of each setup), Pull Requests, APIs, event driven architectures….
+Wrapping up and final tips
+We have covered the 4 most important knowledge areas for an ML / AI PM (product strategy, product delivery, influencing and tech fluency), why they are important, and some ideas on resources that can help you achieve them.
+Just like in any career progress, I found it key to define a plan, and share my short and mid term desires and expectations with managers and colleagues. Through this, I was able to transition into a PM role in the same company where I was working as a Data Scientist. This made the transition much easier: I already knew the business, product, tech, ways of working, colleagues… I also looked for mentors and colleagues within the company to whom I could ask questions, learn specific topics from and even practice for the PM interviews.
+To prepare for the interviews, I focused on changing my mindset: developing vs thinking whether to build something or not, whether to launch something or not. I found out BUS (Business, User, Solution) is a great way to structure responses during interviews and enforce this new mindset there.
+What I shared in this blog post can look like a lot, but it really is much easier than learning python or understanding how back-propagation works. If you are still unsure whether this role is for you or not, know that you can always give it a try, experiment, and decide to go back to your previous role. Or maybe, who knows, you end up loving being an ML / AI PM just like I do!",From Data Scientist to ML / AI Product Manager,Anna Via,2024-04-03
+2025-10-04T19:48:18.673617Z,https://docs.replit.com/tutorials/vibe-coding-101,https://docs.replit.com/tutorials/vibe-coding-101,docs.replit.com,Vibe Coding 101: From Idea to Published App,Tech,GenAI,"[""Replit Agent"", ""Replit Assistant""]","[""Prompt Engineering"", ""Iterative Development"", ""Debugging Techniques""]","[""Project Scaffolding"", ""Environment Setup"", ""Code Generation""]","[""Visual Previews"", ""Checkpoints"", ""Publishing Workflows""]",null,"[[""Tech"", ""GenAI"", ""Replit Agent"", ""Prompt Engineering"", ""Project Scaffolding""], [""Tech"", ""GenAI"", ""Replit Assistant"", ""Iterative Development"", ""Debugging Techniques""], [""Tech"", ""GenAI"", ""Replit Agent"", ""Environment Setup"", ""Publishing Workflows""]]","[""Learn to build an interactive map of San Francisco parks using Replit's AI tools."", ""Understand the vibe coding philosophy: guiding AI with your vision and domain knowledge."", ""Master effective prompting, iterative development, and debugging techniques."", ""Utilize Replit Agent for project scaffolding and Replit Assistant for refinements."", ""Publish your application seamlessly with Replit's integrated tools.""]","Matt Palmer
+Head of Developer RelationsThe vibe coding philosophy
+Vibe coding is less about writing every line of code and more about guiding AI tools with your vision and domain knowledge. It’s an iterative process of prompting, reviewing, and refining. Key takeaways from the video:- Conceptualize First: Start with a clear idea of what you want to build. Visualizing the end product helps, especially when prompting AI.
+- Domain Knowledge is Power: Knowing relevant frameworks (like Leaflet.js for maps) or data sources (like OpenStreetMap) significantly improves AI-generated results.
+- Iterative Development: Expect to debug and refine. AI tools are powerful, but they’re collaborators, not magic wands.
+Project: San Francisco parks map
+The goal is to build an interactive map displaying parks and public spaces in San Francisco. Problem Statement: The goal is an interactive map to discover parks and public spaces in San Francisco. Solution: An interactive tool using Leaflet.js and OpenStreetMap data. Key lessons:- Prompting AI effectively.
+- Processing external data.
+- Debugging and handling errors.
+Building with Replit Agent
+Replit Agent can scaffold entire projects, set up environments, and generate initial code.Crafting the Initial Prompt
+- The goal: “Help me create a minimalist maps app to visualize San Francisco’s parks.”
+- Key technologies: “You should use leaflet for map visualization and fetch data from OpenStreetMap.”
+- Specific data types from OpenStreetMap (after research): Natural formations (woods, beaches, islets, cave entrances) and leisure locations (parks, gardens).
+Attaching a Mockup
+Agent's Process
+-
+Plan Creation: Agent outlines the steps it will take. Review and approve this plan.
+-
+Visual Preview: Agent streams a visual preview of the app’s UI.
+- Environment Setup: Agent configures the development environment, installing necessary languages and packages—no manual setup required.
+- Building the App: Agent writes the code for the front end and back end.
+- Checkpoints: Agent creates checkpoints (Git commits) so you can roll back if something goes wrong.
+Debugging with Agent
+- Observe: The map loaded, but no data points appeared.
+- Investigate: The console showed an error: “Failed to fetch map features error cannot read properties of undefined reading natural.”
+-
+Inform Agent: Paste the error message directly into the chat with Agent. Agent will attempt to debug and fix the issue.
+Refining with Replit Assistant
+Once Agent builds the MVP, switch to Replit Assistant for smaller, more targeted edits and refinements. Assistant is generally faster for these tasks.Improving Map Styling
+Improving Map Styling
+Adding Dark Mode
+Adding Dark Mode
+- Read files for context.
+- Make changes to necessary files (e.g., theme providers, styles).
+- Restart the app to apply changes.
+Iterative Debugging with Assistant
+Iterative Debugging with Assistant
+- Initial implementation had a toggle that worked for the map but then disappeared. Feedback: “The toggle theme button works for the map, but it disappears when clicked. The theme toggle should be in the side nav and the theme should be applied to the side nav.”
+- Issues with multiple toggle buttons and incorrect component references (
+side nav
+vs.sidebar
+). Feedback & Guidance: “Now there are two toggle themes. One controls the map, the other controls the side nav. Make them into one in the side. Now and update the CSS.” When Assistant made an incorrect assumption (e.g.SideNav
+component), explicitly pointing it to the correct file (@Sidebar
+) helps. - Final fix to ensure the dark mode toggle in the sidebar correctly toggled the map theme to Carto Dark. Feedback: “Now the dark mode toggle in @Sidebar does not toggle the map to carto dark.”
+Publishing your application
+Replit makes publishing straightforward.- Select the Publish button.
+- Agent suggests a publishing configuration (e.g., app name, build and run commands). Review and confirm.
+- If your app uses API keys or other sensitive information, store them in Secrets. Agent will use these securely.
+-
+Select Publish. Replit bundles your app and makes it live on the web.
+park-mapper.replit.app
+). Changes made in your development environment won’t affect the published version until you click Republish.
+Recap and next steps
+This tutorial went from an idea to a published interactive map application without writing a single line of code manually. Replit Agent was used for the heavy lifting and Replit Assistant for refinements, leveraging domain knowledge and an iterative debugging process. Potential Next Steps for the Park Mapper App:- Add a database to store park data persistently (avoiding re-fetch on every load).
+- Allow users to save or favorite parks.
+- Implement advanced filtering.
+- Improve styling and add custom icons for map markers.
+- Enhance mobile responsiveness (e.g., ensuring filters are accessible on mobile).",Replit Docs,Matt Palmer,2025-03-28
+2025-10-04T19:49:12.652431Z,https://medium.com/@yaelg/product-manager-pm-step-by-step-tutorial-building-machine-learning-products-ffa7817aa8ab,https://medium.com/@yaelg/product-manager-pm-step-by-step-tutorial-building-machine-learning-products-ffa7817aa8ab,medium.com,The Step-By-Step PM Guide to Building Machine Learning Based Products,Tech,Product Management,"[""Machine Learning""]","[""Product Development"", ""Model Deployment""]","[""Data Collection"", ""Model Training""]","[""Feature Engineering"", ""Model Evaluation""]",null,"[[""Tech"", ""Product Management"", ""Machine Learning"", ""Product Development"", ""Data Collection""], [""Tech"", ""Product Management"", ""Machine Learning"", ""Model Deployment"", ""Model Training""], [""Tech"", ""Product Management"", ""Machine Learning"", ""Model Deployment"", ""Feature Engineering""], [""Tech"", ""Product Management"", ""Machine Learning"", ""Model Deployment"", ""Model Evaluation""]]","[""Product managers must understand machine learning to stay competitive."", ""Leverage existing tools like Amazon AI and TensorFlow."", ""Focus on asking the right questions and fostering collaboration."", ""Understand the process of developing ML models."", ""Structure teams to avoid treating data science as a 'black box'.""]","The Step-By-Step PM Guide to Building Machine Learning Based Products
+What Product Managers Need to Know About Machine Learning Is Science, but Not Rocket Science
+It’s time for every product manager, entrepreneur or business leader to get up to speed on machine learning. Even if you’re not building the next chatbot or self driving car, you’ll probably need to use machine learning in your product sooner rather than later to stay competitive. The good news is you don’t need to invent the technology (though kudos if you do), just leverage what already exists. Tech companies have open sourced tools and platforms (Amazon AI, TensorFlow, originally developed by Google, and many others) that make machine learning accessible to virtually any company today.
+When I started in machine learning I knew next to nothing about it, yet in a relatively short time I was leading the development of products with machine learning at their very core (such as this). My goal is to give you a good enough understanding of both the technology and the process of developing ML products to get you started quickly. This is a step-by-step guide to becoming an effective PM in an organization that leverages machine learning to achieve business goals.
+While ML is an incredibly technical space, many of the fundamentals you need to understand to maximize business impact have little to do with developing complex algorithms. They’re about ensuring you ask the right questions, understand the process of developing ML models, and structure an organization that fosters constant collaboration between disciplines rather than treating data science (the organization creating those models) as a “black box” that will magically generate insights.
+This tutorial has 6 parts:
+My goal is to illustrate core concepts that are broadly applicable and form a basis from which you can grow your knowledge in the areas that are most relevant to your business; therefore there may be cases where I’m oversimplifying or not addressing all possible applications or aspects of the science for the sake of clarity.
+Let’s get started with part 1: What Machine Learning Can Do for Your Business and How to Figure It Out.
+Many thanks to Gil Arditi, Yael Avidan, Eran Davidov and Gal Gavish for their invaluable feedback, and special thanks to Arvind Ganesan who taught me so much of what I know about machine learning. Any mistakes are entirely my own.
+I write about life purpose, mindset and creativity for professionals who want more from life than they’re experiencing at https://producthumans.com/",The Step-By-Step PM Guide to Building Machine Learning Based Products,Yael Gavish,2017-07-25
+2025-10-04T20:08:56.551765Z,https://www.productteacher.com/articles/breaking-into-ai-product-management,https://www.productteacher.com/articles/breaking-into-ai-product-management,www.productteacher.com,Breaking into AI Product Management,Tech,Product Management,"[""AI Product Management""]","[""AI Technologies"", ""Data Management"", ""Ethical Considerations"", ""Learning Pathways"", ""Role Requirements"", ""Technical Collaboration""]","[""Bias"", ""Collaboration with Data Science"", ""Computer Vision"", ""Data Preparation"", ""Data-Centric Products"", ""Experience"", ""Fairness"", ""Foundational Knowledge"", ""Hands-on Projects"", ""Large Language Models"", ""Networking"", ""Recommendation Algorithms"", ""Skill-building"", ""Understanding Technical Language""]","[""AI Fundamentals"", ""Product Metrics""]",null,"[[""Tech"", ""Product Management"", ""AI Product Management"", ""Role Requirements"", ""Skill-building"", ""AI Fundamentals""], [""Tech"", ""Product Management"", ""AI Product Management"", ""Role Requirements"", ""Skill-building"", ""Product Metrics""], [""Tech"", ""Product Management"", ""AI Product Management"", ""Role Requirements"", ""Networking""], [""Tech"", ""Product Management"", ""AI Product Management"", ""Role Requirements"", ""Experience""], [""Tech"", ""Product Management"", ""AI Product Management"", ""Technical Collaboration"", ""Collaboration with Data Science""], [""Tech"", ""Product Management"", ""AI Product Management"", ""Technical Collaboration"", ""Understanding Technical Language""], [""Tech"", ""Product Management"", ""AI Product Management"", ""Data Management"", ""Data-Centric Products""], [""Tech"", ""Product Management"", ""AI Product Management"", ""Data Management"", ""Data Preparation""], [""Tech"", ""Product Management"", ""AI Product Management"", ""Ethical Considerations"", ""Bias""], [""Tech"", ""Product Management"", ""AI Product Management"", ""Ethical Considerations"", ""Fairness""], [""Tech"", ""Product Management"", ""AI Product Management"", ""AI Technologies"", ""Large Language Models""], [""Tech"", ""Product Management"", ""AI Product Management"", ""AI Technologies"", ""Computer Vision""], [""Tech"", ""Product Management"", ""AI Product Management"", ""AI Technologies"", ""Recommendation Algorithms""], [""Tech"", ""Product Management"", ""AI Product Management"", ""Learning Pathways"", ""Foundational Knowledge""], [""Tech"", ""Product Management"", ""AI Product Management"", ""Learning Pathways"", ""Hands-on Projects""]]","[""AI Product Management roles are in high demand but require specialized skills."", ""Transitioning involves building skills, networking, and gaining relevant experience."", ""Technical collaboration and understanding AI technologies are crucial."", ""Ethical considerations are paramount in AI product development."", ""Practical experience, such as side projects, enhances readiness for AI PM roles.""]","Breaking into AI Product Management
+Artificial Intelligence (AI) is rapidly transforming industries, and product management roles in this field are both in high demand and uniquely challenging.
+I’ve noticed that many early-career PMs are excited to pivot into AI, and I applaud this enthusiasm! But, I want to be clear: if you’re a product manager with strong skills but no direct experience in AI, the path to transitioning into AI product management requires targeted skill-building, strategic networking, and gaining experience in areas of AI that align with your career goals.
+In other words, it’s going to take hard, focused work to make it happen. But, it’ll be worth it.
+To help make this hard work a little bit easier, I’ve written this guide to help you navigate that transition, from understanding AI fundamentals to positioning yourself as a compelling AI PM candidate.
+What Makes AI Product Management Different?
+As a PM, you're likely already familiar with managing product development cycles, aligning stakeholders, and driving outcomes based on customer needs. All of these are still relevant for AI products!
+However, AI product management is different in a few critical ways, and understanding these differences is essential for your success.
+AI Products Are Data-Centric
+Traditional products may rely on feature-based roadmaps and direct feedback loops from users. In contrast, AI products are heavily dependent on data.
+Data isn’t an optional nice-to-have resource: it’s literally the foundation of the product.
+As an AI PM, you’ll need to become intimately familiar with the data pipelines that fuel your product’s AI models. Understanding the lifecycle of data (how it’s collected, labeled, and processed) is crucial. This involves working with data engineers and scientists to ensure the data is clean, relevant, and representative.
+Inadequate or biased data can break the performance of AI models, leading to poor user experiences.
+Many new AI PMs don’t realize how much time will be spent on data preparation, management, and validation. Before focusing on features, understand the data! It’s essential for every aspect of AI development, from model accuracy to user experience.
+I can tell you firsthand - a lot of AI PM work is “dirty work” where you’re going to validate the data yourself, and where you’ll manually correct bad labels or ask your data labelers to redo an entire set of labels due to some misunderstanding.
+Transparently, you’ll make a lot more progress by being the first person to label the data, rather than being the final person to sign off on the data. That way, you can train your data labeling team to label exactly the way that you do!
+AI Models Require Uncertain R&D Cycles
+Unlike traditional software, AI models are not built and launched in a one-time sprint. Instead, they require continuous retraining and updating as new data flows in.
+As an AI PM, you need to understand that AI products evolve over time and improve through repeated iteration. AI models depend on high-quality data input and constant feedback loops to enhance their predictions or classifications.
+How do you manage iterations when outcomes are unpredictable? The answer lies in setting realistic expectations.
+AI models will fail or make mistakes, so what matters is how you handle that failure. You’ll need to define success criteria that account for experimentation, not just perfect accuracy.
+Work closely with your data science team to set up a framework for continuous model evaluation. You’ll need to align product goals with the technical realities of how models improve over time - especially when it comes to metrics like precision, recall, and accuracy.
+Collaboration with Technical Teams is Mission-Critical
+One of the most significant shifts you’ll experience as an AI PM is the depth of technical collaboration required.
+While PMs always work cross-functionally, AI PMs need to develop a close relationship with data scientists and ML engineers. You'll need to understand their language to facilitate productive discussions about model architectures, data requirements, and performance metrics.
+Get comfortable with being surrounded by PhD’s! You’re going to be the least academically-credentialed person in the room, and that’s by design. Your job is to represent the business - let your scientists represent the science.
+But, as a product manager, you must guide your team of talented PhD’s to make the right business decisions, and that sometimes means telling them to stop experiments early or telling them that certain research paths are no longer viable to explore.
+Intimidating? Yes. But, it’s part of the job!
+How technical do you need to be? Well, you don’t need to code, but you must grasp enough technical knowledge to ask the right questions and make informed decisions. You’ll need to be comfortable discussing algorithms, model performance, and trade-offs between explainability and complexity.
+Build trust with your technical team by showing a willingness to learn. Set up regular syncs where you can dive into technical discussions and show how their work ties directly to user outcomes. By understanding their challenges, you’ll be able to align on shared goals more effectively.
+Ethical Considerations Matter
+AI products can unintentionally reinforce biases or make decisions that have ethical implications.
+As an AI PM, you have a responsibility to ensure fairness, accountability, and transparency in the models your product is built on. Bias in training data can lead to skewed predictions that negatively impact certain user groups, which can be harmful to both individuals and your brand.
+How do you ensure your models are ethical? Start by questioning the data you’re using. Where is it coming from? Does it represent the diversity of your user base? Then, work with your data science team to implement fairness checks and bias audits.
+Don’t wait until the end of the development process to think about ethics. Build ethical considerations into the earliest stages of product development. Ask hard questions about data, and remember that it’s better to err on the side of caution.
+Key AI Technologies and Their Use Cases
+Understanding the AI landscape requires familiarity with its different technologies. AI isn’t a monolith; instead, it’s a collection of specialized technologies, each with its own use cases and challenges.
+As an AI PM, you’ll be expected to know which type of AI technology fits the problem you’re solving.
+How should you read this section of this guide? Well, I don’t recommend that you master every aspect of every AI technology. Identify the one area that you’re eager to learn more about, and focus your attention there.
+Why do I say this? Well, my wife works in LLMs, and I work in computer vision. Let me tell you - these two AI technologies barely overlap at all. (The one place they do is “transformers”, but that’s really not something that a PM needs to deeply understand.)
+So, as you read the below, identify the one AI technology that you’d like to dig deeper into. Remember, product management is all about prioritization and focus - don’t try to boil the ocean!
+Large Language Models (LLMs)
+LLMs, like GPT-4, excel at understanding and generating human-like text. These models are particularly powerful in natural language processing (NLP) applications, such as chatbots, content generation, and virtual assistants. Here are some examples of products:
+Customer support chatbots (e.g., Google's Dialogflow, Intercom)
+Content generation tools (e.g., OpenAI's GPT-4, Jasper)
+Engineering copilots (e.g., GitHub Copilot)
+When working with LLMs, be aware of limitations in their training data. LLMs are prone to generating plausible-sounding but incorrect information, so products using these models must be designed to validate output accuracy.
+Computer Vision
+Computer vision (CV) enables machines to interpret visual inputs like images and videos. This technology is widely used in fields like autonomous driving, medical imaging, and security. Here are some examples of products:
+Real-time performance is critical for many computer vision applications. Work closely with your engineering team to optimize latency and ensure models can process images in milliseconds, especially for mission-critical applications like self-driving cars.
+Recommendation Algorithms
+Recommendation algorithms analyze user behavior to suggest personalized content, products, or media. These systems are widely used in e-commerce, social media, and streaming services to increase engagement.
+Recommendation algorithms rely on user feedback loops, which can amplify both positive and negative experiences. Make sure you’re continuously monitoring and fine-tuning these models to avoid undesirable feedback loops, such as promoting low-quality content.
+Other AI/ML Technologies
+Here are some additional AI/ML techniques used in a wide range of industries:
+Speech recognition: Converts spoken language into text, widely used in virtual assistants (e.g., Google Assistant, Alexa) and transcription services (e.g., Otter.ai).
+Reinforcement learning: Trains agents to make decisions by rewarding desired behaviors. It’s commonly used in robotics and gaming.
+Predictive analytics: Uses historical data to predict future outcomes, useful in industries like finance and healthcare.
+Understanding the specific AI technology your product will use, as well as its typical applications, will help you define product features, set metrics, and collaborate with technical teams.
+Acquiring AI-Specific Knowledge and Skills
+Right, so now we’ve selected the one AI technology that we’re interested in. (I can’t emphasize this enough - please do not attempt to learn LLMs, CV, recommendation algos, and other techniques in a single shot. It’s not going to help.)
+Now that we’ve selected the single AI technology, let’s discuss how to flesh out the knowledge and skills that we need to serve as effective product managers for this particular AI technology.
+You’ll need to acquire a foundation in machine learning (ML) and AI concepts that allows you to confidently work with technical teams, make informed decisions, and help shape the development of AI-driven products.
+While you don't need to become a machine learning engineer, you must gain enough technical knowledge to bridge the gap between product and engineering teams effectively. Here’s how to get started:
+Grasp AI basics
+Establish a framework for additional learning
+Master AI-specific metrics
+Grasp AI Basics
+The foundational concepts of AI may seem overwhelming at first, but focusing on core areas will help you gain the knowledge necessary to thrive as an AI PM.
+Machine learning: Learn the different types of machine learning (supervised, unsupervised, and reinforcement learning) and their respective applications. Understand key concepts such as training data, model overfitting, generalization, and cross-validation. Knowing how models learn from data and make predictions is essential for any AI PM.
+Deep learning: Dive into neural networks and deep learning, especially if you’re interested in areas like computer vision or natural language processing. Deep learning models, which mimic the structure of the human brain, are behind some of the most significant advances in AI, from facial recognition to speech synthesis.
+Model lifecycle: AI models follow a lifecycle that includes data preparation, model training, validation, deployment, and continuous monitoring. As an AI PM, you’ll need to understand how models are developed and maintained over time. AI models, unlike traditional software products, require retraining and adjustments based on the changing nature of data inputs and user behavior.
+Data pipelines: Since AI depends on high-quality data, learn about data ingestion, transformation, labeling, and storage. Get familiar with the challenges of ensuring data cleanliness and robustness.
+Here are some resources to help you get started:
+Coursera’s AI for Everyone: A great starting point for understanding AI at a high level.
+Google's Machine Learning Crash Course: Provides a more hands-on introduction to ML concepts.
+Fast.ai: Offers practical deep learning courses tailored for non-experts.
+BlueDot Impact: Courses that support people to develop the knowledge, skills and connections to pursue a high-impact career in AI
+How deep do you need to go with AI concepts? Start by learning enough to participate in technical discussions confidently. While you won’t be building models yourself, having a strong understanding of how AI works will allow you to ask the right questions and ensure product decisions are data-informed.
+The most effective AI PMs are those who understand the ""why"" behind model performance. When a model’s predictions fall short, your role is to dive into the data, collaborate with data scientists to troubleshoot, and adjust the product roadmap based on model limitations. It’s a continual process of learning and iteration!
+Establish a framework for additional learning
+When you’re learning AI as a PM, it’s important to structure your education strategically so you can build on each concept incrementally. Here’s a framework that can help guide your learning:
+Start with a High-Level Overview: Begin by taking foundational courses. These will give you a broad understanding of how AI works without getting lost in technical details.
+Choose a Domain to Deep Dive Into: Pick one specific area of AI that interests you—such as NLP, computer vision, or recommendation systems—and immerse yourself in learning about that area. Take a hands-on course, read relevant research papers, and work through real-world use cases.
+Build a Side Project: Apply what you’ve learned by building a simple AI-driven project. This could be a chatbot using an open-source NLP library or a basic image classifier using pre-trained models. Building a side project will give you practical experience in the model lifecycle, data management, and deployment challenges.
+Repeat Steps 2 and 3: After your first deep dive, repeat the process for another AI domain. This iterative approach will help you gain a well-rounded understanding of various AI applications, making you more versatile as an AI PM.
+A well-structured learning journey is key to transitioning into AI. Many PMs try to learn everything at once and get overwhelmed. Instead, focus on understanding one area deeply before moving on to the next.
+Depth of knowledge in AI is far more valuable than breadth.
+Mastering AI Product Metrics
+In AI product management, traditional KPIs like user engagement, revenue, and feature adoption still matter! However, for AI products, additional metrics come into play:
+Model accuracy: This measures how often your model’s predictions are correct. However, accuracy alone can be misleading, especially when dealing with imbalanced datasets.
+Precision and recall: These metrics help you understand the trade-off between false positives and false negatives. In products where the cost of a false positive is high (e.g., fraud detection), precision is more important. In others, where missing a key event is costly (e.g., medical diagnosis), recall takes priority.
+F1 score: This is a harmonic mean of precision and recall and is especially useful when your data is imbalanced. A high F1 score ensures that both precision and recall are optimized.
+Model interpretability: Can your model's outputs be easily understood by non-technical stakeholders? Interpretability is particularly important in high-stakes domains like healthcare or finance, where users and regulators need to trust the model’s decisions.
+Latency and throughput: In real-time AI applications (e.g., voice assistants or autonomous driving), these metrics measure how quickly the model can process inputs and deliver outputs. Latency refers to the time it takes for the model to return a result, while throughput measures how many operations the model can perform in a given timeframe.
+Which metrics matter most? It depends on your product’s use case.
+For instance, in a social media recommendation engine, precision and recall are vital for personalizing content.
+In a real-time application like self-driving cars, low latency is crucial. Understand your product’s specific needs before determining which metrics to prioritize.
+AI PMs often struggle to balance accuracy with interpretability. Highly accurate models may be too complex for end-users to understand. As a PM, you need to make trade-offs between accuracy, interpretability, and speed based on your product’s user experience and goals.
+Build AI-Specific Experience
+Once you have a solid understanding of AI principles, the next step is to gain hands-on experience. Transitioning into AI product management is not just about learning concepts; you need to demonstrate that you’ve applied those concepts in real-world scenarios.
+Work on AI-Adjacent Projects
+Leverage your current role to find projects that involve AI or data science. Even if you’re not an AI PM yet, there are plenty of opportunities to contribute to AI-driven initiatives in most companies. This could involve scoping out a feature that uses machine learning, collaborating with a data science team, or working on a recommendation algorithm for personalized content.
+How can you find AI projects in your current role? Start by identifying any products or features that rely on data or automation. For example, you might work on improving personalization in a user interface or optimizing search results using a recommendation engine.
+Focus on the business value of AI features, not just the technology. Many AI initiatives fail because they don’t directly tie into customer or business outcomes. Make sure your AI efforts are grounded in solving real user problems and driving measurable impact.
+Some AI-related projects within your current organization might include:
+Collaborating with a data science team on a feature that uses machine learning (e.g., recommendation engines or personalization algorithms).
+Helping to scope AI features, such as chatbots or image recognition systems, for your existing product.
+Running user research to understand how AI-driven insights could improve user experiences.
+By working on projects that involve AI or ML, even peripherally, you’ll build valuable experience and create stories for future interviews.
+Participate in Hackathons and AI Competitions
+AI hackathons and competitions like those on Kaggle offer a great way to work on real-world AI problems in a team environment. These experiences provide hands-on learning and show future employers you’re serious about breaking into AI.
+Participating in hackathons can give you a crash course in AI development. You’ll learn how to work under pressure, make quick decisions about data and models, and deliver an MVP (Minimum Viable Product) in a short amount of time. The experience you gain from these events is invaluable when transitioning into AI product management.
+Launch Your Own AI Side Project
+One of the most effective ways to demonstrate your readiness for AI product management is to build and launch your own AI-driven side project. This is where your hands-on learning comes to life. A side project allows you to explore the product lifecycle of an AI system, from idea generation to deployment, and demonstrates your initiative to potential employers.
+What kind of AI side project should you build?
+Start small.
+Pick a domain you’re passionate about and leverage existing pre-trained models to speed up development. For example, you could create a personalized movie recommendation bot, an image classifier for identifying plant species, or even a chatbot that answers customer service queries.
+By launching even a small AI product, you’ll learn the nuances of deploying machine learning models, including testing, feedback loops, and iteration.
+Step 1: Identify a Problem: Look for an everyday problem that could be solved using AI. Maybe you notice inefficiencies in how certain tasks are performed in your daily life or within your organization.
+Step 2: Choose a Pre-trained Model: Use platforms like Hugging Face or Google Cloud’s AutoML to access pre-trained models. These allow you to focus on building a product without needing to develop a model from scratch.
+Step 3: Develop the Product: Build a simple UI and integrate the AI model into it. For example, if you’re building a recommendation system, you can use a pre-trained NLP model to analyze user preferences and suggest items.
+Step 4: Deploy and Iterate: Once your MVP is live, test it, gather feedback, and improve the model based on user inputs. AI projects are iterative by nature, so use this as a learning opportunity to refine both your product and your understanding of the model.
+Building an AI side project is more than just coding. Treat it like a full product development cycle. Develop user personas, define your problem statement, set KPIs, and align model outputs with business outcomes. Even if your side project isn’t commercial, the way you think about it from a product perspective will demonstrate your readiness for an AI PM role.
+Once you’ve launched your AI side project, share it widely. Showcase your project on GitHub, write about your learnings on Medium, and include it in your portfolio. You’ll not only attract attention from potential employers but also gain valuable feedback from the AI community.
+Share the process, not just the result. AI products are about learning from iterations, so be transparent about what worked, what didn’t, and how you improved. Sharing this thought process makes you a stronger candidate because it highlights your problem-solving skills and willingness to learn from setbacks.
+Networking Strategies for AI Product Management
+Building relationships in the AI space is critical for breaking into AI product management. Networking helps you stay informed about industry trends, discover job opportunities, and build credibility within the AI community.
+Here’s how you can take a strategic approach to networking in AI!
+Attend AI Conferences and Meetups
+AI conferences such as NeurIPS or O'Reilly AI offer excellent opportunities to network with professionals in the field. You’ll hear about the latest trends and challenges in AI, which will give you insights into what AI PMs are currently working on.
+Local AI meetups or virtual events can also provide valuable networking opportunities and a chance to meet AI professionals in your area.
+What should you focus on at AI conferences?
+Well, first off, don’t try to attend every session.
+Focus on talks and workshops that align with your interests and career goals. AI product management sits at the intersection of business and technology, so attending sessions on product strategy, ethics in AI, or the latest developments in NLP or computer vision can be incredibly beneficial.
+Be proactive at events. Don’t just listen to speakers; instead, make sure you’re asking the right questions.
+Prepare thoughtful questions for the speakers, introduce yourself to attendees, and don’t hesitate to approach people after sessions.
+Networking at conferences is one of the best ways to get noticed in the AI community. And, the AI community is tight-knit; people know people! If someone is willing to advocate for you, you’re much more likely to break into AI product management.
+Leverage LinkedIn
+LinkedIn is an incredibly powerful tool for connecting with AI professionals. Use it to identify AI PMs, data scientists, and engineers in companies or sectors you’re interested in, and reach out for informational interviews.
+Start with Common Ground: Mention something specific about their work, such as a recent product launch or research paper they were involved in. People are more likely to respond when they see genuine interest in what they do.
+Ask for Advice, Not a Job: Focus on learning about their journey into AI, the challenges they face in AI PM, and what they believe are key skills to develop. This will help you better understand the space while also building meaningful connections.
+Don’t just reach out for the sake of networking. Approach these conversations with specific questions and a learning mindset. Ask about how they handle product iterations with ML teams, how they balance ethical considerations, or how they’ve managed failures in AI projects. These questions not only show your interest but also help you learn from their experiences.
+Join online communities
+There are several online communities dedicated to AI, such as Reddit’s r/MachineLearning, AI-focused Slack groups, and forums like Towards Data Science. Participating in these groups allows you to engage in discussions, ask questions, and learn from a wide range of AI professionals.
+Consistency is key in online communities. Don’t just post once and disappear—regular engagement is how you’ll build relationships. Share your own learnings from AI side projects, comment on discussions about emerging trends, and help others where you can. Your participation will make you visible in the community, and over time, you’ll develop a network of peers and mentors who can support your journey.
+Mentorship
+Seek out a mentor who works in AI product management.
+A mentor can help guide you through the transition process, review your projects or resume, and offer insights on navigating the field.
+Many AI PMs are open to sharing their knowledge, and formal mentoring platforms like MentorCruise can facilitate these connections.
+Tailor Your Resume and Portfolio for AI Roles
+When applying for AI PM roles, your resume and portfolio need to highlight your AI experience and demonstrate that you have the technical know-how to collaborate with data scientists and ML engineers.
+Emphasize Data-Driven Decision Making
+AI products are built on data, so any experience you have with data analysis, predictive modeling, or personalization should be front and center on your resume. Highlight specific examples where you worked with data teams or implemented data-driven features.
+Example: ""Collaborated with the data science team to design and implement a recommendation engine, resulting in a 15% increase in user engagement.""
+Hiring managers are looking for PMs who can speak the language of data. Show that you understand how data fuels AI products by emphasizing your experience with metrics, data analysis, and any work you’ve done with data scientists or ML teams.
+Showcase Collaboration with Technical Teams
+Since AI PMs work closely with technical teams, demonstrating that you can bridge the gap between product and engineering is crucial. Highlight any cross-functional projects where you led initiatives that required close collaboration with data scientists or engineers.
+Example: ""Led a cross-functional team of engineers, data scientists, and UX designers to develop an AI-powered feature for personalized content recommendations, from ideation to launch.""
+AI PM roles demand strong technical collaboration skills. Don’t just mention that you worked with engineers; highlight how you facilitated those interactions and ensured that technical and business goals aligned. This will show that you’re capable of leading complex AI projects.
+Highlight AI Projects
+Even if your experience with AI is limited to side projects or hackathons, include those in your portfolio. Walk through your process of identifying a problem, selecting an AI model, and deploying the solution. Explain the challenges you faced, how you iterated, and what results you achieved.
+Example: ""Developed an AI chatbot for customer support, which reduced response times by 20%. Iterated on the model based on user feedback to improve the accuracy of responses.""
+Your portfolio should tell a story. Don’t just list the projects; instead, showcase the decision-making process behind them. Explain why you chose certain AI models, how you defined success metrics, and how the product evolved through iterations. This narrative will demonstrate your deep understanding of the AI product lifecycle.
+Quantify Your Impact
+Numbers speak volumes. Whenever possible, quantify the impact of your work. Whether it’s increased user engagement, reduced operational costs, or improved model accuracy, metrics make your contributions tangible.
+Example: ""Implemented an AI-powered lead scoring system, increasing sales conversions by 25%.""
+AI products are measured in terms of their outcomes, not just their features. Highlight the business impact of your AI initiatives by showing how they improved user experience, efficiency, or revenue. Quantifying your achievements helps to frame your AI experience in a way that hiring managers will appreciate.
+Prepare for AI PM Interviews
+AI product management interviews differ from traditional PM interviews in a few key ways. While product thinking and leadership skills remain critical, AI PM roles demand a strong grasp of technical concepts and the ability to solve problems that arise from the unique challenges of working with AI and machine learning models.
+Understand Common AI Product Challenges
+AI products come with their own set of challenges, such as limited or biased training data, model drift over time, and the complexities of deploying machine learning models in real-world environments. Interviewers will expect you to demonstrate awareness of these challenges and have a strategy for addressing them.
+Example Challenge - Data Bias: AI models are only as good as the data they’re trained on. If the training data is biased, the model will be too, leading to skewed outcomes. For example, a facial recognition model trained on a dataset lacking diversity might struggle to identify people of different ethnic backgrounds.
+How to Prepare: Be ready to explain how you would address bias in training data, ensure fairness in the model’s outputs, and manage user expectations when deploying the model.
+During the interview, frame your approach to challenges by focusing on collaboration. Explain how you would work with data scientists to audit and improve datasets, as well as how you’d communicate potential risks to stakeholders. The ability to foresee and mitigate issues like bias, data drift, or overfitting will set you apart.
+Master Technical Topics at a High Level
+While you won’t be expected to code, interviewers will test your understanding of key AI and machine learning concepts. You'll need to explain these concepts in simple terms and discuss their impact on the product roadmap.
+Example Concepts: Neural networks, reinforcement learning, decision trees, and unsupervised learning.
+How to Prepare: Be comfortable discussing how models like these are built and trained, their trade-offs (e.g., accuracy vs. interpretability), and the impact of these trade-offs on the user experience.
+It’s not just about regurgitating definitions. You’ll be judged on how well you can connect technical concepts to product decisions. When asked a technical question, always tie it back to business value. Why does this model matter for the user or the company? Your ability to navigate both technical depth and product strategy is what will distinguish you.
+Practice AI Product Case Studies
+AI PM interviews often include case studies where you’re asked to design an AI product or solve a specific AI-related problem. This could involve building a recommendation engine for a new app, optimizing an existing machine learning feature, or addressing model performance issues.
+How to Prepare: Approach AI case studies the same way you would any product case study, but layer in AI-specific considerations. Start by framing the problem: What is the business goal? What are the user needs? Then, think about which type of AI solution could best meet those needs. Consider factors like data availability, model complexity, interpretability, and ethical implications.
+Example: You might be asked, “How would you build a recommendation system for a music streaming platform?” In your answer, walk through your product vision, the types of user data you would collect, how you would ensure data privacy, and how you would measure success (e.g., precision, recall, or user engagement).
+Don’t just think about how to build the AI feature. Think about how to maintain it for the next three years!
+AI products require ongoing iteration, monitoring, and retraining. Show the interviewer that you understand how to ensure the model continues to improve over time, and how you would handle situations where the model’s performance degrades.
+Highlight Ethical and Regulatory Considerations
+AI is often subject to greater scrutiny than traditional software due to its potential for bias, ethical issues, and regulatory challenges. Be prepared to discuss how you would navigate these concerns in your product decisions.
+Example: If you’re working on an AI-driven healthcare product, how would you ensure that the model’s predictions are both accurate and equitable? What steps would you take to comply with healthcare regulations like HIPAA?
+How to Prepare: Familiarize yourself with ethical AI guidelines, data privacy laws, and industry-specific regulations (e.g., GDPR in Europe, or CCPA in California). Be ready to discuss how these frameworks influence your product roadmap and decision-making.
+AI ethics is not an afterthought; it’s a core part of your product strategy. In your interview, demonstrate that you take ethical concerns seriously. Discuss how you would build fairness checks into the model development process, how you’d explain model decisions to users, and how you’d mitigate risks.
+Avoid Trend Chasing
+In a field as dynamic as AI, it’s easy to get caught up in the latest breakthroughs, hyped technologies, or the opinions of high-profile thought leaders. But while staying informed about the AI landscape is important, there’s a fine line between being informed and blindly following trends.
+Make sure you focus on building AI products with scalable, generalized approaches that are positioned to leverage the long-term trajectory of AI advancements.
+General Methods Scale Better Over Time
+The most effective AI advancements come from general methods that scale with computation and data, rather than short-term, domain-specific optimizations.
+Prof. Rich Sutton’s ""Bitter Lesson"" reveals that AI methods reliant on human-designed heuristics or domain expertise tend to plateau, while generalized techniques like deep learning and reinforcement learning continue to improve as computational power and data availability grow.
+The success of these methods is largely due to their alignment with Moore’s Law, which predicts the exponential growth of computing power. Systems that are built to take advantage of this scalability will ultimately outperform those that are overly fine-tuned to specific, short-term needs.
+The Dangers of Information Overload
+Reading too many AI papers, or constantly staying up to date with every new breakthrough, can lead to confusion and decision fatigue for AI product managers.
+While academic research often explores cutting-edge ideas, many papers focus on highly specialized use cases or experimental methods that may not be practical or scalable for real-world product development.
+This overwhelming influx of information can make it difficult to discern which approaches are genuinely useful for your product and which are simply speculative.
+When PMs try to integrate too many experimental ideas into a product roadmap, it can lead to scope creep and misalignment with the core product strategy.
+Instead of attempting to absorb every new AI paper, focus on foundational techniques that have proven to scale effectively!
+Build for Scalability, Not Buzz
+As an AI PM, prioritize sustainable, scalable solutions that can evolve alongside technological advancements.
+It’s tempting to experiment with the latest techniques or buzzworthy AI innovations, but the key to long-term success is creating models that perform reliably across diverse datasets and scenarios.
+Scalability should be at the heart of your product strategy, ensuring your AI system can grow and improve without needing to be constantly rebuilt.
+Trend chasing can lead to short-lived success, but true innovation in AI comes from focusing on core principles, such as building robust data pipelines, creating reliable models, and ensuring scalability.
+By grounding your approach in scalable techniques and only integrating new technologies when they’re ready to contribute meaningfully, you’ll create products that can thrive for years to come.
+Closing Thoughts
+Breaking into AI product management requires intentional learning, networking, and gaining relevant experience.
+By building a solid understanding of AI fundamentals, working on AI-related projects, and connecting with professionals in the field, you’ll be well-positioned to make the transition into this exciting and rapidly growing area.
+Stay patient, keep building your skill set, and take advantage of opportunities to work with AI in any capacity.
+All of this hard work will all add up to a compelling narrative when you're ready to land your first AI PM role!
+Thank you to Pauli Bielewicz, Mary Paschentis, Goutham Budati, Markus Seebauer, Juliet Chuang, and Kendra Ritterhern for making this guide possible.",Breaking into AI Product Management — Product Teacher,,Oct 20
+2025-10-04T20:10:08.425363Z,https://medium.com/@allanouko17/customer-churn-prediction-using-machine-learning-ddf4cd7c9fd4,https://medium.com/@allanouko17/customer-churn-prediction-using-machine-learning-ddf4cd7c9fd4,medium.com,Customer Churn Prediction Using Machine Learning,Tech,Data Science,"[""Churn Prediction"", ""Data Preprocessing"", ""Model Evaluation""]","[""Case Study"", ""Data Splitting"", ""Handling Missing Values"", ""Importance"", ""Model Performance"", ""Model Selection"", ""Oversampling""]","[""Churn Distribution"", ""Data Source"", ""EDA and Plots"", ""XGBoost""]",[],null,"[[""Tech"", ""Data Science"", ""Churn Prediction"", ""Importance""], [""Tech"", ""Data Science"", ""Churn Prediction"", ""Case Study"", ""Data Source""], [""Tech"", ""Data Science"", ""Churn Prediction"", ""Case Study"", ""EDA and Plots""], [""Tech"", ""Data Science"", ""Churn Prediction"", ""Case Study"", ""Churn Distribution""], [""Tech"", ""Data Science"", ""Data Preprocessing"", ""Handling Missing Values""], [""Tech"", ""Data Science"", ""Data Preprocessing"", ""Data Splitting""], [""Tech"", ""Data Science"", ""Data Preprocessing"", ""Oversampling""], [""Tech"", ""Data Science"", ""Model Evaluation"", ""Model Selection"", ""XGBoost""], [""Tech"", ""Data Science"", ""Model Evaluation"", ""Model Performance""]]","[""Customer churn prediction helps identify clients at risk of leaving services."", ""Understanding client behavior is crucial for retention strategies."", ""Data preprocessing involves handling missing values and balancing the dataset."", ""The XGBoost model was selected as the best performer for predictions."", ""Final predictions can guide targeted marketing campaigns.""]","Customer churn prediction overview
+Customer churn prediction predicts the likelihood of customers canceling a company’s products or services. In most cases, businesses with repeat clients or clients under subscriptions strive to maintain the customer base. Therefore, it is important to keep track of the customers who cancel their subscription plan and those who continue with the service. This approach requires the organization to know and understand their client’s behavior and the attributes that lead to the risk of the client leaving. I will explain the steps necessary in creating and deploying a churn prediction machine-learning model.
+Why Predict Customer Churn?
+It is important for any organization dealing with repeat clients to find ways to retain existing ones. The approach is crucial since customer churn is expensive, and acquiring new clients is more expensive than retaining existing ones. Consider an internet service (ISP) provider who has acquired a new user. They will need technicians and hardware to connect the latest client to their service. The client will only be required to pay the subscription fee to continue using their plan. If the user fails to renew their service, the company will most likely be at a loss, especially if the trend continues for several customers. The monthly recurring revenue (MRR) for such an institution will likely be low; hence, it will be unable to sustain the business. Thus, a reliable churn prediction model should help companies stay afloat as they scale up and attract more customers.
+Case Study of Customer Churn Prediction Model
+Creating churn prediction models involves using historical customer data to predict the likelihood of the current customer leaving or continuing with a particular service/product. The data used for the predictive models include product usage data and direct customer feedback. Besides, the predictive models identify the different trends and patterns in the data to forecast customer churn.
+Scenario
+Consider an e-commerce company with historical data on how its clients have interacted with its services. The company wants to know the likelihood of customers churning so it can launch targeted marketing campaigns.
+Data source and GitHub repo
+The data is available here, Kaggle.
+The GitHub repo for the whole project
+About the dataset
+The data is in .xlsx format with the following features:
+The dataset had no duplicate rows. Dropping the CustomerID column, which is each customer's unique identifier, has no effect on predicting churn.
+EDA and Plots
+Visualizing the categorical columns indicates:
+1. About 83.2 % of the customers were retained, while 16.8% churned.
+2. The company also has more male than female clients.
+3. Most clients prefer logging in from their mobile phones to their phones and computers.
+4. Most clients spend an average of 2 and 4 hours on the company’s app.
+5. Most customers have about 3 or 4 devices registered for the retailer’s app.
+6. Most customers prefer debit and credit cards to make payments.
+7. City tier 2 has the lowest number of customers.
+From the figure, notice that many customers placed their first and second orders, and the number reduced in subsequent orders. Additionally, the number of customers reduced a week after their last order.
+Churn Distribution
+Choosing the Right Machine Learning Model
+You need to build a machine-learning model to predict customer churn. Therefore, you must choose the appropriate classification model since the target class (churn) consists of a discrete class of features (Yes and No). The classification model is suitable because it is a supervised model that uses historical data to find patterns in customer churn behavior. However, you should use regression models if the data has continuous values on the target class.
+Data Preprocessing
+To build a machine learning model with high accuracy, one needs to preprocess the data to reduce its complexity. Since the data had missing values, there is a need to impute these values appropriately.
+from sklearn.impute import SimpleImputer # Imports SimpleImputer for handling missing data with basic strategies.
+from sklearn.experimental import enable_iterative_imputer # Enables the experimental IterativeImputer in scikit-learn.
+from sklearn.impute import IterativeImputer # Imports IterativeImputer for advanced imputation techniques using iterative models.
+from sklearn.ensemble import RandomForestRegressor # Imports RandomForestRegressor for regression tasks using ensemble methods.
+import pandas as pd # Imports the pandas library for data manipulation and analysis.
+def fill_missing_values(df, random_state=None):
+# Step 1: Identify numeric and categorical columns
+numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns.tolist()
+categorical_columns = df.select_dtypes(include=['object']).columns.tolist() # Include both string and category data
+# Step 2: Impute numeric columns
+numeric_imputer = SimpleImputer(strategy='mean')
+df[numeric_columns] = numeric_imputer.fit_transform(df[numeric_columns])
+# Step 3: Handle categorical columns
+for col in categorical_columns:
+if df[col].dtype == 'object':
+# Convert categorical column to one-hot encoded representation
+encoded_cols = pd.get_dummies(df[col], prefix=col)
+# Concatenate one-hot encoded columns
+df = pd.concat([df.drop(col, axis=1), encoded_cols], axis=1)
+# Step 4: Random Forest Iterative Imputer for the entire DataFrame
+rf_imputer = IterativeImputer(estimator=RandomForestRegressor(random_state=random_state))
+df = pd.DataFrame(rf_imputer.fit_transform(df), columns=df.columns)
+return df
+# Call the function to fill missing values
+df = fill_missing_values(df, random_state=42)
+The data had mixed data types, so the Random Forest Iterative Imputer was appropriate for filling in the missing values due to its high accuracy. The first imputation step involved identifying the dataset’s numeric and categorical columns to impute separately. After that, the missing values in the numerical columns were imputed using the mean. The categorical columns were converted to a one-hot encoded representation and then concatenated. The final step involved initiating the Random Forest Iterative Imputer for the entire data frame.
+Splitting Data to Training and Testing Dataset
+# Split model into training and test set
+X = df.drop(columns=[""churn""])
+y = df[""churn""]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+This step ensures there are different datasets for training and testing the machine learning models.
+Oversampling using SMOTE
+Since the target variable ‘Churn’ was highly imbalanced, balancing this target feature on the training dataset is important. The Synthetic Minority Over-sampling Technique (SMOTE) is the appropriate method to generate synthetic samples of the minority class to balance the target variable and improve model performance during model training.
+from imblearn.over_sampling import SMOTE
+print('Before upsampling count of label 0 {}'.format(sum(y_train==0)))
+print('Before upsampling count of label 1 {}'.format(sum(y_train==1)))
+# Minority Over Sampling Technique
+sm = SMOTE(sampling_strategy = 1, random_state=1)
+X_train_s, y_train_s = sm.fit_resample(X_train, y_train.ravel())
+print('After upsampling count of label 0 {}'.format(sum(y_train_s==0)))
+print('After upsampling count of label 1 {}'.format(sum(y_train_s==1)))
+Models Evaluation
+The different classification models included the following, ranked from the highest to the least performing.
+The information shows that the XGBoost classifier was the best performer with high test accuracy and f1 score. Therefore, the final customer churn prediction model would be built based on the XGBoost classifier.
+Below is a visualization of the feature weights, which indicate the importance of each feature in predicting customer churn.
+Therefore, the features that will be used for the final deployment model are:
+- Tenure
+2. Cashback amount
+3. City tier
+4. Warehouse to home
+5. Order amount hike from last year
+6. Days since last order
+7. Satisfaction score
+8. Number of addresses
+9. Number of devices registered
+10. Complain
+11. Order count
+12. hourspendonapp
+13. Marital status
+14. Coupon used
+15. Gender
+Drop the unwanted columns from the training and testing dataset in this scenario.
+Since the final deployment model is the XGBoost classifier, convert the Pandas data frame to a NumPy array. The conversion helps load and predict values in the Flask app without encountering an error.
+# Convert the Pandas datafram to NumPy array for the XGBoost classifier.
+# The conversion helps in loading and predicting values in the flask app.
+X_test = X_test.values
+X_train = X_train.values
+# Run the model
+final_model=XGBClassifier()
+final_model.fit(X_train, y_train)
+train_pred = final_model.predict(X_train)
+test_pred = final_model.predict(X_test)
+final_model.score(X_test, y_test)
+Saving the Model
+Now save the model as a pickle file. Also, save the data columns as a JSON file.
+import pickle
+pickle.dump(final_model,open('end_to_end_deployment/models/churn_prediction_model.pkl','wb'))
+#save the data columns
+import json
+columns = {'data_columns' : [col.lower() for col in X.columns]}
+with open(""end_to_end_deployment/models/columns.json"",""w"") as f:
+f.write(json.dumps(columns))
+Application Building
+Create the customer churn prediction app using Flask. The input and output interfaces are shown below.
+Given the available customer data, the company can now use customer details to determine whether they would churn. This approach would help the organization determine how to engage with the customers and launch targeted campaigns for customer retention.
+GitHub Link to the project.
+I recommend exploring the ‘Building Churn Prediction Model’ blog by UserMotion to learn how to develop personalized churn prediction model applications that enhance decision-making and boost customer retention with high accuracy.",Customer Churn Prediction Using Machine Learning,Allan Ouko,2024-12-10T21:01:24.437Z
+2025-10-04T20:21:20.700896Z,https://blog.langchain.com/launching-long-term-memory-support-in-langgraph/,https://blog.langchain.com/launching-long-term-memory-support-in-langgraph,blog.langchain.com,Launching Long-Term Memory Support in LangGraph,Tech,GenAI,"[""Memory""]","[""Cross-Thread Memory"", ""Long-term Memory""]","[""Persistence"", ""Persistent Document Store""]","[""Content-Based Filtering"", ""Document Store"", ""Flexible Namespacing"", ""JSON Document Storage""]","[[""Memory"", ""Long-term Memory"", ""Persistence"", ""Document Store""], [""Memory"", ""Cross-Thread Memory"", ""Persistent Document Store"", ""Content-Based Filtering""], [""Memory"", ""Cross-Thread Memory"", ""Persistent Document Store"", ""Flexible Namespacing""], [""Memory"", ""Cross-Thread Memory"", ""Persistent Document Store"", ""JSON Document Storage""]]","[[""Tech"", ""GenAI"", ""Memory"", ""Long-term Memory"", ""Persistence"", ""Document Store""], [""Tech"", ""GenAI"", ""Memory"", ""Cross-Thread Memory"", ""Persistent Document Store"", ""Content-Based Filtering""], [""Tech"", ""GenAI"", ""Memory"", ""Cross-Thread Memory"", ""Persistent Document Store"", ""Flexible Namespacing""], [""Tech"", ""GenAI"", ""Memory"", ""Cross-Thread Memory"", ""Persistent Document Store"", ""JSON Document Storage""]]","[""LangGraph introduces long-term memory support, enabling agents to store and recall information across conversations."", ""This feature is available in both Python and JavaScript, and is enabled by default for LangGraph Cloud & Studio users."", ""The memory system is built as a simple, reliable, persistent document store, allowing for flexible namespacing, JSON document storage, and content-based filtering.""]","Today, we are excited to announce the first steps towards long-term memory support in LangGraph, available both in Python and JavaScript. Long-term memory lets you store and recall information between conversations so your agent can learn from feedback and adapt to user preferences. This feature is part of the OSS library, and it is enabled by default for all LangGraph Cloud & Studio users.
+On Memory
+Most AI applications today are goldfish; they forget everything between conversations. This isn't just inefficient— it fundamentally limits what AI can do.
+Over the past year at LangChain, we've been working with customers to build memory into their agents. Through this experience, we've realized something important: there's no universally perfect solution for AI memory. The best memory for each application still contains very application specific logic. By extension, most ""agent memory"" products today are too high-level. They try to create a one-size-fits-all product that doesn't satisfy many production users' needs.
+This insight is why we have built our initial memory support into LangGraph as a simple document store. High level abstractions can be easily built on top (as we will show below), but beneath it all is a simple, reliable, persistent memory layer that comes built in to all LangGraph applications.
+Cross-Thread Memory
+LangGraph has always excelled at managing state within a single conversation thread using checkpointers. This ""short-term memory"" lets you maintain context within a single conversation.
+Today, we're extending that capability across multiple threads, enabling your agents to easily remember information across multiple conversations, all integrated in the LangGraph framework.
+At its core, cross-thread memory is ""just"" a persistent document store that lets you put, get, and search for memories you've saved. These basic primitives enable:
+- Cross-Thread Persistence: Store and recall information across different conversation sessions.
+- Flexible Namespacing: Organize memories using custom namespaces, making it easy to manage data for different users, organizations, or contexts.
+- JSON Document Storage: Save memories as JSON documents for easy manipulation and retrieval.
+- Content-Based Filtering: Search for memories across namespaces based on content.
+For a deeper understanding of these concepts, we've prepared a set of documents to provide framing and guidance on how to get started:
+- A conceptual video walking through memory concepts
+- Conceptual guides on memory in LangGraph Python & JS
+- How-to guide for sharing memories across threads in Python & JS
+Practical Implementation
+To help you get started with implementing long-term memory in your applications, we've prepared a new LangGraph template:
+This LangGraph Template shows a chatbot agent that manages its own memory. Key resources for this are
+- An end-to-end tutorial video walking through the implementation
+- A LangGraph Memory Agent in Python
+- A LangGraph.js Memory Agent in JavaScript
+These resources demonstrate one way to leverage long-term memory in LangGraph, bridging the gap between concept and implementation.
+We encourage you to explore these materials and experiment with incorporating long-term memory into your LangGraph projects. As always, we welcome your feedback and look forward to seeing how you apply these new capabilities in your applications.",Launching Long-Term Memory Support in LangGraph,Ankush Gola,2024-10-08
